@@ -19,7 +19,7 @@ export default function Footer({ onBookClick }: FooterProps) {
             <div className="flex items-center gap-4">
               <div className="relative w-28 h-16 shrink-0">
                 <Image
-                  src="/resilient-boxing-generated-logo-true-transparent.png"
+                  src="/resilient_boxing_gym_logo_transparent_high_def.png"
                   alt="Resilient Boxing Logo"
                   fill
                   className="object-contain"

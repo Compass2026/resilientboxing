@@ -87,7 +87,7 @@ export default function BookingModal({ isOpen, onClose, defaultProgramId = "elev
                   <div className="flex items-center gap-4 mb-6">
                     <div className="relative w-24 h-14 shrink-0">
                       <Image
-                        src="/resilient-boxing-generated-logo-true-transparent.png"
+                        src="/resilient_boxing_gym_logo_transparent_high_def.png"
                         alt="Resilient Boxing Logo"
                         fill
                         className="object-contain animate-pulse"

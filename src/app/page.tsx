@@ -21,44 +21,7 @@ import Ticker from "./components/Ticker";
 import BookingModal from "./components/BookingModal";
 import { CLASSES } from "./data/classes";
 
-const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-interface ScheduleSlot {
-  time: string;
-  classId: string;
-  duration: string;
-  intensity: number;
-  note?: string;
-}
-
-const SCHEDULE: Record<string, ScheduleSlot[]> = {
-  Monday: [
-    { time: "5:30 AM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "6:00 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "7:00 PM", classId: "weight", duration: "60 mins", intensity: 72 }
-  ],
-  Tuesday: [
-    { time: "6:00 PM", classId: "kick", duration: "60 mins", intensity: 93 }
-  ],
-  Wednesday: [
-    { time: "5:30 AM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "6:00 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "7:00 PM", classId: "weight", duration: "60 mins", intensity: 72 }
-  ],
-  Thursday: [
-    { time: "6:00 PM", classId: "kick", duration: "60 mins", intensity: 93 }
-  ],
-  Friday: [
-    { time: "5:30 AM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "6:00 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "7:00 PM", classId: "weight", duration: "60 mins", intensity: 72 }
-  ],
-  Saturday: [
-    { time: "8:00 AM", classId: "fightcamp", duration: "90 mins", intensity: 98, note: "By invite only" },
-    { time: "9:00 AM", classId: "kick", duration: "60 mins", intensity: 93 }
-  ],
-  Sunday: []
-};
 
 const STATS = [
   { val: "500+", label: "Lives Transformed" },
@@ -112,7 +75,6 @@ function GlowSpotlight() {
 export default function Page() {
   const [scrolled, setScrolled] = useState(false);
   const [activeClass, setActiveClass] = useState(0);
-  const [activeDay, setActiveDay] = useState("Monday");
   const [showLoading, setShowLoading] = useState(true);
   const [bookingOpen, setBookingOpen] = useState(false);
 
@@ -289,7 +251,7 @@ export default function Page() {
               {/* Logo badge */}
               <div className="lg:col-span-2 flex justify-center lg:justify-start">
                 <div className="relative w-40 h-24">
-                  <Image src="/resilient-boxing-generated-logo-true-transparent.png" alt="Resilient Boxing" fill className="object-contain object-center" sizes="144px" />
+                  <Image src="/resilient_boxing_gym_logo_transparent_high_def.png" alt="Resilient Boxing" fill className="object-contain object-center" sizes="144px" />
                 </div>
               </div>
 
@@ -577,7 +539,7 @@ export default function Page() {
                   {/* Logo in mission */}
                   <div className="flex items-center gap-4 mb-8">
                     <div className="relative w-28 h-16 shrink-0">
-                      <Image src="/resilient-boxing-generated-logo-true-transparent.png" alt="Resilient Boxing" fill className="object-contain" sizes="112px" />
+                      <Image src="/resilient_boxing_gym_logo_transparent_high_def.png" alt="Resilient Boxing" fill className="object-contain" sizes="112px" />
                     </div>
                     <div>
                       <p className="font-bebas text-2xl italic uppercase text-white leading-none">Resilient Boxing Gym</p>
@@ -712,228 +674,109 @@ export default function Page() {
 
       <section id="schedule" className="relative z-10 py-24 md:py-32">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <GlassPanel className="p-8 md:p-14 relative overflow-hidden border border-white/5">
+            <div className="absolute inset-0 glow-gold opacity-15 pointer-events-none rounded-2xl" />
+            <div className="absolute -right-20 -top-20 w-80 h-80 glow-red opacity-30 rounded-full blur-3xl" />
             
-            {/* Left side: The interactive schedule planner */}
-            <div className="lg:col-span-8">
-              <div className="mb-10">
-                <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-4">04 — Schedule</p>
-                <h2 className="font-bebas text-[clamp(52px,6vw,88px)] uppercase italic leading-none tracking-tight mb-4">
-                  Find Your<br />Round
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              {/* Left: Text Content */}
+              <div className="lg:col-span-7">
+                <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-4">04 — Class Times</p>
+                <h2 className="font-bebas text-[clamp(44px,6vw,80px)] uppercase italic leading-none tracking-tight text-white mb-6">
+                  Ready to Step<br />
+                  <span className="text-transparent" style={{ WebkitTextStroke: "2px #C5A059" }}>Into The Ring?</span>
                 </h2>
-                <div className="flex flex-wrap items-center gap-3 mt-4">
-                  <span className="glass rounded-full px-3.5 py-1.5 text-[9px] font-mono uppercase tracking-widest text-zinc-400 border border-white/8 inline-flex items-center gap-1.5">
-                    <Info size={10} className="text-[#C5A059]" /> By Class Appointment Only
-                  </span>
-                  <span className="glass rounded-full px-3.5 py-1.5 text-[9px] font-mono uppercase tracking-widest text-zinc-400 border border-white/8 inline-flex items-center gap-1.5">
-                    <Calendar size={10} className="text-[#C5A059]" /> Mon – Sat
-                  </span>
+                <p className="text-zinc-300 text-sm font-light leading-relaxed max-w-xl mb-8">
+                  We run structured training sessions from Monday through Saturday, offering morning and evening times to fit your lifestyle. From our core Elevate 60 conditioning to technical Form focus and advanced Fight Camp, there is a round designed for your goals.
+                </p>
+
+                {/* Micro preview grid of days */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+                  {[
+                    { days: "Mon · Wed · Fri", name: "Elevate 60", times: "5:30 AM & 5:30 PM" },
+                    { days: "Tues · Sat", name: "Form & Technique", times: "5:30 PM & 9:00 AM" },
+                    { days: "Tues · Sat", name: "Fight Camp", times: "6:30 PM & 10:00 AM" },
+                    { days: "Thursday", name: "Faith Over Fear 75", times: "5:30 PM - 6:45 PM" },
+                    { days: "Mon · Wed · Thurs", name: "Evening Elevate", times: "7:00 PM (Thurs / Mon / Wed)" },
+                    { days: "Friday", name: "Early Elevate", times: "5:00 AM" },
+                  ].map((preview, i) => (
+                    <div key={i} className="glass rounded-xl p-3 border border-white/5">
+                      <p className="text-[8px] font-mono uppercase tracking-widest text-[#C5A059]">{preview.days}</p>
+                      <p className="text-xs font-bold text-white uppercase tracking-wide mt-1 leading-none">{preview.name}</p>
+                      <p className="text-[9px] font-mono text-zinc-500 mt-1.5 leading-none">{preview.times}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-4">
+                  <a
+                    href="/schedule"
+                    className="group relative overflow-hidden flex items-center gap-3 px-8 py-4 bg-[#C5A059] rounded-xl text-[11px] font-bold uppercase tracking-widest text-black hover:bg-white transition-all duration-300 focus:outline-none shadow-xl shadow-black/40"
+                  >
+                    View Interactive Schedule
+                    <MoveRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
+                  </a>
+                  <button
+                    onClick={() => setBookingOpen(true)}
+                    className="flex items-center gap-2 px-6 py-4 glass rounded-xl text-[11px] font-semibold uppercase tracking-widest text-zinc-300 hover:text-white border border-white/8 hover:border-white/20 transition-all duration-300 focus:outline-none"
+                  >
+                    Book A Free Class
+                  </button>
                 </div>
               </div>
 
-              {/* Day Selectors Tabs */}
-              <div className="flex overflow-x-auto pb-4 mb-8 gap-2 scrollbar-none border-b border-white/5">
-                {DAYS.map((day) => {
-                  const isActive = activeDay === day;
-                  const dayClassesCount = SCHEDULE[day as keyof typeof SCHEDULE].length;
-                  return (
-                    <button
-                      key={day}
-                      onClick={() => setActiveDay(day)}
-                      className={`px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-300 focus:outline-none shrink-0 border ${
-                        isActive
-                          ? "glass-gold border-[#C5A059]/45 text-[#C5A059] shadow-lg shadow-black/30 bg-[#C5A059]/5"
-                          : "glass border-white/5 text-zinc-400 hover:text-white hover:border-white/12 bg-transparent"
-                      }`}
-                    >
-                      {day.substring(0, 3)}
-                      {dayClassesCount > 0 && (
-                        <span className={`ml-2 px-1.5 py-0.5 rounded text-[8px] font-mono ${isActive ? "bg-[#C5A059] text-black" : "bg-white/8 text-zinc-500"}`}>
-                          {dayClassesCount}
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Daily Schedule List */}
-              <div className="relative min-h-[300px]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeDay}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="space-y-4"
-                  >
-                    {SCHEDULE[activeDay as keyof typeof SCHEDULE].length > 0 ? (
-                      SCHEDULE[activeDay as keyof typeof SCHEDULE].map((slot, i) => {
-                        const classInfo = CLASSES.find(c => c.id === slot.classId);
-                        if (!classInfo) return null;
-                        return (
-                          <div
-                            key={i}
-                            className="glass-card rounded-2xl p-6 border border-white/8 hover:border-[#C5A059]/20 transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative overflow-hidden"
-                          >
-                            {/* Inset timeline line */}
-                            <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#C5A059]/80 to-transparent" />
-
-                            <div className="flex items-start sm:items-center gap-5">
-                              <div className="w-12 h-12 rounded-xl glass border border-white/10 flex items-center justify-center shrink-0">
-                                <Clock size={20} className="text-[#C5A059]" />
-                              </div>
-                              <div>
-                                <div className="flex flex-wrap items-center gap-2">
-                                  <span className="font-mono text-lg font-bold text-white leading-none">{slot.time}</span>
-                                  <span className="glass rounded px-2 py-0.5 text-[8px] font-mono uppercase tracking-widest text-zinc-500 border border-white/6">
-                                    {slot.duration}
-                                  </span>
-                                  {slot.note && (
-                                    <span className="flex items-center gap-1 text-[8px] font-mono uppercase tracking-widest text-red-400 bg-red-950/20 px-2 py-0.5 rounded border border-red-900/30">
-                                      <Lock size={8} /> {slot.note}
-                                    </span>
-                                  )}
-                                </div>
-                                <h4 className="font-bebas text-2xl uppercase italic tracking-wide text-white mt-1.5 flex items-center gap-2">
-                                  {classInfo.name}
-                                  <span className="text-zinc-500 font-mono text-xs not-italic lowercase">({classInfo.tagline})</span>
-                                </h4>
-                                <p className="text-zinc-400 text-xs font-light max-w-lg mt-1.5 leading-relaxed">
-                                  {classInfo.desc}
-                                </p>
-                              </div>
-                            </div>
-
-                            <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-4 border-t sm:border-t-0 border-white/5 pt-4 sm:pt-0 shrink-0">
-                              <div className="text-left sm:text-right">
-                                <span className="text-[8px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">Intensity</span>
-                                <div className="flex items-center gap-1.5">
-                                  <span className="text-xs font-mono text-[#C5A059] font-bold">{slot.intensity}%</span>
-                                  <div className="w-12 h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/6 inline-block">
-                                    <div className="h-full bg-[#C5A059] rounded-full" style={{ width: `${slot.intensity}%` }} />
-                                  </div>
-                                </div>
-                              </div>
-
-                              <button
-                                onClick={() => setBookingOpen(true)}
-                                className="px-5 py-2.5 bg-white/5 hover:bg-[#C5A059] text-white hover:text-black rounded-xl text-[10px] font-bold uppercase tracking-widest border border-white/8 hover:border-[#C5A059] transition-all duration-300 focus:outline-none"
-                              >
-                                Book Spot
-                              </button>
-                            </div>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      // Rest Day card
-                      <div className="glass-card rounded-2xl p-10 border border-white/8 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[300px]">
-                        <div className="absolute inset-0 glow-gold opacity-15 pointer-events-none" />
-                        <div className="w-16 h-16 rounded-2xl glass border border-white/10 flex items-center justify-center mb-6">
-                          <Coffee size={28} className="text-zinc-500" />
-                        </div>
-                        <h4 className="font-bebas text-3xl uppercase italic tracking-wider text-white mb-2">Rest & Recover</h4>
-                        <p className="text-zinc-400 text-xs font-light max-w-sm leading-relaxed mb-6">
-                          Recovery is where the work pays off. The gym is closed today. Rest, recharge, and get ready for the next round.
-                        </p>
-                        <div className="flex gap-2">
-                          {["Sleep Well", "Hydrate", "Refuel"].map((item, i) => (
-                            <span key={i} className="glass rounded-full px-4 py-1.5 text-[8px] font-mono uppercase tracking-widest text-zinc-500 border border-white/6">
-                              {item}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-
-            {/* Right side: The app download callout */}
-            <div className="lg:col-span-4 lg:sticky lg:top-28">
-              <div className="glass-heavy rounded-2xl border border-white/10 overflow-hidden relative shadow-2xl shadow-black/60">
-                {/* Gold gradient top highlight */}
-                <div className="h-1 w-full bg-gradient-to-r from-[#C5A059]/40 via-[#C5A059] to-[#C5A059]/20" />
-                <div className="absolute top-0 right-0 w-48 h-48 glow-gold opacity-20 rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2" />
-
-                <div className="p-8 relative z-10">
-                  <span className="px-2.5 py-1 rounded bg-[#C5A059]/10 border border-[#C5A059]/20 text-[8px] font-mono uppercase tracking-widest text-[#C5A059] inline-block mb-4">
-                    Official App
-                  </span>
-                  <h3 className="font-bebas text-3xl uppercase italic tracking-wide text-white leading-tight mb-3">
-                    Resilient Boxing<br />In Your Pocket
-                  </h3>
-                  <p className="text-zinc-400 text-xs font-light leading-relaxed mb-6">
-                    Book classes, track your punch power metrics, and manage your membership directly from your phone.
-                  </p>
-
-                  <div className="space-y-3 mb-8">
-                    <a
-                      href="https://apps.apple.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full flex items-center justify-between px-5 py-4 glass rounded-xl border border-white/8 hover:border-white/20 transition-all duration-300 group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <Smartphone size={16} className="text-[#C5A059]" />
-                        <div className="text-left">
-                          <span className="text-[7px] font-mono uppercase tracking-wider text-zinc-500 block leading-none">Download for</span>
-                          <span className="text-[11px] font-bold text-white uppercase tracking-wider leading-none mt-1 block">Apple iOS</span>
-                        </div>
-                      </div>
-                      <Download size={14} className="text-zinc-500 group-hover:text-white transition-colors" />
-                    </a>
-
-                    <a
-                      href="https://play.google.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full flex items-center justify-between px-5 py-4 glass rounded-xl border border-white/8 hover:border-white/20 transition-all duration-300 group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <Smartphone size={16} className="text-[#C5A059]" />
-                        <div className="text-left">
-                          <span className="text-[7px] font-mono uppercase tracking-wider text-zinc-500 block leading-none">Download for</span>
-                          <span className="text-[11px] font-bold text-white uppercase tracking-wider leading-none mt-1 block">Android Store</span>
-                        </div>
-                      </div>
-                      <Download size={14} className="text-zinc-500 group-hover:text-white transition-colors" />
-                    </a>
-                  </div>
-
-                  {/* QR Code Graphic Section */}
-                  <div className="glass rounded-xl p-5 border border-white/5 text-center flex flex-col items-center justify-center">
-                    <div className="relative w-28 h-28 bg-white/95 rounded-lg p-2.5 mb-3 flex items-center justify-center shadow-inner">
-                      {/* Stylized QR Code Mock */}
-                      <div className="w-full h-full border border-black/10 flex flex-wrap justify-between p-1 content-between">
-                        {/* 3 Corner Squares */}
-                        <div className="w-6 h-6 border-4 border-black rounded-sm" />
-                        <div className="w-6 h-6 border-4 border-black rounded-sm" />
-                        <div className="w-6 h-6 border-4 border-black rounded-sm" />
-                        {/* Fake bits */}
-                        <div className="w-full h-12 mt-1 flex flex-col gap-1">
-                          <div className="h-1 bg-black w-[80%] ml-auto" />
-                          <div className="h-1 bg-black w-[50%] mr-auto" />
-                          <div className="h-1 bg-black w-[90%] mx-auto" />
-                          <div className="h-1 bg-black w-[40%] ml-auto" />
-                          <div className="h-1 bg-black w-[70%] mr-auto" />
-                        </div>
-                      </div>
-                      {/* Logo in center of QR */}
-                      <div className="absolute inset-0 m-auto w-8 h-8 bg-black rounded-md flex items-center justify-center border border-white">
-                        <span className="text-[7px] font-bebas text-[#C5A059] italic font-black">RB</span>
+              {/* Right: Premium schedule image/graphic visual */}
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 group shadow-2xl bg-zinc-950/80">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
+                  <div className="absolute top-0 right-0 w-32 h-32 glow-gold opacity-20 rounded-full blur-2xl z-0" />
+                  
+                  {/* Floating glass overlay detailing the 2026 Schedule */}
+                  <div className="absolute inset-0 p-6 flex flex-col justify-between z-20">
+                    <div className="flex justify-between items-start">
+                      <span className="px-2.5 py-1 rounded bg-[#C5A059]/10 border border-[#C5A059]/25 text-[8px] font-mono uppercase tracking-widest text-[#C5A059]">
+                        2026 Schedule
+                      </span>
+                      <div className="w-8 h-8 rounded-lg glass border border-white/10 flex items-center justify-center text-zinc-400">
+                        <Calendar size={14} />
                       </div>
                     </div>
-                    <span className="text-[8px] font-mono uppercase tracking-widest text-zinc-500">Scan to Download app</span>
+
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C5A059] mb-1 block">Faith & Boxing</span>
+                      <h4 className="font-bebas text-3xl uppercase italic leading-none tracking-wide text-white mb-3">
+                        6 Days of Power,<br />Love & Focus.
+                      </h4>
+                      <p className="text-zinc-500 text-[10px] font-mono uppercase tracking-widest mb-4">
+                        Jeremiah 29:11 · 2 Timothy 1:7
+                      </p>
+                      
+                      {/* Mini checklist of features */}
+                      <div className="space-y-2 border-t border-white/8 pt-4">
+                        {["Filter by discipline", "Detailed class summaries", "Direct sign-up & booking", "WellnessLiving sync"].map((f, i) => (
+                          <div key={i} className="flex items-center gap-2">
+                            <span className="w-1 h-1 rounded-full bg-[#C5A059]" />
+                            <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-300">{f}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* watermarked background visual */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
+                    <Image
+                      src="/resilient_boxing_gym_logo_transparent_high_def.png"
+                      alt="Gym Crest watermark"
+                      width={300}
+                      height={200}
+                      className="object-contain"
+                    />
                   </div>
                 </div>
               </div>
             </div>
-
-          </div>
+          </GlassPanel>
         </div>
       </section>
 
@@ -952,7 +795,7 @@ export default function Page() {
 
             {/* Big logo watermark */}
             <div className="relative w-56 h-32 mx-auto mb-8">
-              <Image src="/resilient-boxing-generated-logo-true-transparent.png" alt="Resilient Boxing" fill className="object-contain" sizes="96px" />
+              <Image src="/resilient_boxing_gym_logo_transparent_high_def.png" alt="Resilient Boxing" fill className="object-contain" sizes="96px" />
             </div>
 
             <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-6 relative z-10">05 — Your Move</p>

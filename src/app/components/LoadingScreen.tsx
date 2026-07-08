@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const TAGLINE = "FAITH  ·  OVER  ·  FEAR";
-const LOGO = "/resilient-boxing-generated-logo-true-transparent.png";
+const LOGO = "/resilient_boxing_gym_logo_transparent_high_def.png";
 
 interface LoadingScreenProps {
   onComplete: () => void;

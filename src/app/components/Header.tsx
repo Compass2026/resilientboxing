@@ -77,7 +77,7 @@ export default function Header({ onBookClick }: HeaderProps) {
               }`}
             >
               <Image
-                src="/resilient-boxing-generated-logo-true-transparent.png"
+                src="/resilient_boxing_gym_logo_transparent_high_def.png"
                 alt="Resilient Boxing Gym"
                 fill
                 className="object-contain object-left"
@@ -168,9 +168,12 @@ export default function Header({ onBookClick }: HeaderProps) {
 
             {/* Schedule */}
             <Link
-              href={isHome ? "#schedule" : "/#schedule"}
-              onClick={() => handleNavClick("schedule")}
-              className="px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-200 focus:outline-none whitespace-nowrap"
+              href="/schedule"
+              className={`px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] rounded-lg transition-all duration-200 focus:outline-none whitespace-nowrap ${
+                pathname === "/schedule"
+                  ? "text-[#C5A059] bg-[#C5A059]/10"
+                  : "text-white/90 hover:text-white hover:bg-white/10"
+              }`}
             >
               Schedule
             </Link>
@@ -178,7 +181,11 @@ export default function Header({ onBookClick }: HeaderProps) {
             {/* Pricing */}
             <Link
               href="/pricing"
-              className="px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-200 focus:outline-none whitespace-nowrap"
+              className={`px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] rounded-lg transition-all duration-200 focus:outline-none whitespace-nowrap ${
+                pathname === "/pricing"
+                  ? "text-[#C5A059] bg-[#C5A059]/10"
+                  : "text-white/90 hover:text-white hover:bg-white/10"
+              }`}
             >
               Pricing
             </Link>
@@ -248,24 +255,30 @@ export default function Header({ onBookClick }: HeaderProps) {
                 </div>
               </div>
 
-              {[
-                ["Mission", "mission"],
-                ["Schedule", "schedule"],
-              ].map(([label, id]) => (
-                <Link
-                  key={id}
-                  href={isHome ? `#${id}` : `/#${id}`}
-                  onClick={() => handleNavClick(id)}
-                  className="text-sm font-bold uppercase tracking-widest text-zinc-300 text-left py-2 border-b border-white/5 focus:outline-none"
-                >
-                  {label}
-                </Link>
-              ))}
+              <Link
+                href={isHome ? "#mission" : "/#mission"}
+                onClick={() => handleNavClick("mission")}
+                className="text-sm font-bold uppercase tracking-widest text-zinc-300 text-left py-2 border-b border-white/5 focus:outline-none"
+              >
+                Mission
+              </Link>
+
+              <Link
+                href="/schedule"
+                onClick={() => setMenuOpen(false)}
+                className={`text-sm font-bold uppercase tracking-widest text-left py-2 border-b border-white/5 focus:outline-none ${
+                  pathname === "/schedule" ? "text-[#C5A059]" : "text-zinc-300"
+                }`}
+              >
+                Schedule
+              </Link>
 
               <Link
                 href="/pricing"
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-bold uppercase tracking-widest text-zinc-300 text-left py-2 border-b border-white/5 focus:outline-none"
+                className={`text-sm font-bold uppercase tracking-widest text-left py-2 border-b border-white/5 focus:outline-none ${
+                  pathname === "/pricing" ? "text-[#C5A059]" : "text-zinc-300"
+                }`}
               >
                 Pricing
               </Link>
