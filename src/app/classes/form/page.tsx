@@ -4,35 +4,35 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MoveRight, Activity, Sparkles, Check, ArrowLeft } from "lucide-react";
+import { MoveRight, BookOpen, Sparkles, Check, ArrowLeft } from "lucide-react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Ticker from "../../components/Ticker";
 import BookingModal from "../../components/BookingModal";
 import { CLASSES } from "../../data/classes";
 
-export default function WeightClassPage() {
+export default function FormClassPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
-  const cls = CLASSES.find((c) => c.slug === "weight") || CLASSES[0];
+  const cls = CLASSES.find((c) => c.slug === "form") || CLASSES[2];
 
   const faqs = [
     {
-      q: "Is this class only for competitive boxers?",
-      a: "Not at all. While the strength programs are engineered to build power that translates to the boxing ring (rotational force, core stability, and shoulder durability), these are standard, functional lifting patterns open to anyone wanting to gain muscle, build bone density, and burn fat.",
+      q: "Is this class required before taking other classes?",
+      a: "No, it's not strictly required, but it is highly recommended. Form and Foundation is designed to build the critical mechanics and confidence you need to get the most out of our higher-intensity classes like Elevate 60.",
     },
     {
-      q: "What types of lifts do we perform?",
-      a: "We focus on high-yield compound movements: squats, deadlifts, clean variations, overhead pressing, kettlebell work, and pull-ups/push-ups. We avoid isolated machine movements, opting for structural, free-weight exercises that make you move as a single unit.",
+      q: "What if I have zero boxing experience?",
+      a: "This is the perfect place to start. We go slow, break down each movement, and ensure you understand the 'why' and 'how' behind stance, punches, and defense. There is zero pressure and no contact.",
     },
     {
-      q: "I have never lifted weights. Will I get hurt?",
-      a: "Safety is our absolute baseline. Our coaches supervise every lifter closely, correcting foot positioning, hip angles, and back alignment. If you are new, we will start you with light weights or bodyweight progressions until your form is perfect.",
+      q: "Do I need wraps and gloves?",
+      a: "Yes. Even though we focus on form, we still do light bag work to practice punch landing. We provide gloves for your first session, and hand wraps are available for purchase at the desk.",
     },
     {
-      q: "What is the training environment like?",
-      a: "We train together in a supportive group format. It's built on a proverb we love: 'As iron sharpens iron, so one person sharpens another.' We push each other to do our best while checking egos at the door.",
+      q: "Will I still get a good workout?",
+      a: "Yes. While the focus is on technical instruction rather than non-stop conditioning, executing proper boxing form, footwork, and stance is an active, core-engaging workout that burns significant calories.",
     },
   ];
 
@@ -40,8 +40,8 @@ export default function WeightClassPage() {
     <div className="noise bg-[#080808] min-h-screen text-white relative">
       {/* ── BACKGROUND GLOWS ── */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] glow-white opacity-25 rounded-full blur-3xl" />
-        <div className="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] glow-gold opacity-30 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] glow-gold opacity-45 rounded-full blur-3xl" />
+        <div className="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] glow-red opacity-30 rounded-full blur-3xl" />
       </div>
 
       <Header onBookClick={() => setBookingOpen(true)} />
@@ -78,7 +78,7 @@ export default function WeightClassPage() {
               {cls.name}
             </h1>
             <p className="text-zinc-300 text-base md:text-lg font-light leading-relaxed max-w-2xl">
-              Heavy compound lifting and functional physical training designed to build structural power, strength, and durability.
+              Polish your boxing mechanics. Learn the critical footwork, stance, and leverage that form the basis of the sweet science.
             </p>
           </div>
         </div>
@@ -121,10 +121,10 @@ export default function WeightClassPage() {
                   About the Class
                 </h2>
                 <p className="text-zinc-300 text-sm leading-loose font-light mb-6">
-                  Iron & Strength is the foundational weight-lifting class at Resilient Boxing. It focuses on the heavy compound movements that build skeletal strength, muscle volume, and core stability.
+                  FORM AND FOUNDATION is dedicated entirely to the mechanics of boxing. Stance, balance, hip rotation, punching leverage, and basic defense are broken down in structured detail.
                 </p>
                 <p className="text-zinc-300 text-sm leading-loose font-light">
-                  Rather than using machines that isolate muscles, we train with free weights, barbells, kettlebells, and pull-up frames. You will learn the mechanics of the barbell squat, deadlift, and military press, building strength that helps you move better in the ring and in everyday life.
+                  Whether you are preparing for your very first round or you are an experienced boxer looking to erase bad habits, this class provides the focused technical environment needed to refine your skills. Every session is designed to make you a smarter, safer, and more effective mover.
                 </p>
               </div>
 
@@ -147,14 +147,14 @@ export default function WeightClassPage() {
               {/* Technical Specifications Grid */}
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: "Target Area", val: "Skeletal Muscle & Core" },
-                  { label: "Calorie Burn", val: "500 - 700 Calories" },
-                  { label: "Skill Level", val: "All Levels (Beginner Friendly)" },
-                  { label: "Gear Required", val: "Flat-sole Athletic Shoes" },
+                  { label: "Target Area", val: "Boxing Mechanics & Footwork" },
+                  { label: "Calorie Burn", val: "400 - 600 Calories" },
+                  { label: "Skill Level", val: "All Levels (Highly Recommended for Beginners)" },
+                  { label: "Gear Required", val: "Gloves & Wraps" },
                 ].map((spec, i) => (
                   <div key={i} className="glass rounded-xl p-5 border border-white/6">
                     <p className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 mb-1">
-                      {spec.label}
+                       {spec.label}
                     </p>
                     <p className="text-sm font-semibold text-white uppercase tracking-wide">
                       {spec.val}
@@ -175,9 +175,8 @@ export default function WeightClassPage() {
 
                 <div className="space-y-4 mb-8">
                   {[
-                    { day: "Monday", times: ["7:00 PM"] },
-                    { day: "Wednesday", times: ["7:00 PM"] },
-                    { day: "Friday", times: ["7:00 PM"] },
+                    { day: "Tuesday", times: ["5:30 PM"] },
+                    { day: "Saturday", times: ["9:00 AM"] },
                   ].map((sched, idx) => (
                     <div key={idx} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
                       <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">
@@ -234,7 +233,7 @@ export default function WeightClassPage() {
             {cls.highlights.map((hl, i) => (
               <div key={i} className="glass-card rounded-2xl p-7 border border-white/8 relative">
                 <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#C5A059] mb-6">
-                  <Activity size={20} />
+                  <BookOpen size={20} />
                 </div>
                 <h3 className="text-base font-bold text-white uppercase tracking-wider mb-3">
                   {hl.title}
@@ -303,7 +302,7 @@ export default function WeightClassPage() {
       <BookingModal
         isOpen={bookingOpen}
         onClose={() => setBookingOpen(false)}
-        defaultProgramId="weight"
+        defaultProgramId="form"
       />
     </div>
   );

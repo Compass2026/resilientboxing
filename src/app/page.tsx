@@ -694,9 +694,9 @@ export default function Page() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
                   {[
                     { days: "Mon · Wed · Fri", name: "Elevate 60", times: "5:30 AM & 5:30 PM" },
-                    { days: "Tues · Sat", name: "Form & Technique", times: "5:30 PM & 9:00 AM" },
+                    { days: "Tues · Sat", name: "Form & Foundation", times: "5:30 PM & 9:00 AM" },
                     { days: "Tues · Sat", name: "Fight Camp", times: "6:30 PM & 10:00 AM" },
-                    { days: "Thursday", name: "Faith Over Fear 75", times: "5:30 PM - 6:45 PM" },
+                    { days: "Thursday", name: "Faith Over Fear", times: "5:30 PM - 6:45 PM" },
                     { days: "Mon · Wed · Thurs", name: "Evening Elevate", times: "7:00 PM (Thurs / Mon / Wed)" },
                     { days: "Friday", name: "Early Elevate", times: "5:00 AM" },
                   ].map((preview, i) => (

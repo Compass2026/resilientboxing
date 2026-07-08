@@ -18,10 +18,11 @@ import {
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const CLASSES = [
-  { id: "elevate", name: "Elevate 60" },
-  { id: "kick", name: "Kick 60" },
-  { id: "weight", name: "Iron & Strength" },
-  { id: "fightcamp", name: "Fight Camp" },
+  { id: "weight", name: "IRON AND STRENGTH" },
+  { id: "elevate", name: "ELEVATE 60" },
+  { id: "form", name: "FORM AND FOUNDATION" },
+  { id: "faithoverfear", name: "FAITH OVER FEAR" },
+  { id: "fightcamp", name: "FIGHT CAMP" },
 ];
 
 const FAQS = [

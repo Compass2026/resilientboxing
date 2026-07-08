@@ -15,12 +15,12 @@ export default function FightCampClassPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
-  const cls = CLASSES.find((c) => c.slug === "fightcamp") || CLASSES[3];
+  const cls = CLASSES.find((c) => c.slug === "fightcamp") || CLASSES[4];
 
   const faqs = [
     {
       q: "Can anyone join this class directly?",
-      a: "No. Fight Camp is strictly by invite only. To participate, members must have demonstrated consistent attendance in Elevate 60 or Kick 60, show a complete mastery of basic boxing combinations, and exhibit self-control and respect for training partners.",
+      a: "No. Fight Camp is strictly by invite only. To participate, members must have demonstrated consistent attendance in Elevate 60 or Form and Foundation, show a complete mastery of basic boxing combinations, and exhibit self-control and respect for training partners.",
     },
     {
       q: "Is there full contact sparring?",

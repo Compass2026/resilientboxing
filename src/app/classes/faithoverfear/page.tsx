@@ -11,28 +11,28 @@ import Ticker from "../../components/Ticker";
 import BookingModal from "../../components/BookingModal";
 import { CLASSES } from "../../data/classes";
 
-export default function KickClassPage() {
+export default function FaithOverFearClassPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
-  const cls = CLASSES.find((c) => c.slug === "kick") || CLASSES[1];
+  const cls = CLASSES.find((c) => c.slug === "faithoverfear") || CLASSES[3];
 
   const faqs = [
     {
-      q: "Do we kick each other in this class?",
-      a: "No. Kick 60 is a non-contact, bag-work and pad-work class. You will be hitting specialized heavy bags and focus mitts, ensuring a high-yield workout without the risk of sparring contact.",
+      q: "Is this a bible study or a workout?",
+      a: "It is both, sequentially. The first 60 minutes is an intense, high-yield boxing conditioning and heavy bag workout. The final 15 minutes is a structured group circle focused on scripture, reflection, and community support.",
     },
     {
-      q: "Is it suitable for complete beginners?",
-      a: "Absolutely. Most of our members start with zero martial arts experience. Our instructors are trained to show you step-by-step stances, hip rotations for kicks, and proper alignment for punches.",
+      q: "Do I need to be a Christian to attend?",
+      a: "Absolutely not. While our reflections are firmly rooted in Christian scripture (like 2 Timothy 1:7), our doors are wide open to anyone looking for a positive, disciplined community to build physical and mental resilience.",
     },
     {
-      q: "What equipment do I need?",
-      a: "You will need hand wraps and boxing gloves. For your first session, we provide gloves for free, and wraps can be bought at the desk. You do not need shin guards since it is bag-only.",
+      q: "What gear do I need?",
+      a: "You will need hand wraps and boxing gloves. We provide wraps for purchase ($10) and loaner gloves for your first class if you don't have your own.",
     },
     {
-      q: "How many calories does Kick 60 burn?",
-      a: "Because kickboxing utilizes both upper and lower body muscle groups continuously, it is an extremely high-calorie burn class. Members typically burn between 800 to 1,000 calories per 60-minute session.",
+      q: "Is there contact or sparring in this class?",
+      a: "No. Faith Over Fear is entirely bag work, shadowboxing, and athletic conditioning. It is a safe, high-output training environment focused on building you up, not tearing you down.",
     },
   ];
 
@@ -40,8 +40,8 @@ export default function KickClassPage() {
     <div className="noise bg-[#080808] min-h-screen text-white relative">
       {/* ── BACKGROUND GLOWS ── */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] glow-gold opacity-45 rounded-full blur-3xl" />
-        <div className="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] glow-red opacity-30 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] glow-gold opacity-40 rounded-full blur-3xl" />
+        <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] glow-red opacity-30 rounded-full blur-3xl" />
       </div>
 
       <Header onBookClick={() => setBookingOpen(true)} />
@@ -78,7 +78,7 @@ export default function KickClassPage() {
               {cls.name}
             </h1>
             <p className="text-zinc-300 text-base md:text-lg font-light leading-relaxed max-w-2xl">
-              High-velocity Dutch combinations weaving punches, knees, and kicks. Destroy calories and build explosive reflexes.
+              Gloves on, God leads. A 75-minute powerhouse merging high-intensity heavy bag training with spiritual reflection.
             </p>
           </div>
         </div>
@@ -121,10 +121,10 @@ export default function KickClassPage() {
                   About the Class
                 </h2>
                 <p className="text-zinc-300 text-sm leading-loose font-light mb-6">
-                  Kick 60 is our signature Dutch-style kickboxing class. It integrates quick, heavy combinations of punches, elbows, knees, and kicks, demanding maximum output from your body.
+                  FAITH OVER FEAR is our signature 75-minute program. It represents the ultimate synthesis of why we exist: to refine the body, strengthen the mind, and empower the soul.
                 </p>
                 <p className="text-zinc-300 text-sm leading-loose font-light">
-                  Dutch kickboxing is famous for its boxing-heavy setups that flow seamlessly into devastating low-kicks and knee strikes. You will work on specialized heavy bags, focus mitts, and dynamic partner drills to build coordination and agility.
+                  We start with 60 minutes of high-velocity bag work and bodyweight conditioning. You will throw combinations, build stamina, and work hard. The final 15 minutes is spent as a community, putting the gloves down to focus on scripture, prayer, and open discussion on how to carry our discipline into the world.
                 </p>
               </div>
 
@@ -147,10 +147,10 @@ export default function KickClassPage() {
               {/* Technical Specifications Grid */}
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: "Target Area", val: "Full Body, Legs & Hips" },
-                  { label: "Calorie Burn", val: "800 - 1000 Calories" },
-                  { label: "Skill Level", val: "All Levels (Beginner Friendly)" },
-                  { label: "Gear Required", val: "Gloves & Wraps" },
+                  { label: "Target Area", val: "Full Body & Spiritual Health" },
+                  { label: "Calorie Burn", val: "700 - 900 Calories" },
+                  { label: "Skill Level", val: "All Levels Welcome" },
+                  { label: "Gear Required", val: "Gloves & Hand Wraps" },
                 ].map((spec, i) => (
                   <div key={i} className="glass rounded-xl p-5 border border-white/6">
                     <p className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 mb-1">
@@ -175,9 +175,7 @@ export default function KickClassPage() {
 
                 <div className="space-y-4 mb-8">
                   {[
-                    { day: "Tuesday", times: ["6:00 PM"] },
-                    { day: "Thursday", times: ["6:00 PM"] },
-                    { day: "Saturday", times: ["9:00 AM"] },
+                    { day: "Thursday", times: ["5:30 PM - 6:45 PM"] },
                   ].map((sched, idx) => (
                     <div key={idx} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
                       <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">
@@ -223,7 +221,7 @@ export default function KickClassPage() {
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="text-center mb-16">
             <p className="text-[10px] font-mono uppercase tracking-[0.45em] text-[#C5A059] mb-4">
-              02 — Overview
+              04 — Overview
             </p>
             <h2 className="font-bebas text-[clamp(44px,5vw,76px)] uppercase italic leading-none tracking-tight">
               What You'll Experience
@@ -303,7 +301,7 @@ export default function KickClassPage() {
       <BookingModal
         isOpen={bookingOpen}
         onClose={() => setBookingOpen(false)}
-        defaultProgramId="kick"
+        defaultProgramId="faithoverfear"
       />
     </div>
   );

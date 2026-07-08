@@ -35,10 +35,25 @@ import {
 
 // ─── CLASS DETAILS & ICONS ──────────────────────────────────────────────────
 const CLASS_DETAILS = {
+  weight: {
+    id: "weight",
+    name: "IRON AND STRENGTH",
+    tagline: "Weight Lifting",
+    desc: "The heavy iron behind the heavy hands. Compound lifts and functional physical training designed to build structural power, strength, and durability.",
+    intensity: 75,
+    duration: "60 mins",
+    image: "/BF1FEE18-8739-47C8-A742-207063ACA9FC.webp",
+    glowColor: "white" as const,
+    icon: Activity,
+    scripture: {
+      reference: "Proverbs 27:17",
+      text: "As iron sharpens iron, so one person sharpens another."
+    }
+  },
   elevate: {
     id: "elevate",
-    name: "Elevate 60",
-    tagline: "Foundation & Fire",
+    name: "ELEVATE 60",
+    tagline: "Foundation and Fire",
     desc: "The core of our system. 60 minutes of authentic boxing combinations, heavy bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
     intensity: 85,
     duration: "60 mins",
@@ -52,8 +67,8 @@ const CLASS_DETAILS = {
   },
   form: {
     id: "form",
-    name: "Form",
-    tagline: "Polish the Mechanics",
+    name: "FORM AND FOUNDATION",
+    tagline: "Learn the Basics",
     desc: "A class dedicated entirely to the sweet science's base. Focus on stance, footwork, punch execution, and defensive movements. Perfect for beginners and advanced fighters looking to refine their technique.",
     intensity: 65,
     duration: "60 mins",
@@ -65,26 +80,11 @@ const CLASS_DETAILS = {
       text: "Therefore I do not run like someone running aimlessly; I do not fight like a boxer beating the air."
     }
   },
-  fightcamp: {
-    id: "fightcamp",
-    name: "Fight Camp",
-    tagline: "Advanced Ring Craft",
-    desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. Designed to teach you to think like a seasoned fighter. Requires coach invite.",
-    intensity: 98,
-    duration: "60-90 mins",
-    image: "/2FBE893A-8F4F-4CD5-B529-3CD041E7496F.webp",
-    glowColor: "red" as const,
-    icon: Heart,
-    scripture: {
-      reference: "1 Timothy 6:12",
-      text: "Fight the good fight of the faith. Take hold of the eternal life to which you were called."
-    }
-  },
   faithoverfear: {
     id: "faithoverfear",
-    name: "Faith Over Fear 75",
-    tagline: "Faith & Boxing Combined",
-    desc: "Our signature 75-minute session combining intense physical training with spiritual empowerment. Includes 60 minutes of high-intensity boxing conditioning and bag work, followed by 15 minutes of scripture reflection.",
+    name: "FAITH OVER FEAR",
+    tagline: "Gloves on God leads",
+    desc: "Our signature session combining intense physical training with spiritual empowerment. Includes 60 minutes of high-intensity boxing conditioning and bag work, followed by 15 minutes of scripture reflection.",
     intensity: 90,
     duration: "75 mins",
     image: "/faith.png",
@@ -95,34 +95,19 @@ const CLASS_DETAILS = {
       text: "For God has not given us a spirit of fear — but of power, love, and a sound mind."
     }
   },
-  kick: {
-    id: "kick",
-    name: "Kick 60",
-    tagline: "Dutch Style Kickboxing",
-    desc: "Punches, knees, elbows and kicks woven into fast-paced Dutch combinations. Destroys calories. Builds explosive coordination and rotational hip power.",
-    intensity: 93,
-    duration: "60 mins",
-    image: "/29B8F602-2D05-4900-B084-768B4492D8D1.webp",
-    glowColor: "gold" as const,
-    icon: Zap,
+  fightcamp: {
+    id: "fightcamp",
+    name: "FIGHT CAMP",
+    tagline: "Beyond the Basics and Sparring",
+    desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. Designed to teach you to think like a seasoned fighter. Requires coach invite.",
+    intensity: 98,
+    duration: "60-90 mins",
+    image: "/2FBE893A-8F4F-4CD5-B529-3CD041E7496F.webp",
+    glowColor: "red" as const,
+    icon: Heart,
     scripture: {
-      reference: "Philippians 4:13",
-      text: "I can do all things through Christ who strengthens me."
-    }
-  },
-  weight: {
-    id: "weight",
-    name: "Iron & Strength",
-    tagline: "Functional Power Lifting",
-    desc: "Compound lifts and functional movement to build the structural power that makes every punch matter more. Squats, deadlifts, presses, and core work.",
-    intensity: 72,
-    duration: "60 mins",
-    image: "/BF1FEE18-8739-47C8-A742-207063ACA9FC.webp",
-    glowColor: "white" as const,
-    icon: Activity,
-    scripture: {
-      reference: "Proverbs 27:17",
-      text: "As iron sharpens iron, so one person sharpens another."
+      reference: "1 Timothy 6:12",
+      text: "Fight the good fight of faith, lay hold on eternal life, whereunto thou art also called."
     }
   }
 };
@@ -352,10 +337,11 @@ export default function SchedulePage() {
               <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mr-2">Filter Class:</span>
               {[
                 { id: "all", label: "All" },
+                { id: "weight", label: "Iron & Strength" },
                 { id: "elevate", label: "Elevate 60" },
-                { id: "form", label: "Form" },
-                { id: "fightcamp", label: "Fight Camp" },
+                { id: "form", label: "Form & Foundation" },
                 { id: "faithoverfear", label: "Faith Over Fear" },
+                { id: "fightcamp", label: "Fight Camp" },
               ].map((cat) => (
                 <button
                   key={cat.id}

@@ -15,7 +15,7 @@ export default function ElevateClassPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
-  const cls = CLASSES.find((c) => c.slug === "elevate") || CLASSES[0];
+  const cls = CLASSES.find((c) => c.slug === "elevate") || CLASSES[1];
 
   const faqs = [
     {

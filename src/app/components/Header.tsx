@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, ChevronDown, Shield, Zap, Activity, Heart } from "lucide-react";
+import { Menu, X, ArrowUpRight, ChevronDown, Shield, Zap, Activity, Heart, BookOpen } from "lucide-react";
 import { CLASSES } from "../data/classes";
 
 interface HeaderProps {
@@ -40,9 +40,10 @@ export default function Header({ onBookClick }: HeaderProps) {
 
   // Map class IDs to their corresponding Lucide icons
   const iconMap = {
-    elevate: Shield,
-    kick: Zap,
     weight: Activity,
+    elevate: Shield,
+    form: BookOpen,
+    faithoverfear: Zap,
     fightcamp: Heart,
   };
 
