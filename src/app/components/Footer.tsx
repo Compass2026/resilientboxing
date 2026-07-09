@@ -61,9 +61,9 @@ export default function Footer({ onBookClick }: FooterProps) {
 
             {/* Booking Call To Action */}
             <div>
-              <p className="text-[9px] font-mono uppercase tracking-widest text-zinc-600 mb-4">Book a Session</p>
+              <p className="text-[9px] font-mono uppercase tracking-widest text-zinc-600 mb-4">Book a Class</p>
               <p className="text-xs text-zinc-500 font-light leading-relaxed mb-5">
-                Schedule through WellnessLiving. Your first session is always free.
+                Schedule through WellnessLiving. Your first class is always free.
               </p>
               <button
                 onClick={onBookClick}

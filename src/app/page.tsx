@@ -24,10 +24,33 @@ import { CLASSES } from "./data/classes";
 
 
 const STATS = [
-  { val: "500+", label: "Lives Transformed" },
-  { val: "4", label: "Elite Programs" },
+  { val: "300+", label: "Lives Transformed" },
+  { val: "5", label: "Elite Programs" },
   { val: "100%", label: "Faith Driven" },
-  { val: "FREE", label: "First Session" },
+  { val: "FREE", label: "First Class" },
+];
+
+const FAQS = [
+  {
+    question: "Do I have to be a Christian to work out here?",
+    answer: "No. Everyone is welcome. We simply ask that you respect our faith-based environment. Our goal is to love people well and meet you wherever you are."
+  },
+  {
+    question: "Is this gym beginner friendly?",
+    answer: "Absolutely! Most of our members started with no boxing experience. We’ll teach you everything from the ground up."
+  },
+  {
+    question: "Do you accept kids and adults?",
+    answer: "Yes! We welcome kids, teens, adults, and seniors. Our workouts can be modified for all fitness levels."
+  },
+  {
+    question: "What if I’m out of shape?",
+    answer: "Perfect! You don’t need to be in shape to start—you get in shape by showing up. Everyone begins somewhere."
+  },
+  {
+    question: "Do I have to spar?",
+    answer: "No. Sparring is completely optional and only available in Fight Camp under the supervision of our experienced coaches."
+  }
 ];
 
 // ─── GLASS CARD ────────────────────────────────────────────────────────────────
@@ -77,6 +100,11 @@ export default function Page() {
   const [activeClass, setActiveClass] = useState(0);
   const [showLoading, setShowLoading] = useState(true);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
 
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -117,7 +145,7 @@ export default function Page() {
       {/* ═══════════════════════════════════════════════════════
           NAV
       ═══════════════════════════════════════════════════════ */}
-      <Header onBookClick={() => setBookingOpen(true)} />
+      <Header onBookClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')} />
 
       {/* ═══════════════════════════════════════════════════════
           HERO
@@ -143,7 +171,7 @@ export default function Page() {
         {/* Hero glass content card */}
         <motion.div
           style={{ opacity: heroFade }}
-          className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col lg:flex-row items-center lg:items-end justify-between gap-12 pb-16 pt-72"
+          className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col lg:flex-row items-center lg:items-end justify-between gap-12 pb-16 pt-[160px] md:pt-72"
         >
           {/* Left: Headline + logo lockup */}
           <div className="flex-1">
@@ -178,7 +206,7 @@ export default function Page() {
               className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
             >
               <button
-                onClick={() => setBookingOpen(true)}
+                onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
                 className="group relative overflow-hidden flex items-center gap-3 px-8 py-4 glass-gold rounded-xl text-[11px] font-bold uppercase tracking-widest text-[#C5A059] border border-[#C5A059]/30 hover:bg-[#C5A059] hover:text-black hover:border-[#C5A059] transition-all duration-300 focus:outline-none shadow-xl shadow-black/40"
               >
                 <span className="relative z-10 flex items-center gap-3">
@@ -258,11 +286,12 @@ export default function Page() {
               {/* Quote */}
               <div className="lg:col-span-7">
                 <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-5">Our Mission</p>
-                <blockquote className="text-[clamp(20px,3vw,36px)] font-light leading-[1.35] text-white/90">
-                  "We use{" "}
-                  <span className="text-[#C5A059] font-semibold">Faith & Boxing</span>{" "}
-                  to help you find the best version of who you are."
+                <blockquote className="text-[clamp(18px,2.2vw,28px)] font-light leading-[1.4] text-white/95 mb-4">
+                  "At Resilient Boxing, our mission is to elevate lives through the power of boxing and faith."
                 </blockquote>
+                <p className="text-zinc-400 text-sm leading-relaxed font-light">
+                  We believe a pair of boxing gloves can become more than just training equipment—they can be a tool for building confidence, discipline, resilience, and hope. Our purpose is to create an environment where people of all ages and fitness levels can grow stronger physically, mentally, and spiritually, discovering the best version of themselves one round at a time.
+                </p>
               </div>
 
               {/* Verse */}
@@ -314,7 +343,7 @@ export default function Page() {
                     We're a family. When you walk through our doors in O'Fallon, you're not just joining a gym — you're joining a community of people who show up for each other, push each other, and believe in each other.
                   </p>
                   <button
-                    onClick={() => setBookingOpen(true)}
+                    onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
                     className="flex items-center gap-3 px-7 py-3.5 bg-[#C5A059] rounded-xl text-[11px] font-bold uppercase tracking-widest text-black hover:bg-white transition-all duration-300 focus:outline-none"
                   >
                     Join the Family <MoveRight size={13} />
@@ -353,7 +382,7 @@ export default function Page() {
               </h2>
             </div>
             <button
-              onClick={() => setBookingOpen(true)}
+              onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
               className="self-start md:self-end flex items-center gap-2 px-6 py-3 glass rounded-xl text-[11px] font-bold uppercase tracking-widest text-zinc-300 hover:text-white border border-white/8 hover:border-[#C5A059]/30 transition-all duration-300 focus:outline-none"
             >
               Book Any Class <ArrowUpRight size={12} />
@@ -472,7 +501,7 @@ export default function Page() {
                           </div>
 
                           <button
-                            onClick={() => setBookingOpen(true)}
+                            onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
                             className="flex items-center gap-3 px-7 py-3.5 glass-gold rounded-xl text-[11px] font-bold uppercase tracking-widest text-[#C5A059] border border-[#C5A059]/25 hover:bg-[#C5A059] hover:text-black hover:border-[#C5A059] transition-all duration-300 focus:outline-none"
                           >
                             Book This Class <MoveRight size={13} />
@@ -534,7 +563,7 @@ export default function Page() {
               <div className="relative flex flex-col justify-center px-8 md:px-12 py-12">
                 <div className="absolute inset-0 glow-gold opacity-20 pointer-events-none" />
                 <div className="relative z-10">
-                  <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-6">03 — The Mission</p>
+                  <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-6">03 — Our Belief</p>
 
                   {/* Logo in mission */}
                   <div className="flex items-center gap-4 mb-8">
@@ -547,16 +576,24 @@ export default function Page() {
                     </div>
                   </div>
 
-                  <blockquote className="text-base md:text-lg font-light text-white/80 leading-relaxed italic border-l-2 border-[#C5A059]/50 pl-5 mb-8">
-                    "For God has not given us a spirit of fear — but of power, love, and a sound mind."
-                    <cite className="block text-[9px] font-mono not-italic uppercase tracking-widest text-[#C5A059] mt-3">
-                      — 2 Timothy 1:7
-                    </cite>
+                  <blockquote className="text-base md:text-lg font-light text-white/90 leading-relaxed italic border-l-2 border-[#C5A059]/50 pl-5 mb-8">
+                    "At Resilient Boxing, we believe the best version of yourself is found in a relationship with Jesus Christ."
                   </blockquote>
 
-                  <p className="text-zinc-400 text-sm leading-loose font-light mb-8">
-                    Resilient Boxing was born in O'Fallon from a simple conviction: that the discipline of the ring, anchored in faith, has the power to transform lives. No judgement. Just real people doing real work, walking out more whole than they came in.
-                  </p>
+                  <div className="space-y-5 text-zinc-400 text-sm leading-loose font-light mb-8">
+                    <p>
+                      Life often feels like a fight. We put on our boxing gloves and try to battle fear, anxiety, temptation, pain, and hardship in our own strength. Eventually, we all discover that fighting alone leaves us exhausted and knocked down.
+                    </p>
+                    <p>
+                      Our greatest victory begins when we hang our gloves on the Cross, surrender our lives to Christ, and trust Him as our Savior. It is through His strength—not our own—that we are able to stand, overcome, and find lasting peace. As followers of Jesus, we lay down the ways of the world, pick up our cross daily, and walk in the victory He has already won for us.
+                    </p>
+                    <p>
+                      Resilient Boxing exists to be a catalyst for that transformation. We use boxing as a tool to build discipline, confidence, perseverance, and community, but our ultimate purpose is to point people to Christ. We believe true resilience isn’t found in how hard you can punch—it’s found in knowing who fights beside you.
+                    </p>
+                    <p>
+                      Our prayer is that every person who walks through our doors leaves stronger than when they arrived—not only physically, but mentally, emotionally, and spiritually—discovering that lasting strength is found in Christ alone.
+                    </p>
+                  </div>
 
                   <div className="space-y-3">
                     {["Faith-anchored coaching & community", "Strength for life outside the gym", "Zero tolerance for quitting on yourself"].map((item, i) => (
@@ -654,7 +691,7 @@ export default function Page() {
             </div>
             <div className="flex flex-col sm:flex-row gap-3 relative z-10 shrink-0">
               <button
-                onClick={() => setBookingOpen(true)}
+                onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
                 className="flex items-center gap-2 px-8 py-4 bg-[#C5A059] rounded-xl text-xs font-bold uppercase tracking-widest text-black hover:bg-white transition-all duration-300 focus:outline-none"
               >
                 Book Free Class <MoveRight size={13} />
@@ -690,15 +727,14 @@ export default function Page() {
                   We run structured training sessions from Monday through Saturday, offering morning and evening times to fit your lifestyle. From our core Elevate 60 conditioning to technical Form focus and advanced Fight Camp, there is a round designed for your goals.
                 </p>
 
-                {/* Micro preview grid of days */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
                   {[
-                    { days: "Mon · Wed · Fri", name: "Elevate 60", times: "5:30 AM & 5:30 PM" },
+                    { days: "Mon · Wed", name: "Elevate 60", times: "5:30 AM & 5:30 PM" },
                     { days: "Tues · Sat", name: "Form & Foundation", times: "5:30 PM & 9:00 AM" },
                     { days: "Tues · Sat", name: "Fight Camp", times: "6:30 PM & 10:00 AM" },
                     { days: "Thursday", name: "Faith Over Fear", times: "5:30 PM - 6:45 PM" },
-                    { days: "Mon · Wed · Thurs", name: "Evening Elevate", times: "7:00 PM (Thurs / Mon / Wed)" },
-                    { days: "Friday", name: "Early Elevate", times: "5:00 AM" },
+                    { days: "Mon · Wed · Thurs", name: "Evening Elevate", times: "7:00 PM" },
+                    { days: "Friday", name: "Elevate 60", times: "4:00 PM" },
                   ].map((preview, i) => (
                     <div key={i} className="glass rounded-xl p-3 border border-white/5">
                       <p className="text-[8px] font-mono uppercase tracking-widest text-[#C5A059]">{preview.days}</p>
@@ -717,7 +753,7 @@ export default function Page() {
                     <MoveRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
                   </a>
                   <button
-                    onClick={() => setBookingOpen(true)}
+                    onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
                     className="flex items-center gap-2 px-6 py-4 glass rounded-xl text-[11px] font-semibold uppercase tracking-widest text-zinc-300 hover:text-white border border-white/8 hover:border-white/20 transition-all duration-300 focus:outline-none"
                   >
                     Book A Free Class
@@ -781,6 +817,82 @@ export default function Page() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
+          FAQ SECTION
+      ═══════════════════════════════════════════════════════ */}
+      <section id="faq" className="relative z-10 py-24 md:py-32">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+        <div className="max-w-[1400px] mx-auto px-5 md:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            
+            {/* Left Column: Title */}
+            <div className="lg:col-span-5 flex flex-col justify-between">
+              <div>
+                <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-4">05 — FAQ</p>
+                <h2 className="font-bebas text-[clamp(44px,6vw,80px)] uppercase italic leading-none tracking-tight text-white mb-6">
+                  Frequently<br />
+                  <span className="text-transparent" style={{ WebkitTextStroke: "2px #C5A059" }}>Asked Questions</span>
+                </h2>
+                <p className="text-zinc-400 text-sm font-light leading-relaxed max-w-md">
+                  Got questions about training at Resilient Boxing? We've got answers. If you don't find what you need, feel free to reach out to us directly.
+                </p>
+              </div>
+
+              <div className="mt-8 lg:mt-0 pt-6 border-t border-white/5">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-2">Still have questions?</p>
+                <a
+                  href="tel:+13143155046"
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#C5A059] hover:text-white transition-colors duration-300"
+                >
+                  Call or Text (314) 315-5046
+                  <MoveRight size={12} className="ml-1" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right Column: Accordion */}
+            <div className="lg:col-span-7 space-y-4">
+              {FAQS.map((faq, index) => {
+                const isOpen = openFaq === index;
+                return (
+                  <div
+                    key={index}
+                    onClick={() => toggleFaq(index)}
+                    className="glass-card rounded-2xl p-6 cursor-pointer select-none transition-all duration-300"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <h3 className="font-bold text-white text-base md:text-lg leading-snug">
+                        {faq.question}
+                      </h3>
+                      <div className={`shrink-0 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 transition-transform duration-300 ${isOpen ? "rotate-180 bg-[#C5A059]/10 border-[#C5A059]/30 text-[#C5A059]" : ""}`}>
+                        <ChevronDown size={16} />
+                      </div>
+                    </div>
+
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                          animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                          exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                          transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="text-zinc-400 text-sm font-light leading-relaxed border-t border-white/5 pt-4">
+                            {faq.answer}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
           FINAL CTA
       ═══════════════════════════════════════════════════════ */}
       <section className="relative z-10 py-32 md:py-48">
@@ -798,20 +910,20 @@ export default function Page() {
               <Image src="/resilient_boxing_gym_logo_transparent_high_def.png" alt="Resilient Boxing" fill className="object-contain" sizes="96px" />
             </div>
 
-            <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-6 relative z-10">05 — Your Move</p>
+            <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-6 relative z-10">06 — Your Move</p>
             <h2 className="font-bebas text-[clamp(56px,9vw,130px)] uppercase italic leading-[0.85] tracking-tight text-white mb-4 relative z-10">
               Next Round<br />
               <span className="text-transparent" style={{ WebkitTextStroke: "2px rgba(197,160,89,0.8)" }}>On Us.</span>
             </h2>
             <p className="text-zinc-400 text-sm font-light max-w-md mx-auto mb-10 relative z-10">
-              Your first session is completely free. Show up. We'll handle the rest.
+              Your first class is completely free. Show up. We'll handle the rest.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
               <button
-                onClick={() => setBookingOpen(true)}
+                onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
                 className="group flex items-center gap-3 px-10 py-5 glass-gold rounded-xl text-[11px] font-bold uppercase tracking-widest text-[#C5A059] border border-[#C5A059]/30 hover:bg-[#C5A059] hover:text-black hover:border-[#C5A059] transition-all duration-300 focus:outline-none shadow-xl shadow-black/30"
               >
-                Claim Free Session
+                Claim Free Class
                 <MoveRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
               </button>
               <a
@@ -828,7 +940,7 @@ export default function Page() {
       {/* ═══════════════════════════════════════════════════════
           LOCATION
       ═══════════════════════════════════════════════════════ */}
-      <Footer onBookClick={() => setBookingOpen(true)} />
+      <Footer onBookClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')} />
 
       {/* ═══════════════════════════════════════════════════════
           MOBILE STICKY CTA
@@ -843,10 +955,10 @@ export default function Page() {
             className="fixed bottom-0 left-0 w-full z-40 md:hidden px-4 pb-5 pt-3 bg-gradient-to-t from-[#080808] to-transparent"
           >
             <button
-              onClick={() => setBookingOpen(true)}
+              onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
               className="w-full py-4 glass-gold rounded-xl text-xs font-bold uppercase tracking-widest text-[#C5A059] border border-[#C5A059]/30 focus:outline-none backdrop-blur-2xl cursor-pointer"
             >
-              Book Free Class — First Session On Us
+              Book Free Class — First Class On Us
             </button>
           </motion.div>
         )}

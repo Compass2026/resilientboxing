@@ -164,7 +164,7 @@ export default function Header({ onBookClick }: HeaderProps) {
               onClick={() => handleNavClick("mission")}
               className="px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-200 focus:outline-none whitespace-nowrap"
             >
-              Mission
+              Our Belief
             </Link>
 
             {/* Schedule */}
@@ -191,13 +191,16 @@ export default function Header({ onBookClick }: HeaderProps) {
               Pricing
             </Link>
 
-            {/* Find Us */}
+            {/* Contact */}
             <Link
-              href={isHome ? "#location" : "/#location"}
-              onClick={() => handleNavClick("location")}
-              className="px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-200 focus:outline-none whitespace-nowrap"
+              href="/contact"
+              className={`px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] rounded-lg transition-all duration-200 focus:outline-none whitespace-nowrap ${
+                pathname === "/contact"
+                  ? "text-[#C5A059] bg-[#C5A059]/10"
+                  : "text-white/90 hover:text-white hover:bg-white/10"
+              }`}
             >
-              Find Us
+              Contact
             </Link>
           </nav>
         </div>
@@ -261,7 +264,7 @@ export default function Header({ onBookClick }: HeaderProps) {
                 onClick={() => handleNavClick("mission")}
                 className="text-sm font-bold uppercase tracking-widest text-zinc-300 text-left py-2 border-b border-white/5 focus:outline-none"
               >
-                Mission
+                Our Belief
               </Link>
 
               <Link
@@ -285,11 +288,13 @@ export default function Header({ onBookClick }: HeaderProps) {
               </Link>
 
               <Link
-                href={isHome ? "#location" : "/#location"}
-                onClick={() => handleNavClick("location")}
-                className="text-sm font-bold uppercase tracking-widest text-zinc-300 text-left py-2 border-b border-white/5 focus:outline-none"
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className={`text-sm font-bold uppercase tracking-widest text-left py-2 border-b border-white/5 focus:outline-none ${
+                  pathname === "/contact" ? "text-[#C5A059]" : "text-zinc-300"
+                }`}
               >
-                Find Us
+                Contact
               </Link>
 
               <button

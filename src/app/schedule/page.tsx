@@ -40,7 +40,7 @@ const CLASS_DETAILS = {
     name: "IRON AND STRENGTH",
     tagline: "Weight Lifting",
     desc: "The heavy iron behind the heavy hands. Compound lifts and functional physical training designed to build structural power, strength, and durability.",
-    intensity: 75,
+    intensity: 50,
     duration: "60 mins",
     image: "/BF1FEE18-8739-47C8-A742-207063ACA9FC.webp",
     glowColor: "white" as const,
@@ -55,7 +55,7 @@ const CLASS_DETAILS = {
     name: "ELEVATE 60",
     tagline: "Foundation and Fire",
     desc: "The core of our system. 60 minutes of authentic boxing combinations, heavy bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
-    intensity: 85,
+    intensity: 90,
     duration: "60 mins",
     image: "/6831DF2B-018E-403B-899E-943DD2558B32.webp",
     glowColor: "red" as const,
@@ -69,7 +69,7 @@ const CLASS_DETAILS = {
     id: "form",
     name: "FORM AND FOUNDATION",
     tagline: "Learn the Basics",
-    desc: "A class dedicated entirely to the sweet science's base. Focus on stance, footwork, punch execution, and defensive movements. Perfect for beginners and advanced fighters looking to refine their technique.",
+    desc: "Perfect for beginners* or anyone looking to improve their technique.",
     intensity: 65,
     duration: "60 mins",
     image: "/gym-photo.png",
@@ -83,9 +83,9 @@ const CLASS_DETAILS = {
   faithoverfear: {
     id: "faithoverfear",
     name: "FAITH OVER FEAR",
-    tagline: "Gloves on God leads",
-    desc: "Our signature session combining intense physical training with spiritual empowerment. Includes 60 minutes of high-intensity boxing conditioning and bag work, followed by 15 minutes of scripture reflection.",
-    intensity: 90,
+    tagline: "Gloves on, God leads",
+    desc: "Every Thursday at 5:30 PM – Grow in faith, build community, and strengthen your body and spirit.",
+    intensity: 50,
     duration: "75 mins",
     image: "/faith.png",
     glowColor: "gold" as const,
@@ -100,7 +100,7 @@ const CLASS_DETAILS = {
     name: "FIGHT CAMP",
     tagline: "Beyond the Basics and Sparring",
     desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. Designed to teach you to think like a seasoned fighter. Requires coach invite.",
-    intensity: 98,
+    intensity: 80,
     duration: "60-90 mins",
     image: "/2FBE893A-8F4F-4CD5-B529-3CD041E7496F.webp",
     glowColor: "red" as const,
@@ -116,9 +116,9 @@ const CLASS_DETAILS = {
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const WEEK_GRID_ROWS = [
-  "5:00 AM",
   "9:00 AM",
   "10:00 AM",
+  "4:00 PM",
   "4:15 PM",
   "5:30 PM",
   "6:30 PM",
@@ -133,35 +133,34 @@ const SCHEDULE_DATA: Record<string, Array<{
   note?: string;
 }>> = {
   Monday: [
-    { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "4:15 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "5:30 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "7:00 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
+    { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 90 },
+    { time: "4:15 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
+    { time: "5:30 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
+    { time: "7:00 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
   ],
   Tuesday: [
-    { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "4:15 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
+    { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 90 },
+    { time: "4:15 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
     { time: "5:30 PM", classId: "form", duration: "60 mins", intensity: 65 },
-    { time: "6:30 PM", classId: "fightcamp", duration: "60 mins", intensity: 98, note: "Invite Only" },
+    { time: "6:30 PM", classId: "fightcamp", duration: "60 mins", intensity: 80 },
   ],
   Wednesday: [
-    { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "4:15 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "5:30 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "7:00 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
+    { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 90 },
+    { time: "4:15 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
+    { time: "5:30 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
+    { time: "7:00 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
   ],
   Thursday: [
-    { time: "5:30 PM", classId: "faithoverfear", duration: "75 mins", intensity: 90, note: "5:30 - 6:45 PM" },
-    { time: "7:00 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
+    { time: "5:30 PM", classId: "faithoverfear", duration: "75 mins", intensity: 50, note: "5:30 - 6:45 PM" },
+    { time: "7:00 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
   ],
   Friday: [
-    { time: "5:00 AM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 85 },
-    { time: "5:30 PM", classId: "elevate", duration: "60 mins", intensity: 85 },
+    { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 90 },
+    { time: "4:00 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
   ],
   Saturday: [
     { time: "9:00 AM", classId: "form", duration: "60 mins", intensity: 65 },
-    { time: "10:00 AM", classId: "fightcamp", duration: "90 mins", intensity: 98 },
+    { time: "10:00 AM", classId: "fightcamp", duration: "90 mins", intensity: 80 },
   ],
   Sunday: []
 };
@@ -226,7 +225,7 @@ export default function SchedulePage() {
   }, []);
 
   const handleBookClick = () => {
-    setBookingOpen(true);
+    window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank');
   };
 
   // Filter slots check
@@ -450,10 +449,16 @@ export default function SchedulePage() {
                                 return null; // Hid this cell since Thursday 5:30 spans it.
                               }
 
+                              // Special case: Friday 4:00 PM Elevate 60 spans 90 mins (effectively occupies 4:00 PM row, and we hide 4:15 PM slot for Friday).
+                              if (day === "Friday" && timeRow === "4:15 PM") {
+                                return null;
+                              }
+
                               const slot = SCHEDULE_DATA[day]?.find((s) => s.time === timeRow);
 
-                              // If Thursday 5:30 PM, add rowSpan={2}
+                              // If Thursday 5:30 PM or Friday 4:00 PM, add rowSpan={2}
                               const isSpecialThursdayRow = day === "Thursday" && timeRow === "5:30 PM";
+                              const isSpecialFridayRow = day === "Friday" && timeRow === "4:00 PM";
 
                               if (slot) {
                                 const details = CLASS_DETAILS[slot.classId];

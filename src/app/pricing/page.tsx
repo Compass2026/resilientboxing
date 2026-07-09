@@ -28,7 +28,7 @@ const CLASSES = [
 const FAQS = [
   {
     q: "How do I book my first free class?",
-    a: "Simply click any 'Book Free Session' button on this page, enter your contact details, and you will be redirected to our WellnessLiving signup portal to schedule your session. You can also download our dedicated mobile app."
+    a: "Simply click any 'Book Free Class' button on this page, enter your contact details, and you will be redirected to our WellnessLiving signup portal to schedule your class. You can also download our dedicated mobile app."
   },
   {
     q: "Do I need to buy my own boxing gloves and wraps?",
@@ -111,6 +111,8 @@ export default function PricingPage() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else if (id === "schedule") {
       window.location.href = "/schedule";
+    } else if (id === "contact") {
+      window.location.href = "/contact";
     } else {
       window.location.href = `/#${id}`;
     }
@@ -176,10 +178,10 @@ export default function PricingPage() {
               {[
                 ["Home", null],
                 ["Classes", "classes"],
-                ["Mission", "mission"],
+                ["Our Belief", "mission"],
                 ["Schedule", "schedule"],
                 ["Pricing", "pricing"],
-                ["Find Us", "location"],
+                ["Contact", "contact"],
               ].map(([label, id]) => (
                 <button
                   key={label}
@@ -199,7 +201,7 @@ export default function PricingPage() {
           {/* Right CTA */}
           <div className="flex items-center gap-3 shrink-0">
             <button
-              onClick={() => setBookingOpen(true)}
+              onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
               className="hidden md:flex items-center gap-2 px-6 py-3 bg-[#C5A059] rounded-xl text-xs font-bold uppercase tracking-widest text-black hover:bg-white transition-all duration-300 focus:outline-none shadow-lg shadow-black/40"
             >
               Book Free Class <ArrowUpRight size={13} />
@@ -223,10 +225,10 @@ export default function PricingPage() {
                 {[
                   ["Home", null],
                   ["Classes", "classes"],
-                  ["Mission", "mission"],
+                  ["Our Belief", "mission"],
                   ["Schedule", "schedule"],
                   ["Pricing", "pricing"],
-                  ["Find Us", "location"]
+                  ["Contact", "contact"]
                 ].map(([label, id]) => (
                   <button
                     key={label}
@@ -239,7 +241,7 @@ export default function PricingPage() {
                   </button>
                 ))}
                 <button
-                  onClick={() => { setMenuOpen(false); setBookingOpen(true); }}
+                  onClick={() => { setMenuOpen(false); window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank'); }}
                   className="mt-2 w-full py-4 glass-gold rounded-xl text-xs font-bold uppercase tracking-widest text-[#C5A059] border border-[#C5A059]/30 focus:outline-none"
                 >
                   Book Free Class →
@@ -335,10 +337,10 @@ export default function PricingPage() {
                 </div>
 
                 <button
-                  onClick={() => setBookingOpen(true)}
+                  onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
                   className="w-full py-4 glass rounded-xl text-xs font-bold uppercase tracking-widest text-zinc-200 hover:text-white border border-white/8 hover:border-white/20 transition-all duration-300 focus:outline-none"
                 >
-                  Book Free Session
+                  Book Free Class
                 </button>
               </GlassPanel>
             </motion.div>
@@ -365,7 +367,7 @@ export default function PricingPage() {
                   </div>
 
                   <h3 className="font-bebas text-3xl md:text-4xl italic uppercase text-white tracking-wide leading-none mb-2">
-                    Contender Intro Pack
+                    Resilient Intro Pack
                   </h3>
                   <p className="text-xs text-[#C5A059] font-medium tracking-wide mb-6">Gear up with unlimited training.</p>
 
@@ -392,7 +394,7 @@ export default function PricingPage() {
                 </div>
 
                 <button
-                  onClick={() => setBookingOpen(true)}
+                  onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
                   className="w-full py-4 bg-[#C5A059] rounded-xl text-xs font-bold uppercase tracking-widest text-black hover:bg-white transition-all duration-300 focus:outline-none shadow-xl shadow-[#C5A059]/10"
                 >
                   Buy Intro Special
@@ -609,7 +611,7 @@ export default function PricingPage() {
                 We manage all schedules and memberships through WellnessLiving. Join us and discover what you're capable of.
               </p>
               <button
-                onClick={() => setBookingOpen(true)}
+                onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
                 className="px-6 py-3 bg-[#C5A059] text-black rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-white transition-all duration-300 focus:outline-none shadow-lg shadow-black/40"
               >
                 Book Free Class Now

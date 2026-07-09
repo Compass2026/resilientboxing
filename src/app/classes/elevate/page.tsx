@@ -44,12 +44,12 @@ export default function ElevateClassPage() {
         <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] glow-gold opacity-30 rounded-full blur-3xl" />
       </div>
 
-      <Header onBookClick={() => setBookingOpen(true)} />
+      <Header onBookClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')} />
 
       {/* ═══════════════════════════════════════════════════════
           HERO SECTION
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative h-[65vh] min-h-[500px] flex items-center justify-center overflow-hidden z-10 pt-20">
+      <section className="relative py-20 lg:py-28 min-h-[600px] flex items-center justify-center overflow-hidden z-10 pt-36 lg:pt-48">
         <div className="absolute inset-0">
           <Image
             src={cls.image}
@@ -63,23 +63,76 @@ export default function ElevateClassPage() {
           <div className="absolute inset-0 bg-black/40" />
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-5 md:px-10 relative z-10 w-full flex flex-col justify-end h-full pb-16">
-          <div className="max-w-3xl">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#C5A059] mb-6 hover:text-white transition-colors"
-            >
-              <ArrowLeft size={12} /> Back to Homepage
-            </Link>
-            <p className="text-[10px] font-mono uppercase tracking-[0.45em] text-[#C5A059] mb-4">
-              Program {cls.num} — {cls.tagline}
-            </p>
-            <h1 className="font-bebas text-[clamp(56px,8vw,120px)] uppercase italic leading-none tracking-tight mb-4">
-              {cls.name}
-            </h1>
-            <p className="text-zinc-300 text-base md:text-lg font-light leading-relaxed max-w-2xl">
-              Authentic boxing fundamentals meet elite athletic conditioning. Forge a sound mind, power, and discipline on the heavy bags.
-            </p>
+        <div className="max-w-[1400px] mx-auto px-5 md:px-10 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left: Headline & Tagline */}
+            <div className="lg:col-span-7">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#C5A059] mb-6 hover:text-white transition-colors"
+              >
+                <ArrowLeft size={12} /> Back to Homepage
+              </Link>
+              <p className="text-[10px] font-mono uppercase tracking-[0.45em] text-[#C5A059] mb-4">
+                Program {cls.num} — {cls.tagline}
+              </p>
+              <h1 className="font-bebas text-[clamp(56px,8vw,120px)] uppercase italic leading-none tracking-tight mb-4">
+                {cls.name}
+              </h1>
+              <p className="text-zinc-300 text-base md:text-lg font-light leading-relaxed max-w-2xl">
+                Authentic boxing fundamentals meet elite athletic conditioning. Forge a sound mind, power, and discipline on the heavy bags.
+              </p>
+            </div>
+
+            {/* Right: Schedule & Booking Card */}
+            <div className="lg:col-span-5 w-full">
+              <div className="glass-heavy rounded-2xl border border-white/10 p-6 md:p-8 shadow-2xl shadow-black/80 relative">
+                <div className="absolute top-0 right-0 w-48 h-48 glow-gold opacity-20 rounded-full pointer-events-none" />
+                
+                <h3 className="font-bebas text-2xl uppercase italic tracking-wide text-white mb-6 border-b border-white/8 pb-4">
+                  Weekly Class Times
+                </h3>
+
+                <div className="space-y-4 mb-8">
+                  {[
+                    { day: "Monday", times: ["5:30 AM", "6:00 PM"] },
+                    { day: "Wednesday", times: ["5:30 AM", "6:00 PM"] },
+                    { day: "Friday", times: ["4:00 PM"] },
+                  ].map((sched, idx) => (
+                    <div key={idx} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
+                      <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">
+                        {sched.day}
+                      </span>
+                      <div className="flex gap-2">
+                        {sched.times.map((t, tIdx) => (
+                          <span key={tIdx} className="glass-gold text-[9px] font-mono uppercase tracking-widest text-[#C5A059] px-2.5 py-1 rounded-md border border-[#C5A059]/20">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="glass rounded-xl p-4 border border-white/6 mb-6">
+                  <div className="flex items-start gap-3">
+                    <Check size={16} className="text-[#C5A059] shrink-0 mt-0.5" />
+                    <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                      First class is free for all Missouri local residents. No contract required.
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                  className="w-full py-4.5 bg-[#C5A059] hover:bg-white text-black text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-xl shadow-black/40 cursor-pointer flex items-center justify-center gap-2"
+                >
+                  Book Free Class <MoveRight size={13} />
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -143,12 +196,14 @@ export default function ElevateClassPage() {
                   />
                 </div>
               </div>
+            </div>
 
-              {/* Technical Specifications Grid */}
+            {/* Right: Technical Specifications Grid */}
+            <div className="lg:col-span-5 w-full">
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { label: "Target Area", val: "Full Body, Core & Cardio" },
-                  { label: "Calorie Burn", val: "700 - 900 Calories" },
+                  { label: "Calorie Burn", val: "800 - 1,000 Calories" },
                   { label: "Skill Level", val: "All Levels (Beginner Friendly)" },
                   { label: "Gear Required", val: "Gloves & Hand Wraps" },
                 ].map((spec, i) => (
@@ -161,54 +216,6 @@ export default function ElevateClassPage() {
                     </p>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Right: Schedule & Booking Card */}
-            <div className="lg:col-span-5">
-              <div className="glass-heavy rounded-2xl border border-white/10 p-6 md:p-8 shadow-2xl shadow-black/80 relative">
-                <div className="absolute top-0 right-0 w-48 h-48 glow-gold opacity-20 rounded-full pointer-events-none" />
-                
-                <h3 className="font-bebas text-2xl uppercase italic tracking-wide text-white mb-6 border-b border-white/8 pb-4">
-                  Weekly Class Times
-                </h3>
-
-                <div className="space-y-4 mb-8">
-                  {[
-                    { day: "Monday", times: ["5:30 AM", "6:00 PM"] },
-                    { day: "Wednesday", times: ["5:30 AM", "6:00 PM"] },
-                    { day: "Friday", times: ["5:30 AM", "6:00 PM"] },
-                  ].map((sched, idx) => (
-                    <div key={idx} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
-                      <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">
-                        {sched.day}
-                      </span>
-                      <div className="flex gap-2">
-                        {sched.times.map((t, tIdx) => (
-                          <span key={tIdx} className="glass-gold text-[9px] font-mono uppercase tracking-widest text-[#C5A059] px-2.5 py-1 rounded-md border border-[#C5A059]/20">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="glass rounded-xl p-4 border border-white/6 mb-6">
-                  <div className="flex items-start gap-3">
-                    <Check size={16} className="text-[#C5A059] shrink-0 mt-0.5" />
-                    <p className="text-xs text-zinc-400 font-light leading-relaxed">
-                      First class is free for all Missouri local residents. No contract required.
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setBookingOpen(true)}
-                  className="w-full py-4.5 bg-[#C5A059] hover:bg-white text-black text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-xl shadow-black/40 cursor-pointer flex items-center justify-center gap-2"
-                >
-                  Book Free Session <MoveRight size={13} />
-                </button>
               </div>
             </div>
 
@@ -298,7 +305,7 @@ export default function ElevateClassPage() {
         </div>
       </section>
 
-      <Footer onBookClick={() => setBookingOpen(true)} />
+      <Footer onBookClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')} />
 
       <BookingModal
         isOpen={bookingOpen}
