@@ -101,6 +101,7 @@ export default function Page() {
   const [showLoading, setShowLoading] = useState(true);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -115,7 +116,15 @@ export default function Page() {
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
+    
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("scroll", fn);
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   const scrollTo = (id: string) => {
@@ -151,8 +160,11 @@ export default function Page() {
           HERO
       ═══════════════════════════════════════════════════════ */}
       <section ref={heroRef} className="relative min-h-screen md:h-screen flex items-center justify-center overflow-hidden pt-[180px] pb-16 md:pt-0 md:pb-0">
-        {/* Parallax BG video */}
-        <motion.div className="absolute inset-0 z-0" style={{ y: heroImgY, scale: heroScale }}>
+        {/* Parallax BG video (disabled on mobile for performance and smooth playback) */}
+        <motion.div 
+          className="absolute inset-0 z-0" 
+          style={isMobile ? {} : { y: heroImgY, scale: heroScale }}
+        >
           <video
             autoPlay
             loop
@@ -161,8 +173,8 @@ export default function Page() {
             poster="/hero.png"
             className="absolute inset-0 w-full h-full object-cover object-center"
           >
-            <source src="/EmilsPromo.MOV" type="video/mp4" />
             <source src="/EmilsPromo.MOV" type="video/quicktime" />
+            <source src="/EmilsPromo.MOV" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/50 to-[#080808]/10" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/75 via-transparent to-[#080808]/30" />
