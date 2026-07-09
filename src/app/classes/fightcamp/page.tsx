@@ -49,7 +49,7 @@ export default function FightCampClassPage() {
       {/* ═══════════════════════════════════════════════════════
           HERO SECTION
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative py-20 lg:py-28 min-h-[600px] flex items-center justify-center overflow-hidden z-10 pt-36 lg:pt-48">
+      <section className="relative py-20 lg:py-28 min-h-[600px] flex items-center justify-center overflow-hidden z-10 pt-[180px] lg:pt-[240px]">
         <div className="absolute inset-0">
           <Image
             src={cls.image}

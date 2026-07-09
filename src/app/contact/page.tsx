@@ -222,7 +222,7 @@ export default function ContactPage() {
       {/* ═══════════════════════════════════════════════════════
           HERO SECTION
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative z-10 pt-40 pb-12 md:pt-48 md:pb-16 max-w-[1400px] mx-auto px-5 md:px-12">
+      <section className="relative z-10 pt-[180px] pb-12 md:pt-[240px] md:pb-16 max-w-[1400px] mx-auto px-5 md:px-12">
         <div className="max-w-3xl">
           <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-4">
             Get In The Ring
