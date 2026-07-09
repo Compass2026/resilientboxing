@@ -36,6 +36,21 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       animate={isExiting ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
     >
+      {/* ── VIDEO BACKGROUND (The Boxer) ── */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/download (2).mp4" type="video/mp4" />
+      </video>
+
+      {/* ── DARK OVERLAY ── */}
+      <div className="absolute inset-0 z-[1] bg-black/80" />
+
       {/* ── CONTENT LAYER ── */}
       <div className="absolute inset-0 flex flex-col items-center justify-center select-none z-10">
 
