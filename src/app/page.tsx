@@ -150,7 +150,7 @@ export default function Page() {
       {/* ═══════════════════════════════════════════════════════
           HERO
       ═══════════════════════════════════════════════════════ */}
-      <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen md:h-screen flex items-center justify-center overflow-hidden pt-[180px] pb-16 md:pt-0 md:pb-0">
         {/* Parallax BG video */}
         <motion.div className="absolute inset-0 z-0" style={{ y: heroImgY, scale: heroScale }}>
           <video
@@ -171,7 +171,7 @@ export default function Page() {
         {/* Hero glass content card */}
         <motion.div
           style={{ opacity: heroFade }}
-          className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col lg:flex-row items-center lg:items-end justify-between gap-12 pb-16 pt-[160px] md:pt-72"
+          className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col lg:flex-row items-center lg:items-end justify-between gap-12 pb-16 pt-0 md:pt-72"
         >
           {/* Left: Headline + logo lockup */}
           <div className="flex-1">
