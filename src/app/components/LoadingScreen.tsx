@@ -76,9 +76,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           }}
         />
 
-        {/* Outer pulse ring */}
         <motion.div
-          className="absolute w-[520px] h-[520px] rounded-full border border-[#C5A059]/8"
+          className="absolute w-[620px] h-[620px] rounded-full border border-[#C5A059]/8"
           initial={{ opacity: 0, scale: 0.7 }}
           animate={
             phase >= 1
@@ -93,9 +92,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           }}
         />
 
-        {/* Secondary pulse ring */}
         <motion.div
-          className="absolute w-[360px] h-[360px] rounded-full border border-[#C5A059]/12"
+          className="absolute w-[480px] h-[480px] rounded-full border border-[#C5A059]/12"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={
             phase >= 1
@@ -110,9 +108,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           }}
         />
 
-        {/* Gold radiance bloom */}
         <motion.div
-          className="absolute w-[700px] h-[700px] rounded-full pointer-events-none"
+          className="absolute w-[850px] h-[850px] rounded-full pointer-events-none"
           initial={{ opacity: 0, scale: 0.4 }}
           animate={phase >= 1 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.4 }}
           transition={{ duration: 2.0, ease: "easeOut" }}
@@ -124,7 +121,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
         {/* Center gold core glow */}
         <motion.div
-          className="absolute w-[180px] h-[180px] rounded-full pointer-events-none"
+          className="absolute w-[260px] h-[260px] rounded-full pointer-events-none"
           initial={{ opacity: 0 }}
           animate={phase >= 2 ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1.5 }}
@@ -138,7 +135,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         {/* ── LOGO ── */}
         <motion.div
           className="relative z-10 drop-shadow-2xl"
-          style={{ width: 320, height: 320 }}
+          style={{ width: 450, height: 450 }}
           initial={{ opacity: 0, scale: 0.55, y: 28 }}
           animate={
             phase >= 2
@@ -152,7 +149,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             alt="Resilient Boxing Gym"
             fill
             className="object-contain"
-            sizes="320px"
+            sizes="450px"
             priority
           />
         </motion.div>
@@ -163,7 +160,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           initial={{ scaleX: 0, opacity: 0 }}
           animate={phase >= 2 ? { scaleX: 1, opacity: 1 } : {}}
           transition={{ duration: 0.9, delay: 0.5, ease: "easeInOut" }}
-          style={{ width: 160 }}
+          style={{ width: 240 }}
         />
 
         {/* ── TAGLINE (letter-by-letter) ── */}
@@ -177,9 +174,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 y: i < lettersDone ? 0 : 10,
               }}
               transition={{ duration: 0.18, ease: "easeOut" }}
-              className={`font-mono text-[11px] font-medium uppercase ${
+              className={`font-mono text-[14px] font-medium uppercase tracking-[0.32em] ${
                 char === "·"
-                  ? "text-[#C5A059]/60 mx-1.5"
+                  ? "text-[#C5A059]/60 mx-2"
                   : "text-white/70"
               }`}
             >
@@ -190,7 +187,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
         {/* Location */}
         <motion.p
-          className="relative z-10 mt-3 text-[8px] font-mono uppercase tracking-[0.55em] text-zinc-700"
+          className="relative z-10 mt-4 text-[10px] font-mono uppercase tracking-[0.55em] text-zinc-700"
           initial={{ opacity: 0 }}
           animate={phase >= 3 ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.7, delay: 1.5 }}
