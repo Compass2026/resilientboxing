@@ -40,7 +40,6 @@ export default function Header({ onBookClick }: HeaderProps) {
 
   // Map class IDs to their corresponding Lucide icons
   const iconMap = {
-    weight: Activity,
     elevate: Shield,
     form: BookOpen,
     faithoverfear: Zap,
@@ -191,6 +190,18 @@ export default function Header({ onBookClick }: HeaderProps) {
               Pricing
             </Link>
 
+            {/* Shop */}
+            <Link
+              href="/shop"
+              className={`px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] rounded-lg transition-all duration-200 focus:outline-none whitespace-nowrap ${
+                pathname.startsWith("/shop")
+                  ? "text-[#C5A059] bg-[#C5A059]/10"
+                  : "text-white/90 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              Shop
+            </Link>
+
             {/* Contact */}
             <Link
               href="/contact"
@@ -285,6 +296,16 @@ export default function Header({ onBookClick }: HeaderProps) {
                 }`}
               >
                 Pricing
+              </Link>
+
+              <Link
+                href="/shop"
+                onClick={() => setMenuOpen(false)}
+                className={`text-sm font-bold uppercase tracking-widest text-left py-2 border-b border-white/5 focus:outline-none ${
+                  pathname.startsWith("/shop") ? "text-[#C5A059]" : "text-zinc-300"
+                }`}
+              >
+                Shop
               </Link>
 
               <Link

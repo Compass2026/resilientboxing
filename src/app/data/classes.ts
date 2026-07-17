@@ -21,52 +21,13 @@ export interface GymClass {
     text: string;
   };
   highlights: ClassHighlight[];
-  glowColor: "gold" | "red" | "white";
+  glowColor: "gold" | "red" | "white" | "silver" | "purple" | "orange" | "green";
 }
 
 export const CLASSES: GymClass[] = [
   {
-    id: "weight",
-    num: "01",
-    name: "IRON AND STRENGTH",
-    tagline: "Weight Lifting",
-    time: "MON · WED · FRI — 7:00 PM",
-    desc: "The heavy iron behind the heavy hands. Compound lifts and functional physical training designed to build structural power, strength, and durability.",
-    intensity: 50,
-    icon: Activity,
-    image: "/BF1FEE18-8739-47C8-A742-207063ACA9FC.webp",
-    slug: "weight",
-    glowColor: "white",
-    scripture: {
-      reference: "Proverbs 27:17",
-      text: "As iron sharpens iron, so one person sharpens another.",
-    },
-    highlights: [
-      {
-        title: "Perfect for all experience levels",
-        desc: "Learn proper lifting technique in a safe, supportive environment.",
-      },
-      {
-        title: "30 Minutes of Strength Training",
-        desc: "Replace the cardio warm-up with guided weightlifting focused on building strength and confidence.",
-      },
-      {
-        title: "Expert Instruction",
-        desc: "Learn correct form, proper movement, and how to safely train different muscle groups.",
-      },
-      {
-        title: "Variety in Every Workout",
-        desc: "Experience different lifting styles and exercises designed to keep your workouts challenging and effective.",
-      },
-      {
-        title: "Build a Strong Foundation",
-        desc: "Increase strength, improve muscle tone, and gain confidence that carries over into everyday life.",
-      },
-    ],
-  },
-  {
     id: "elevate",
-    num: "02",
+    num: "01",
     name: "ELEVATE 60",
     tagline: "Foundation and Fire",
     time: "MON · WED (5:30 AM & 5:30 PM) · FRI (4:00 PM)",
@@ -75,41 +36,33 @@ export const CLASSES: GymClass[] = [
     icon: Shield,
     image: "/6831DF2B-018E-403B-899E-943DD2558B32.webp",
     slug: "elevate",
-    glowColor: "red",
+    glowColor: "green",
     scripture: {
       reference: "2 Timothy 1:7",
       text: "For God has not given us a spirit of fear — but of power, love, and a sound mind.",
     },
     highlights: [
       {
-        title: "Perfect for Anyone",
-        desc: "No boxing experience needed.",
+        title: "First 15 Minutes",
+        desc: "Stretching, learning the basics of boxing, and making sure customers punch correctly so they feel empowered and have fun.",
       },
       {
-        title: "15 Minutes of Boxing Fundamentals",
-        desc: "Learn proper stance, footwork, punches, and technique through a fun icebreaker and guided instruction.",
+        title: "Following 15 Minutes",
+        desc: "A cardio and conditioning warm-up where you go at a pace you're comfortable with to get the blood flowing and burn as many calories as possible with a supportive community.",
       },
       {
-        title: "15 Minutes of Cardio Conditioning",
-        desc: "Warm up at your own pace while building endurance and preparing your body for the workout.",
+        title: "Last 30 Minutes",
+        desc: "All bag work where you are hitting a bag for 30 minutes straight—8 three-minute rounds on the bag with a minute off of active rest.",
       },
       {
-        title: "30 Minutes of Bag Work",
-        desc: "Complete 8 rounds on our state-of-the-art punch-tracking bags. Followed by a 1 minute break between rounds",
-      },
-      {
-        title: "Track Your Progress",
-        desc: "Every punch is scored from 0–100 and displayed live, showing your total punches, punch power, and overall performance after each class.",
-      },
-      {
-        title: "Burn 800–1,000 Calories",
-        desc: "Enjoy a fun, full-body workout that builds confidence, strength, endurance, and resilience.",
+        title: "Your Pace, Your Tone",
+        desc: "It's not boot camp. You go at a pace you're comfortable with: you set the pace, you set the tone, and work as hard as you can. We are there to just motivate you.",
       },
     ],
   },
   {
     id: "form",
-    num: "03",
+    num: "02",
     name: "FORM AND FOUNDATION",
     tagline: "Learn the Basics",
     time: "TUE · SAT — 5:30 PM & 9:00 AM",
@@ -144,16 +97,16 @@ export const CLASSES: GymClass[] = [
   },
   {
     id: "faithoverfear",
-    num: "04",
+    num: "03",
     name: "FAITH OVER FEAR",
     tagline: "Gloves on, God leads",
     time: "THURSDAY — 5:30 PM",
     desc: "Every Thursday at 5:30 PM – Grow in faith, build community, and strengthen your body and spirit.",
     intensity: 50,
     icon: Zap,
-    image: "/faith.png",
+    image: "/faith-gloves-cross-massive.png",
     slug: "faithoverfear",
-    glowColor: "gold",
+    glowColor: "purple",
     scripture: {
       reference: "2 Timothy 1:7",
       text: "For God has not given us a spirit of fear — but of power, love, and a sound mind.",
@@ -183,16 +136,16 @@ export const CLASSES: GymClass[] = [
   },
   {
     id: "fightcamp",
-    num: "05",
+    num: "04",
     name: "FIGHT CAMP",
     tagline: "Beyond the Basics and Sparring",
     time: "TUE · SAT — 6:30 PM & 10:00 AM",
     desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. For those ready to move beyond the basics and think like a fighter.",
-    intensity: 80,
+    intensity: 100,
     icon: Heart,
     image: "/2FBE893A-8F4F-4CD5-B529-3CD041E7496F.webp",
     slug: "fightcamp",
-    glowColor: "red",
+    glowColor: "orange",
     scripture: {
       reference: "1 Timothy 6:12",
       text: "Fight the good fight of faith, lay hold on eternal life, whereunto thou art also called.",
@@ -211,7 +164,7 @@ export const CLASSES: GymClass[] = [
         desc: "Sparring is optional and always supervised with a trainer at a safe, controlled pace designed to help you learn—not get hurt.",
       },
       {
-        title: "Progress at Your Pace",
+        title: "Progress at Your pace",
         desc: "Whether your goal is fitness, self-defense, or stepping into the ring, we'll help you advance as your confidence and skills grow.",
       },
       {

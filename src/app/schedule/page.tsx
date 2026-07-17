@@ -34,22 +34,121 @@ import {
 } from "lucide-react";
 
 // ─── CLASS DETAILS & ICONS ──────────────────────────────────────────────────
-const CLASS_DETAILS = {
-  weight: {
-    id: "weight",
-    name: "IRON AND STRENGTH",
-    tagline: "Weight Lifting",
-    desc: "The heavy iron behind the heavy hands. Compound lifts and functional physical training designed to build structural power, strength, and durability.",
-    intensity: 50,
-    duration: "60 mins",
-    image: "/BF1FEE18-8739-47C8-A742-207063ACA9FC.webp",
-    glowColor: "white" as const,
-    icon: Activity,
-    scripture: {
-      reference: "Proverbs 27:17",
-      text: "As iron sharpens iron, so one person sharpens another."
-    }
+const COLOR_MAP: Record<string, {
+  glass: string;
+  glow: string;
+  text: string;
+  hoverText: string;
+  iconBg: string;
+  note: string;
+  progress: string;
+  borderHover: string;
+  gradient: string;
+  modalGradient: string;
+  modalScripture: string;
+  badge: string;
+}> = {
+  gold: {
+    glass: "glass-gold border-[#C5A059]/25 hover:border-[#C5A059]/70",
+    glow: "bg-[#C5A059]",
+    text: "text-[#C5A059]",
+    hoverText: "group-hover:text-[#C5A059]",
+    iconBg: "bg-[#C5A059]/10 border-[#C5A059]/20 text-[#C5A059]",
+    note: "text-[#C5A059] bg-[#C5A059]/10 border-[#C5A059]/20",
+    progress: "bg-[#C5A059]",
+    borderHover: "hover:border-[#C5A059]/30",
+    gradient: "from-[#C5A059] to-transparent",
+    modalGradient: "from-[#C5A059] to-zinc-950",
+    modalScripture: "border-[#C5A059]/50",
+    badge: "text-[#C5A059] border-[#C5A059]/20"
   },
+  purple: {
+    glass: "glass-purple border-[#a855f7]/25 hover:border-[#a855f7]/70 shadow-[0_0_15px_rgba(168,85,247,0.05)] hover:shadow-[0_0_25px_rgba(168,85,247,0.22)]",
+    glow: "bg-[#a855f7]",
+    text: "text-[#a855f7]",
+    hoverText: "group-hover:text-[#a855f7]",
+    iconBg: "bg-[#a855f7]/10 border-[#a855f7]/20 text-[#a855f7]",
+    note: "text-zinc-100 bg-[#a855f7]/15 border-[#a855f7]/30 shadow-[0_0_8px_rgba(168,85,247,0.05)]",
+    progress: "bg-[#a855f7]",
+    borderHover: "hover:border-[#a855f7]/30 hover:shadow-[0_0_15px_rgba(168,85,247,0.1)]",
+    gradient: "from-[#a855f7] via-[#c084fc] to-transparent",
+    modalGradient: "from-[#a855f7] to-zinc-950",
+    modalScripture: "border-[#a855f7]/50",
+    badge: "text-zinc-100 border-[#a855f7]/30"
+  },
+  orange: {
+    glass: "glass-orange border-[#f97316]/25 hover:border-[#f97316]/70",
+    glow: "bg-[#f97316]",
+    text: "text-[#f97316]",
+    hoverText: "group-hover:text-[#f97316]",
+    iconBg: "bg-[#f97316]/10 border-[#f97316]/20 text-[#f97316]",
+    note: "text-[#f97316] bg-[#f97316]/10 border-[#f97316]/20",
+    progress: "bg-[#f97316]",
+    borderHover: "hover:border-[#f97316]/30",
+    gradient: "from-[#f97316] to-transparent",
+    modalGradient: "from-[#f97316] to-zinc-950",
+    modalScripture: "border-[#f97316]/50",
+    badge: "text-[#f97316] border-[#f97316]/20"
+  },
+  green: {
+    glass: "glass-green border-[#84cc16]/25 hover:border-[#84cc16]/70",
+    glow: "bg-[#84cc16]",
+    text: "text-[#84cc16]",
+    hoverText: "group-hover:text-[#84cc16]",
+    iconBg: "bg-[#84cc16]/10 border-[#84cc16]/20 text-[#84cc16]",
+    note: "text-[#84cc16] bg-[#84cc16]/10 border-[#84cc16]/20",
+    progress: "bg-[#84cc16]",
+    borderHover: "hover:border-[#84cc16]/30",
+    gradient: "from-[#84cc16] to-transparent",
+    modalGradient: "from-[#84cc16] to-zinc-950",
+    modalScripture: "border-[#84cc16]/50",
+    badge: "text-[#84cc16] border-[#84cc16]/20"
+  },
+  silver: {
+    glass: "glass-silver border-zinc-500/25 hover:border-zinc-200/90 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.22)]",
+    glow: "bg-zinc-200",
+    text: "text-zinc-200",
+    hoverText: "group-hover:text-white",
+    iconBg: "bg-white/10 border-white/20 text-white shadow-[inset_0_0_8px_rgba(255,255,255,0.08)]",
+    note: "text-zinc-100 bg-white/5 border-zinc-500/30 shadow-[0_0_8px_rgba(255,255,255,0.05)]",
+    progress: "bg-zinc-200",
+    borderHover: "hover:border-zinc-300/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]",
+    gradient: "from-zinc-200 via-zinc-400 to-transparent",
+    modalGradient: "from-zinc-200 via-zinc-400 to-zinc-950",
+    modalScripture: "border-zinc-400/60",
+    badge: "text-zinc-100 border-zinc-500/30"
+  },
+  white: {
+    glass: "glass border-white/5 hover:border-white/20",
+    glow: "bg-white",
+    text: "text-zinc-200",
+    hoverText: "group-hover:text-zinc-200",
+    iconBg: "bg-white/10 border-white/20 text-zinc-200",
+    note: "text-zinc-300 bg-white/5 border-white/10",
+    progress: "bg-white",
+    borderHover: "hover:border-white/10",
+    gradient: "from-white to-transparent",
+    modalGradient: "from-white to-zinc-950",
+    modalScripture: "border-white/50",
+    badge: "text-zinc-300 border-white/10"
+  },
+  red: {
+    glass: "glass border-white/5 hover:border-[#F43F5E]/30",
+    glow: "bg-[#F43F5E]",
+    text: "text-[#F43F5E]",
+    hoverText: "group-hover:text-[#F43F5E]",
+    iconBg: "bg-[#F43F5E]/10 border-[#F43F5E]/20 text-[#F43F5E]",
+    note: "text-[#F43F5E] bg-[#F43F5E]/10 border-[#F43F5E]/20",
+    progress: "bg-[#F43F5E]",
+    borderHover: "hover:border-[#F43F5E]/30",
+    gradient: "from-[#F43F5E] to-transparent",
+    modalGradient: "from-[#F43F5E] to-zinc-950",
+    modalScripture: "border-[#F43F5E]/50",
+    badge: "text-[#F43F5E] border-[#F43F5E]/20"
+  }
+};
+
+const CLASS_DETAILS = {
   elevate: {
     id: "elevate",
     name: "ELEVATE 60",
@@ -58,7 +157,7 @@ const CLASS_DETAILS = {
     intensity: 90,
     duration: "60 mins",
     image: "/6831DF2B-018E-403B-899E-943DD2558B32.webp",
-    glowColor: "red" as const,
+    glowColor: "green" as const,
     icon: Shield,
     scripture: {
       reference: "2 Timothy 1:7",
@@ -87,8 +186,8 @@ const CLASS_DETAILS = {
     desc: "Every Thursday at 5:30 PM – Grow in faith, build community, and strengthen your body and spirit.",
     intensity: 50,
     duration: "75 mins",
-    image: "/faith.png",
-    glowColor: "gold" as const,
+    image: "/faith-gloves-cross-massive.png",
+    glowColor: "purple" as const,
     icon: Zap,
     scripture: {
       reference: "2 Timothy 1:7",
@@ -100,10 +199,10 @@ const CLASS_DETAILS = {
     name: "FIGHT CAMP",
     tagline: "Beyond the Basics and Sparring",
     desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. Designed to teach you to think like a seasoned fighter. Requires coach invite.",
-    intensity: 80,
+    intensity: 100,
     duration: "60-90 mins",
     image: "/2FBE893A-8F4F-4CD5-B529-3CD041E7496F.webp",
-    glowColor: "red" as const,
+    glowColor: "orange" as const,
     icon: Heart,
     scripture: {
       reference: "1 Timothy 6:12",
@@ -142,7 +241,7 @@ const SCHEDULE_DATA: Record<string, Array<{
     { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 90 },
     { time: "4:15 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
     { time: "5:30 PM", classId: "form", duration: "60 mins", intensity: 65 },
-    { time: "6:30 PM", classId: "fightcamp", duration: "60 mins", intensity: 80 },
+    { time: "6:30 PM", classId: "fightcamp", duration: "60 mins", intensity: 100 },
   ],
   Wednesday: [
     { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 90 },
@@ -160,7 +259,7 @@ const SCHEDULE_DATA: Record<string, Array<{
   ],
   Saturday: [
     { time: "9:00 AM", classId: "form", duration: "60 mins", intensity: 65 },
-    { time: "10:00 AM", classId: "fightcamp", duration: "90 mins", intensity: 80 },
+    { time: "10:00 AM", classId: "fightcamp", duration: "90 mins", intensity: 100 },
   ],
   Sunday: []
 };
@@ -336,7 +435,6 @@ export default function SchedulePage() {
               <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mr-2">Filter Class:</span>
               {[
                 { id: "all", label: "All" },
-                { id: "weight", label: "Iron & Strength" },
                 { id: "elevate", label: "Elevate 60" },
                 { id: "form", label: "Form & Foundation" },
                 { id: "faithoverfear", label: "Faith Over Fear" },
@@ -475,22 +573,22 @@ export default function SchedulePage() {
                                     <button
                                       onClick={() => setSelectedClass(slot.classId)}
                                       className={`w-full text-left p-4 rounded-xl relative overflow-hidden transition-all duration-300 group focus:outline-none border hover:scale-[1.02] cursor-pointer ${
-                                        details.glowColor === "gold"
-                                          ? "glass-gold border-[#C5A059]/25 hover:border-[#C5A059]/70"
-                                          : "glass border-white/5 hover:border-[#F43F5E]/30"
+                                        (COLOR_MAP[details.glowColor] || COLOR_MAP.red).glass
                                       }`}
                                     >
                                       {/* Glowing indicator inside card */}
                                       <div className={`absolute top-0 right-0 w-20 h-20 rounded-full opacity-0 group-hover:opacity-20 blur-xl transition-opacity pointer-events-none -translate-y-1/2 translate-x-1/2 ${
-                                        details.glowColor === "gold" ? "bg-[#C5A059]" : "bg-[#F43F5E]"
+                                        (COLOR_MAP[details.glowColor] || COLOR_MAP.red).glow
                                       }`} />
-
+ 
                                       {/* Class Name */}
                                       <h4 className="font-bebas text-[17px] italic uppercase tracking-wider text-white leading-tight flex items-center justify-between gap-1">
                                         {details.name}
-                                        <Maximize2 size={10} className="text-zinc-500 group-hover:text-[#C5A059] transition-colors shrink-0" />
+                                        <Maximize2 size={10} className={`text-zinc-500 transition-colors shrink-0 ${
+                                          (COLOR_MAP[details.glowColor] || COLOR_MAP.red).hoverText
+                                        }`} />
                                       </h4>
-
+ 
                                       {/* Time & Duration */}
                                       <div className="flex items-center gap-1.5 mt-2">
                                         <Clock size={9} className="text-zinc-500" />
@@ -498,17 +596,19 @@ export default function SchedulePage() {
                                           {slot.time} <span className="text-zinc-600">({slot.duration})</span>
                                         </span>
                                       </div>
-
+ 
                                       {/* Custom indicator details */}
                                       <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/5">
                                         <span className="text-[8px] font-mono uppercase tracking-widest text-zinc-500">Intensity</span>
                                         <span className={`text-[8px] font-mono font-bold ${
-                                          details.glowColor === "gold" ? "text-[#C5A059]" : "text-[#F43F5E]"
+                                          (COLOR_MAP[details.glowColor] || COLOR_MAP.red).text
                                         }`}>{slot.intensity}%</span>
                                       </div>
-
+ 
                                       {slot.note && (
-                                        <span className="absolute bottom-2.5 right-2 px-1.5 py-0.5 rounded text-[7px] font-mono font-bold bg-zinc-900 border border-white/5 uppercase tracking-widest text-[#C5A059]">
+                                        <span className={`absolute bottom-2.5 right-2 px-1.5 py-0.5 rounded text-[7px] font-mono font-bold bg-zinc-900 border uppercase tracking-widest ${
+                                          (COLOR_MAP[details.glowColor] || COLOR_MAP.red).note
+                                        }`}>
                                           {slot.note}
                                         </span>
                                       )}
@@ -591,22 +691,18 @@ export default function SchedulePage() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: idx * 0.05 }}
                           className={`glass-card rounded-2xl p-6 border transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative overflow-hidden ${
-                            details.glowColor === "gold" ? "hover:border-[#C5A059]/30" : "hover:border-[#F43F5E]/30"
+                            (COLOR_MAP[details.glowColor] || COLOR_MAP.red).borderHover
                           }`}
                         >
                           {/* Accent highlight strip */}
                           <div className={`absolute left-0 top-0 h-full w-1 bg-gradient-to-b ${
-                            details.glowColor === "gold"
-                              ? "from-[#C5A059] to-transparent"
-                              : "from-[#F43F5E] to-transparent"
+                            (COLOR_MAP[details.glowColor] || COLOR_MAP.red).gradient
                           }`} />
 
                           {/* Left: Class Time and Name */}
                           <div className="flex items-center gap-5">
                             <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${
-                              details.glowColor === "gold"
-                                ? "bg-[#C5A059]/10 border-[#C5A059]/20 text-[#C5A059]"
-                                : "bg-[#F43F5E]/10 border-[#F43F5E]/20 text-[#F43F5E]"
+                              (COLOR_MAP[details.glowColor] || COLOR_MAP.red).iconBg
                             }`}>
                               <Clock size={20} />
                             </div>
@@ -617,7 +713,9 @@ export default function SchedulePage() {
                                   {slot.duration}
                                 </span>
                                 {slot.note && (
-                                  <span className="flex items-center gap-1 text-[8px] font-mono uppercase tracking-widest text-[#C5A059] bg-[#C5A059]/10 px-2.5 py-0.5 rounded border border-[#C5A059]/20">
+                                  <span className={`flex items-center gap-1 text-[8px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded border ${
+                                    (COLOR_MAP[details.glowColor] || COLOR_MAP.red).note
+                                  }`}>
                                     <Lock size={8} /> {slot.note}
                                   </span>
                                 )}
@@ -638,9 +736,13 @@ export default function SchedulePage() {
                             <div className="text-left sm:text-right">
                               <span className="text-[8px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">Intensity Level</span>
                               <div className="flex items-center gap-1.5">
-                                <span className="text-xs font-mono text-[#C5A059] font-bold">{slot.intensity}%</span>
+                                <span className={`text-xs font-mono font-bold ${
+                                  (COLOR_MAP[details.glowColor] || COLOR_MAP.red).text
+                                }`}>{slot.intensity}%</span>
                                 <div className="w-12 h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/6 inline-block">
-                                  <div className="h-full bg-[#C5A059] rounded-full" style={{ width: `${slot.intensity}%` }} />
+                                  <div className={`h-full rounded-full ${
+                                    (COLOR_MAP[details.glowColor] || COLOR_MAP.red).progress
+                                  }`} style={{ width: `${slot.intensity}%` }} />
                                 </div>
                               </div>
                             </div>
@@ -820,9 +922,7 @@ export default function SchedulePage() {
             >
               {/* Highlight accent bar */}
               <div className={`h-1 w-full bg-gradient-to-r ${
-                CLASS_DETAILS[selectedClass].glowColor === "gold"
-                  ? "from-[#C5A059] to-zinc-950"
-                  : "from-[#F43F5E] to-zinc-950"
+                (COLOR_MAP[CLASS_DETAILS[selectedClass].glowColor] || COLOR_MAP.red).modalGradient
               }`} />
 
               <div className="relative p-8">
@@ -838,14 +938,14 @@ export default function SchedulePage() {
                 {/* Header Section */}
                 <div className="flex items-center gap-4 mb-6">
                   <div className={`w-14 h-14 rounded-xl flex items-center justify-center border shrink-0 ${
-                    CLASS_DETAILS[selectedClass].glowColor === "gold"
-                      ? "bg-[#C5A059]/10 border-[#C5A059]/20 text-[#C5A059]"
-                      : "bg-[#F43F5E]/10 border-[#F43F5E]/20 text-[#F43F5E]"
+                    (COLOR_MAP[CLASS_DETAILS[selectedClass].glowColor] || COLOR_MAP.red).iconBg
                   }`}>
                     {React.createElement(CLASS_DETAILS[selectedClass].icon, { size: 24 })}
                   </div>
                   <div>
-                    <span className="text-[9px] font-mono uppercase tracking-[0.25em] text-[#C5A059] block mb-0.5">
+                    <span className={`text-[9px] font-mono uppercase tracking-[0.25em] block mb-0.5 ${
+                      (COLOR_MAP[CLASS_DETAILS[selectedClass].glowColor] || COLOR_MAP.red).text
+                    }`}>
                       Class Details
                     </span>
                     <h3 className="font-bebas text-3xl uppercase italic leading-none text-white tracking-wide">
@@ -868,7 +968,9 @@ export default function SchedulePage() {
                     <span className="glass px-3 py-1 rounded-full text-[9px] font-mono uppercase tracking-widest text-zinc-300 border border-white/10">
                       Duration: {CLASS_DETAILS[selectedClass].duration}
                     </span>
-                    <span className="glass px-3 py-1 rounded-full text-[9px] font-mono uppercase tracking-widest text-[#C5A059] border border-[#C5A059]/20">
+                    <span className={`glass px-3 py-1 rounded-full text-[9px] font-mono uppercase tracking-widest border ${
+                      (COLOR_MAP[CLASS_DETAILS[selectedClass].glowColor] || COLOR_MAP.red).badge
+                    }`}>
                       Intensity: {CLASS_DETAILS[selectedClass].intensity}%
                     </span>
                   </div>
@@ -880,11 +982,15 @@ export default function SchedulePage() {
                 </p>
 
                 {/* Scripture Panel */}
-                <div className="glass rounded-xl p-4 border-l-2 border-[#C5A059]/50 mb-6 bg-zinc-950/20">
+                <div className={`glass rounded-xl p-4 border-l-2 mb-6 bg-zinc-950/20 ${
+                  (COLOR_MAP[CLASS_DETAILS[selectedClass].glowColor] || COLOR_MAP.red).modalScripture
+                }`}>
                   <p className="text-xs text-zinc-300 italic font-light leading-relaxed">
                     "{CLASS_DETAILS[selectedClass].scripture.text}"
                   </p>
-                  <p className="text-[9px] font-mono uppercase tracking-widest text-[#C5A059] mt-2">
+                  <p className={`text-[9px] font-mono uppercase tracking-widest mt-2 ${
+                    (COLOR_MAP[CLASS_DETAILS[selectedClass].glowColor] || COLOR_MAP.red).text
+                  }`}>
                     {CLASS_DETAILS[selectedClass].scripture.reference}
                   </p>
                 </div>

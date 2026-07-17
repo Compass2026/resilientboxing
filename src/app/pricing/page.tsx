@@ -18,7 +18,6 @@ import {
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const CLASSES = [
-  { id: "weight", name: "IRON AND STRENGTH" },
   { id: "elevate", name: "ELEVATE 60" },
   { id: "form", name: "FORM AND FOUNDATION" },
   { id: "faithoverfear", name: "FAITH OVER FEAR" },
@@ -32,19 +31,23 @@ const FAQS = [
   },
   {
     q: "Do I need to buy my own boxing gloves and wraps?",
-    a: "No! If you are just testing the waters with a free class, we will provide loaner gloves and wraps for you. If you choose our $119 Introductory Special, you will receive brand new, high-quality boxing gloves, professional hand wraps, and a gym T-shirt to keep."
+    a: "We do not charge for your first class if you have your own equipment. If you need equipment, you can rent or buy from us (hand wraps are $14.99 and glove rental is $4.99). Additionally, if you choose to pay your membership in full, you will receive brand new, high-quality boxing gloves for free to keep!"
   },
   {
-    q: "What is your commitment incentive exactly?",
-    a: "If you purchase our $119 intro package, you will have 30 days of unlimited classes. If you choose to commit to a regular ongoing membership before that 30-day period ends, your next full month is entirely free!"
+    q: "Do you offer any discounts for paying in full?",
+    a: "Yes! If you choose to pay your membership in full, you will get 2 FREE months of membership and a pair of professional boxing gloves for free."
   },
   {
     q: "Are classes beginner-friendly?",
-    a: "Absolutely. Our Elevate 60 class is specifically structured as a 'Foundation & Fire' session. It is designed to welcome complete beginners, teach correct mechanics, and build confidence from day one. You work at your own pace."
+    a: "Absolutely. The first 15 minutes of Elevate 60 is spent teaching you the basics. If you want a deeper dive, our Form & Foundation class spends the first 30 minutes breaking down how and why we throw correct punches to get the most out of your workout. Both classes welcome complete beginners and build confidence from day one."
   },
   {
-    q: "Do you have contracts or signup fees?",
+    q: "Do you have agreements or signup fees?",
     a: "No high-pressure sales pitches or hidden fees. We believe in building a faith-driven community based on trust. Check our WellnessLiving options or call/text us to find the membership plan that best fits your lifestyle."
+  },
+  {
+    q: "Do I need to be religious to join?",
+    a: "No, we welcome everyone with open arms, just like Jesus Christ welcomes us. Everyone is welcome! It doesn't matter what you look like or what you believe, just know we believe in you."
   }
 ];
 
@@ -292,167 +295,355 @@ export default function PricingPage() {
       ═══════════════════════════════════════════════════════ */}
       <section className="relative z-10 py-16 md:py-24">
         <div className="max-w-[1400px] mx-auto px-5 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          <div className="flex flex-col gap-8">
 
-            {/* CARD 1: Free Trial */}
+            {/* TIER 1: Punch Cards */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex"
+              className="w-full"
             >
-              <GlassPanel className="p-8 md:p-10 flex flex-col justify-between w-full border border-white/6 hover:border-white/12 relative">
-                <div>
-                  <div className="flex items-center justify-between mb-8">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-500">First Steps</p>
-                    <div className="w-8 h-8 rounded-lg glass border border-white/10 flex items-center justify-center text-zinc-400">
-                      <Shield size={16} />
+              <div className="relative overflow-hidden rounded-2xl border border-[#A3E635]/20 bg-black/40 backdrop-blur-xl p-8 md:p-10 transition-all duration-300 hover:border-[#A3E635]/40 hover:shadow-[0_0_30px_rgba(163,230,53,0.15)]">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Left Column: Details */}
+                  <div className="lg:col-span-5 flex flex-col md:flex-row lg:flex-col gap-6 items-start">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-xl border-2 border-[#A3E635] flex items-center justify-center font-bebas text-4xl text-[#A3E635] shrink-0 shadow-[0_0_15px_rgba(163,230,53,0.2)]">
+                        1
+                      </div>
+                      <div>
+                        <h3 className="font-bebas text-3xl md:text-4xl italic uppercase text-white tracking-wide leading-none">
+                          Punch Cards
+                        </h3>
+                        <p className="text-xs text-[#A3E635] font-medium tracking-wide mt-1">Flexible class-based entry</p>
+                      </div>
+                    </div>
+                    <div className="space-y-3 w-full border-t border-white/5 pt-4">
+                      <div className="flex items-start gap-3">
+                        <Check size={14} className="text-[#A3E635] mt-0.5 shrink-0" />
+                        <span className="text-xs font-light text-zinc-300">Gives you unlimited access to the gym, unlimited classes</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Check size={14} className="text-[#A3E635] mt-0.5 shrink-0" />
+                        <span className="text-xs font-light text-zinc-300">Expires after three months</span>
+                      </div>
+                      <div className="flex items-start gap-3 bg-red-500/5 border border-red-500/10 rounded-xl p-3.5 mt-2 w-full">
+                        <X size={14} className="text-red-500 mt-0.5 shrink-0" />
+                        <div>
+                          <span className="text-xs font-semibold text-zinc-400">No Impact Wrap Integration</span>
+                          <p className="text-[11px] text-zinc-500 mt-1 font-light leading-relaxed">
+                            Does not measure punch power, track punches live, or show live screen leaderboards.
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <h3 className="font-bebas text-3xl md:text-4xl italic uppercase text-white tracking-wide leading-none mb-2">
-                    First Round Free
-                  </h3>
-                  <p className="text-xs text-[#C5A059] font-medium tracking-wide mb-6">Test the waters. Find your fire.</p>
+                  {/* Right Column: Pricing Options */}
+                  <div className="lg:col-span-7 flex flex-col gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Option 10 Classes */}
+                      <button
+                        onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                        className="group relative flex flex-col justify-between p-6 rounded-xl border border-white/5 bg-white/2 hover:bg-white/5 text-left transition-all duration-300 hover:border-[#A3E635]/30 hover:scale-[1.02]"
+                      >
+                        <div>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400">Option A</p>
+                          <h4 className="font-bebas text-2xl uppercase italic text-white mt-1 group-hover:text-[#A3E635] transition-colors">10 Classes</h4>
+                        </div>
+                        <div className="mt-8 flex items-baseline gap-2">
+                          <span className="font-bebas text-4xl italic text-[#A3E635]">$200</span>
+                          <span className="text-[9px] font-mono uppercase text-zinc-500">One-Time</span>
+                        </div>
+                      </button>
 
-                  <div className="flex items-baseline gap-1 mb-8">
-                    <span className="font-bebas text-6xl md:text-7xl italic leading-none text-white">$0</span>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">No Commitment</span>
-                  </div>
-
-                  <div className="space-y-4 pt-6 border-t border-white/6 mb-10">
-                    {[
-                      "1 free 60-minute boxing class",
-                      "Full access to professional coaches",
-                      "Complimentary glove & wrap loaners",
-                      "Full tour of our O'Fallon gym facility",
-                    ].map((feat, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <Check size={14} className="text-[#C5A059] mt-0.5 shrink-0" />
-                        <span className="text-xs font-light text-zinc-300">{feat}</span>
-                      </div>
-                    ))}
+                      {/* Option 20 Classes */}
+                      <button
+                        onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                        className="group relative flex flex-col justify-between p-6 rounded-xl border border-white/5 bg-white/2 hover:bg-white/5 text-left transition-all duration-300 hover:border-[#A3E635]/30 hover:scale-[1.02]"
+                      >
+                        <div>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400">Option B</p>
+                          <h4 className="font-bebas text-2xl uppercase italic text-white mt-1 group-hover:text-[#A3E635] transition-colors">20 Classes</h4>
+                        </div>
+                        <div className="mt-8 flex items-baseline gap-2">
+                          <span className="font-bebas text-4xl italic text-[#A3E635]">$350</span>
+                          <span className="text-[9px] font-mono uppercase text-zinc-500">One-Time</span>
+                        </div>
+                      </button>
+                    </div>
+                    <div className="text-center sm:text-right">
+                      <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mt-2">
+                        * Both expire after three months.
+                      </p>
+                    </div>
                   </div>
                 </div>
-
-                <button
-                  onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
-                  className="w-full py-4 glass rounded-xl text-xs font-bold uppercase tracking-widest text-zinc-200 hover:text-white border border-white/8 hover:border-white/20 transition-all duration-300 focus:outline-none"
-                >
-                  Book Free Class
-                </button>
-              </GlassPanel>
+              </div>
             </motion.div>
 
-            {/* CARD 2: Intro Pack (Highlighted) */}
+            {/* TIER 2: Month-to-Month Memberships */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex"
+              className="w-full"
             >
-              <GlassPanel gold className="p-8 md:p-10 flex flex-col justify-between w-full border border-[#C5A059]/30 relative shadow-2xl shadow-black/70">
-                <div className="absolute top-0 right-0 bg-[#C5A059] text-black text-[9px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-bl-xl">
-                  Best Value
-                </div>
-                
-                <div>
-                  <div className="flex items-center justify-between mb-8">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C5A059]/80 font-semibold">Special Offer</p>
-                    <div className="w-8 h-8 rounded-lg bg-[#C5A059] flex items-center justify-center text-black">
-                      <Zap size={16} />
+              <div className="relative overflow-hidden rounded-2xl border border-[#A855F7]/20 bg-black/40 backdrop-blur-xl p-8 md:p-10 transition-all duration-300 hover:border-[#A855F7]/40 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Left Column: Details */}
+                  <div className="lg:col-span-5 flex flex-col md:flex-row lg:flex-col gap-6 items-start">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-xl border-2 border-[#A855F7] flex items-center justify-center font-bebas text-4xl text-[#A855F7] shrink-0 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+                        2
+                      </div>
+                      <div>
+                        <h3 className="font-bebas text-3xl md:text-4xl italic uppercase text-white tracking-wide leading-none">
+                          Month-to-Month
+                        </h3>
+                        <p className="text-xs text-[#A855F7] font-medium tracking-wide mt-1">Flexible monthly memberships</p>
+                      </div>
+                    </div>
+                    <div className="space-y-3 w-full border-t border-white/5 pt-4">
+                      <div className="flex items-start gap-3">
+                        <Check size={14} className="text-[#A855F7] mt-0.5 shrink-0" />
+                        <span className="text-xs font-light text-zinc-300">Unlimited access to the gym</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Check size={14} className="text-[#A855F7] mt-0.5 shrink-0" />
+                        <span className="text-xs font-light text-zinc-300">Unlimited classes</span>
+                      </div>
+                      <div className="flex flex-col gap-1.5 bg-[#A855F7]/5 border border-[#A855F7]/15 rounded-xl p-3.5 mt-2 w-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)]">
+                        <div className="flex items-start gap-2.5">
+                          <Check size={14} className="text-[#A855F7] mt-0.5 shrink-0" />
+                          <span className="text-xs font-semibold text-zinc-200">Impact Wrap App Integration</span>
+                        </div>
+                        <p className="text-[11px] text-zinc-400 pl-6 font-light leading-relaxed">
+                          Measure punch power and track your punches live on our screens with a total score for each class.
+                        </p>
+                      </div>
                     </div>
                   </div>
 
-                  <h3 className="font-bebas text-3xl md:text-4xl italic uppercase text-white tracking-wide leading-none mb-2">
-                    Resilient Intro Pack
-                  </h3>
-                  <p className="text-xs text-[#C5A059] font-medium tracking-wide mb-6">Gear up with unlimited training.</p>
+                  {/* Right Column: Pricing Options */}
+                  <div className="lg:col-span-7 flex flex-col gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {/* Option: Individual */}
+                      <button
+                        onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                        className="group relative flex flex-col justify-between p-5 rounded-xl border border-white/5 bg-white/2 hover:bg-white/5 text-left transition-all duration-300 hover:border-[#A855F7]/30 hover:scale-[1.02]"
+                      >
+                        <div>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-medium">Individual</p>
+                          <h4 className="font-bebas text-xl uppercase italic text-white mt-1 group-hover:text-[#A855F7] transition-colors">Individual</h4>
+                        </div>
+                        <div className="mt-6">
+                          <div className="flex items-baseline gap-1">
+                            <span className="font-bebas text-3xl italic text-[#A855F7]">$100</span>
+                            <span className="text-[9px] font-mono uppercase text-zinc-500">/mo</span>
+                          </div>
+                          <p className="text-[9px] text-zinc-400 font-light mt-2">+ $100 Cancellation Fee</p>
+                        </div>
+                      </button>
 
-                  <div className="flex items-baseline gap-1 mb-8">
-                    <span className="font-bebas text-6xl md:text-7xl italic leading-none text-white">$119</span>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A059] font-bold">One-Time Pay</span>
-                  </div>
+                      {/* Option: Family */}
+                      <button
+                        onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                        className="group relative flex flex-col justify-between p-5 rounded-xl border border-white/5 bg-white/2 hover:bg-white/5 text-left transition-all duration-300 hover:border-[#A855F7]/30 hover:scale-[1.02]"
+                      >
+                        <div>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-medium">Family</p>
+                          <h4 className="font-bebas text-xl uppercase italic text-white mt-1 group-hover:text-[#A855F7] transition-colors leading-tight">Family Membership</h4>
+                        </div>
+                        <div className="mt-6">
+                          <div className="flex items-baseline gap-1">
+                            <span className="font-bebas text-3xl italic text-[#A855F7]">$180</span>
+                            <span className="text-[9px] font-mono uppercase text-zinc-500">/mo</span>
+                          </div>
+                          <p className="text-[9px] text-zinc-400 font-light mt-2">+ $75 Cancellation Fee Per Person</p>
+                        </div>
+                      </button>
 
-                  <div className="space-y-4 pt-6 border-t border-[#C5A059]/20 mb-10">
-                    {[
-                      "30 Days of Unlimited sessions",
-                      "Brand new boxing gloves (yours to keep)",
-                      "Professional hand wraps (yours to keep)",
-                      "Resilient Gym T-Shirt (yours to keep)",
-                      "Full evaluation of stance & punches",
-                      "Access to both boxing & strength classes",
-                    ].map((feat, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <Check size={14} className="text-[#C5A059] mt-0.5 shrink-0" />
-                        <span className="text-xs font-semibold text-zinc-200">{feat}</span>
-                      </div>
-                    ))}
+                      {/* Option: Additional People */}
+                      <button
+                        onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                        className="group relative flex flex-col justify-between p-5 rounded-xl border border-white/5 bg-white/2 hover:bg-white/5 text-left transition-all duration-300 hover:border-[#A855F7]/30 hover:scale-[1.02]"
+                      >
+                        <div>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-medium">Add-On</p>
+                          <h4 className="font-bebas text-xl uppercase italic text-white mt-1 group-hover:text-[#A855F7] transition-colors">Additional People</h4>
+                        </div>
+                        <div className="mt-6">
+                          <div className="flex items-baseline gap-1">
+                            <span className="font-bebas text-3xl italic text-[#A855F7]">$80</span>
+                            <span className="text-[9px] font-mono uppercase text-zinc-500">/mo</span>
+                          </div>
+                          <p className="text-[9px] text-zinc-400 font-light mt-2">Per additional person</p>
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
-
-                <button
-                  onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
-                  className="w-full py-4 bg-[#C5A059] rounded-xl text-xs font-bold uppercase tracking-widest text-black hover:bg-white transition-all duration-300 focus:outline-none shadow-xl shadow-[#C5A059]/10"
-                >
-                  Buy Intro Special
-                </button>
-              </GlassPanel>
+              </div>
             </motion.div>
 
-            {/* CARD 3: Membership Commit */}
+            {/* TIER 3: Annual Memberships */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex"
+              className="w-full"
             >
-              <GlassPanel className="p-8 md:p-10 flex flex-col justify-between w-full border border-white/6 hover:border-white/12 relative">
-                <div>
-                  <div className="flex items-center justify-between mb-8">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-500">Next Level</p>
-                    <div className="w-8 h-8 rounded-lg glass border border-white/10 flex items-center justify-center text-zinc-400">
-                      <Heart size={16} />
+              <div className="relative overflow-hidden rounded-2xl border border-[#F97316]/20 bg-black/40 backdrop-blur-xl p-8 md:p-10 transition-all duration-300 hover:border-[#F97316]/40 hover:shadow-[0_0_30px_rgba(249,115,22,0.15)]">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Left Column: Details */}
+                  <div className="lg:col-span-5 flex flex-col md:flex-row lg:flex-col gap-6 items-start">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-xl border-2 border-[#F97316] flex items-center justify-center font-bebas text-4xl text-[#F97316] shrink-0 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+                        3
+                      </div>
+                      <div>
+                        <h3 className="font-bebas text-3xl md:text-4xl italic uppercase text-white tracking-wide leading-none">
+                          Annual Membership
+                        </h3>
+                        <p className="text-xs text-[#F97316] font-medium tracking-wide mt-1">Value-focused yearly commitment</p>
+                      </div>
+                    </div>
+                    <div className="space-y-3 w-full border-t border-white/5 pt-4">
+                      <div className="flex items-start gap-3">
+                        <Check size={14} className="text-[#F97316] mt-0.5 shrink-0" />
+                        <span className="text-xs font-light text-zinc-300">Unlimited access to the gym</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Check size={14} className="text-[#F97316] mt-0.5 shrink-0" />
+                        <span className="text-xs font-light text-zinc-300">Unlimited classes</span>
+                      </div>
+                      <div className="flex flex-col gap-1.5 bg-[#F97316]/5 border border-[#F97316]/15 rounded-xl p-3.5 mt-2 w-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)]">
+                        <div className="flex items-start gap-2.5">
+                          <Check size={14} className="text-[#F97316] mt-0.5 shrink-0" />
+                          <span className="text-xs font-semibold text-zinc-200">Impact Wrap App Integration</span>
+                        </div>
+                        <p className="text-[11px] text-zinc-400 pl-6 font-light leading-relaxed">
+                          Measure punch power and track your punches live on our screens with a total score for each class.
+                        </p>
+                      </div>
                     </div>
                   </div>
 
-                  <h3 className="font-bebas text-3xl md:text-4xl italic uppercase text-white tracking-wide leading-none mb-2">
-                    The Commitment
-                  </h3>
-                  <p className="text-xs text-[#C5A059] font-medium tracking-wide mb-6">Commit early, earn your reward.</p>
+                  {/* Right Column: Pricing Options */}
+                  <div className="lg:col-span-7 flex flex-col gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {/* Option: 1 Person */}
+                      <button
+                        onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                        className="group relative flex flex-col justify-between p-5 rounded-xl border border-white/5 bg-white/2 hover:bg-white/5 text-left transition-all duration-300 hover:border-[#F97316]/30 hover:scale-[1.02]"
+                      >
+                        <div>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-medium">Annual</p>
+                          <h4 className="font-bebas text-xl uppercase italic text-white mt-1 group-hover:text-[#F97316] transition-colors">1 Person</h4>
+                        </div>
+                        <div className="mt-6">
+                          <div className="flex items-baseline gap-1">
+                            <span className="font-bebas text-3xl italic text-[#F97316]">$86</span>
+                            <span className="text-[9px] font-mono uppercase text-zinc-500">/mo</span>
+                          </div>
+                          <p className="text-[9px] text-zinc-400 font-light mt-2">Billed monthly</p>
+                        </div>
+                      </button>
 
-                  <div className="flex items-baseline gap-1 mb-8">
-                    <span className="font-bebas text-5xl md:text-6xl italic leading-none text-white">1 Month</span>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A059] font-bold">Entirely Free</span>
-                  </div>
+                      {/* Option: 2 People */}
+                      <button
+                        onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                        className="group relative flex flex-col justify-between p-5 rounded-xl border border-white/5 bg-white/2 hover:bg-white/5 text-left transition-all duration-300 hover:border-[#F97316]/30 hover:scale-[1.02]"
+                      >
+                        <div>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-medium">Annual</p>
+                          <h4 className="font-bebas text-xl uppercase italic text-white mt-1 group-hover:text-[#F97316] transition-colors">2 People</h4>
+                        </div>
+                        <div className="mt-6">
+                          <div className="flex items-baseline gap-1">
+                            <span className="font-bebas text-3xl italic text-[#F97316]">$160</span>
+                            <span className="text-[9px] font-mono uppercase text-zinc-500">/mo</span>
+                          </div>
+                          <p className="text-[9px] text-zinc-400 font-light mt-2">Billed monthly</p>
+                        </div>
+                      </button>
 
-                  <div className="space-y-4 pt-6 border-t border-white/6 mb-10">
-                    {[
-                      "Lock in regular monthly membership",
-                      "Get your next full month 100% Free",
-                      "Only valid if committed during intro period",
-                      "Unlimited access to all scheduled hours",
-                      "Priority mobile app class reservations",
-                      "No long term locks or cancellation fees",
-                    ].map((feat, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <Check size={14} className="text-[#C5A059] mt-0.5 shrink-0" />
-                        <span className="text-xs font-light text-zinc-300">{feat}</span>
-                      </div>
-                    ))}
+                      {/* Option: Additional Person */}
+                      <button
+                        onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                        className="group relative flex flex-col justify-between p-5 rounded-xl border border-white/5 bg-white/2 hover:bg-white/5 text-left transition-all duration-300 hover:border-[#F97316]/30 hover:scale-[1.02]"
+                      >
+                        <div>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-medium">Add-On</p>
+                          <h4 className="font-bebas text-xl uppercase italic text-white mt-1 group-hover:text-[#F97316] transition-colors">Additional Person</h4>
+                        </div>
+                        <div className="mt-6">
+                          <div className="flex items-baseline gap-1">
+                            <span className="font-bebas text-3xl italic text-[#F97316]">$75</span>
+                            <span className="text-[9px] font-mono uppercase text-zinc-500">/mo</span>
+                          </div>
+                          <p className="text-[9px] text-zinc-400 font-light mt-2">Per additional person billed monthly</p>
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
+              </div>
+            </motion.div>
 
-                <a
-                  href="tel:+13143155046"
-                  className="w-full py-4 glass rounded-xl text-xs font-bold uppercase tracking-widest text-zinc-200 hover:text-white border border-white/8 hover:border-white/20 transition-all duration-300 focus:outline-none flex items-center justify-center gap-2"
-                >
-                  Call (314) 315-5046
-                </a>
-              </GlassPanel>
+            {/* TIER 4: Want to Pay in Full Promo */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="w-full"
+            >
+              <div className="relative overflow-hidden rounded-2xl border border-[#C5A059]/30 bg-gradient-to-r from-black/60 to-zinc-900/60 p-8 md:p-12 shadow-2xl shadow-black/80">
+                {/* Accent glows */}
+                <div className="absolute inset-0 glow-gold opacity-15 pointer-events-none rounded-2xl" />
+                <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-8">
+                  <div className="text-center lg:text-left flex-1">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/10 text-[#C5A059] text-[9px] font-mono uppercase tracking-widest mb-4">
+                      Special Offer
+                    </span>
+                    <h3 className="font-bebas text-3xl md:text-5xl uppercase italic tracking-wide text-white mb-3">
+                      Want to pay in full?
+                    </h3>
+                    <p className="text-zinc-200 text-sm md:text-base font-medium leading-relaxed max-w-2xl">
+                      Get <span className="text-[#C5A059] font-bold">2 FREE MONTHS</span> for paying it in full and a pair of <span className="text-[#C5A059] font-bold">FREE BOXING GLOVES</span>!
+                    </p>
+                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-6 text-zinc-500 font-mono text-[10px] tracking-wider uppercase">
+                      <span>Show Up</span>
+                      <span>•</span>
+                      <span>Put In The Work</span>
+                      <span>•</span>
+                      <span>See The Results</span>
+                    </div>
+                  </div>
+                  <div className="shrink-0 flex flex-col items-center sm:items-stretch gap-4 w-full sm:w-auto">
+                    <button
+                      onClick={() => window.open('https://www.wellnessliving.com/signup/resilient_boxing', '_blank')}
+                      className="w-full sm:w-auto text-center px-8 py-4 bg-[#C5A059] hover:bg-white text-black font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 shadow-xl shadow-[#C5A059]/20"
+                    >
+                      Pay in Full Offer
+                    </button>
+                    <a
+                      href="tel:+13143155046"
+                      className="w-full sm:w-auto text-center px-8 py-4 border border-white/10 hover:border-white/30 text-white font-bold text-xs uppercase tracking-widest rounded-xl bg-white/2 hover:bg-white/5 transition-all duration-300"
+                    >
+                      Call (314) 315-5046
+                    </a>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
           </div>

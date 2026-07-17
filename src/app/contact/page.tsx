@@ -20,7 +20,8 @@ import {
   Shield,
   BookOpen,
   Zap,
-  Heart
+  Heart,
+  Info
 } from "lucide-react";
 
 // ─── GLASS PANEL ───────────────────────────────────────────────────────────────
@@ -196,7 +197,6 @@ export default function ContactPage() {
   const programList = [
     { id: "elevate", name: "Elevate 60 (Foundation & Fire)" },
     { id: "form", name: "Form & Foundation (Technique)" },
-    { id: "weight", name: "Iron & Strength (Conditioning)" },
     { id: "faithoverfear", name: "Faith Over Fear (Gloves & Scripture)" },
     { id: "fightcamp", name: "Fight Camp (Advanced)" }
   ];
@@ -258,8 +258,8 @@ export default function ContactPage() {
               <GlassPanel className="p-6 border border-white/5 bg-[#0A0A0A]/40 backdrop-blur-sm">
                 <Mail className="text-[#C5A059] w-5 h-5 mb-4" />
                 <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1.5">Email Us</h3>
-                <a href="mailto:info@resilientboxing.com" className="text-sm font-semibold text-white hover:text-[#C5A059] transition-colors truncate block">
-                  info@resilientboxing.com
+                <a href="mailto:resilientboxing@gmail.com" className="text-sm font-semibold text-white hover:text-[#C5A059] transition-colors truncate block">
+                  resilientboxing@gmail.com
                 </a>
               </GlassPanel>
             </div>
@@ -272,10 +272,10 @@ export default function ContactPage() {
               </div>
               <div className="space-y-3 text-xs">
                 {[
-                  { days: "Monday & Wednesday", time: "9:00 AM – 8:00 PM" },
-                  { days: "Tuesday & Thursday", time: "9:00 AM – 7:30 PM" },
-                  { days: "Friday", time: "9:00 AM – 5:00 PM" },
-                  { days: "Saturday", time: "9:00 AM – 11:30 AM" },
+                  { days: "Monday – Wednesday", time: "9:00 AM – 10:00 AM & 4:00 PM – 8:00 PM" },
+                  { days: "Thursday", time: "4:00 PM – 8:00 PM" },
+                  { days: "Friday", time: "9:00 AM – 10:00 AM & 4:00 PM – 5:30 PM" },
+                  { days: "Saturday", time: "9:00 AM – 11:00 AM" },
                   { days: "Sunday", time: "Closed (Rest Day)" }
                 ].map((item, idx) => (
                   <div key={idx} className="flex justify-between items-center py-1">
@@ -303,6 +303,17 @@ export default function ContactPage() {
                   >
                     Directions <ArrowUpRight size={11} />
                   </a>
+                </div>
+
+                {/* Entry instructions helper */}
+                <div className="mt-4 p-4 rounded-xl bg-[#C5A059]/10 border border-[#C5A059]/20 text-xs text-zinc-300 leading-relaxed">
+                  <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#C5A059] mb-1">
+                    <Info size={14} className="shrink-0 text-[#C5A059]" />
+                    Finding Us (Entry Info)
+                  </div>
+                  <p>
+                    Our space is shared with <strong className="text-white">3D Division Basketball</strong>. To find the gym, head inside the building, turn to the left, and go past the orange door.
+                  </p>
                 </div>
               </div>
 
