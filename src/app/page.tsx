@@ -180,7 +180,6 @@ export default function Page() {
             loop
             muted
             playsInline
-            poster="/hero.png"
             className="absolute inset-0 w-full h-full object-cover object-center"
           >
             <source src="/EmilsPromo.MOV" type="video/quicktime" />

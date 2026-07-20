@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const TAGLINE = "FAITH  ·  OVER  ·  FEAR";
 const LOGO = "/resilient_boxing_gym_logo_transparent_high_def.png";
-const VIDEO_SRC = "/download (2).mp4";
+const VIDEO_SRC = "/download (2).mp4?v=3";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -42,7 +42,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden"
+      className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden bg-[#080808]"
       animate={isExiting ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 1.0, ease: "easeInOut" }}
     >
