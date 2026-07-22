@@ -20,7 +20,8 @@ import {
   Sun,
   X,
   Download,
-  MessageSquare
+  MessageSquare,
+  Award
 } from "lucide-react";
 
 interface AdderItem {
@@ -38,15 +39,22 @@ interface CategoryGroup {
 }
 
 interface EquipmentSpec {
+  id: string;
   type: "Modules" | "Inverters";
   model: string;
+  fullTitle: string;
+  manufacturer: string;
   specSheetName: string;
   specSheetUrl: string;
+  badge?: string;
   specsSummary: {
-    powerOutput?: string;
-    efficiency?: string;
-    warranty?: string;
-    type?: string;
+    powerOutput: string;
+    efficiency: string;
+    warranty: string;
+    technology: string;
+    dimensions?: string;
+    voltage?: string;
+    certifications?: string;
   };
 }
 
@@ -55,6 +63,7 @@ interface EquipmentStackCategory {
   name: string;
   badge: string;
   badgeColor: string;
+  description: string;
   items: EquipmentSpec[];
 }
 
@@ -64,29 +73,42 @@ const EQUIPMENT_STACKS: EquipmentStackCategory[] = [
     name: "Standard Equipment",
     badge: "STANDARD TIER",
     badgeColor: "bg-slate-100 text-slate-700 border-slate-300",
+    description: "High-efficiency Tier 1 baseline equipment stack",
     items: [
       {
+        id: "ja455",
         type: "Modules",
         model: "JA 455",
-        specSheetName: "JA Solar JAM72S30 455W Datasheet",
+        fullTitle: "JA Solar JAM54D40 455/LB",
+        manufacturer: "JA Solar",
+        specSheetName: "JAM54D40 LB n-type Double Glass Bifacial Datasheet",
         specSheetUrl: "https://www.jasolar.com",
+        badge: "Bifacial n-Type",
         specsSummary: {
-          powerOutput: "455 Watt",
-          efficiency: "20.9%",
-          warranty: "12-Yr Product / 25-Yr Linear",
-          type: "Monocrystalline Half-Cell",
+          powerOutput: "455 Watt (STC)",
+          efficiency: "22.3% Module Efficiency",
+          warranty: "12-Yr Product / 30-Yr Linear (0.4% annual)",
+          technology: "n-type Double Glass Bifacial MBB Half-Cell",
+          dimensions: "1762 × 1134 × 30 mm (22 kg)",
+          certifications: "IEC 61215, IEC 61730, UL 61215, ISO 9001",
         },
       },
       {
+        id: "iq8mc_std",
         type: "Inverters",
         model: "IQ8MC",
-        specSheetName: "Enphase IQ8MC Microinverter Datasheet",
+        fullTitle: "Enphase IQ8MC Microinverter",
+        manufacturer: "Enphase Energy",
+        specSheetName: "IQ8MC-72-M-US North America Datasheet",
         specSheetUrl: "https://enphase.com",
+        badge: "330 VA Peak",
         specsSummary: {
-          powerOutput: "330 VA Peak AC",
-          efficiency: "97.4% CEC",
-          warranty: "25-Year Limited",
-          type: "Grid-Agile Microinverter",
+          powerOutput: "330 VA Peak AC Output",
+          efficiency: "97.0% CEC Weighted Efficiency",
+          warranty: "25-Year Industry-Leading Warranty",
+          technology: "Grid-Agile Microgrid-Forming Microinverter",
+          voltage: "240 VAC Split-Phase / 208 VAC Single-Phase",
+          certifications: "UL 1741-SA / SB (IEEE 1547-2018), CA Rule 21",
         },
       },
     ],
@@ -95,30 +117,43 @@ const EQUIPMENT_STACKS: EquipmentStackCategory[] = [
     id: "feoc",
     name: "FEOC Equipment",
     badge: "FEOC COMPLIANT",
-    badgeColor: "bg-[#0F232A]/10 text-[#0F232A] border-[#0F232A]/20 font-bold",
+    badgeColor: "bg-blue-50 text-blue-900 border-blue-300 font-bold",
+    description: "Foreign Entity of Concern compliant supply chain stack",
     items: [
       {
+        id: "hyundai435",
         type: "Modules",
-        model: "Mission 435",
-        specSheetName: "Mission Solar MSE 435W Datasheet",
-        specSheetUrl: "https://www.missionsolar.com",
+        model: "Mission / Hyundai 435",
+        fullTitle: "HD Hyundai HiN-T435NF(BK)",
+        manufacturer: "HD Hyundai Energy Solutions",
+        specSheetName: "HD Hyundai NF(BK) Series TOPCon Datasheet",
+        specSheetUrl: "https://eng.hd-hyundaies.co.kr",
+        badge: "FEOC TOPCon",
         specsSummary: {
-          powerOutput: "435 Watt",
-          efficiency: "20.4%",
-          warranty: "25-Year Premium Warranty",
-          type: "FEOC Compliant Monocrystalline",
+          powerOutput: "435 Watt (BNPI 482W Rear Gain)",
+          efficiency: "22.28% High Efficiency",
+          warranty: "25-Yr Product / 30-Yr Performance (87.4%)",
+          technology: "N-Type TOPCon 108 Half-Cut Bifacial (Full Black)",
+          dimensions: "1722 × 1134 × 30 mm (24.5 kg)",
+          certifications: "UL 61730, IEC 61701, IEC 62716, ISO 9001",
         },
       },
       {
+        id: "iq8mc_feoc",
         type: "Inverters",
         model: "IQ8MC",
-        specSheetName: "Enphase IQ8MC Microinverter Datasheet",
+        fullTitle: "Enphase IQ8MC Microinverter",
+        manufacturer: "Enphase Energy",
+        specSheetName: "IQ8MC-72-M-US North America Datasheet",
         specSheetUrl: "https://enphase.com",
+        badge: "330 VA Peak",
         specsSummary: {
-          powerOutput: "330 VA Peak AC",
-          efficiency: "97.4% CEC",
-          warranty: "25-Year Limited",
-          type: "Grid-Agile Microinverter",
+          powerOutput: "330 VA Peak AC Output",
+          efficiency: "97.0% CEC Weighted Efficiency",
+          warranty: "25-Year Industry-Leading Warranty",
+          technology: "Grid-Agile Microgrid-Forming Microinverter",
+          voltage: "240 VAC Split-Phase / 208 VAC Single-Phase",
+          certifications: "UL 1741-SA / SB (IEEE 1547-2018), CA Rule 21",
         },
       },
     ],
@@ -127,30 +162,43 @@ const EQUIPMENT_STACKS: EquipmentStackCategory[] = [
     id: "domestic",
     name: "Domestic Equipment",
     badge: "100% DOMESTIC CONTENT",
-    badgeColor: "bg-[#FACC15]/20 text-[#0F232A] border-[#FACC15]/60 font-black",
+    badgeColor: "bg-amber-100 text-amber-950 border-amber-400 font-black shadow-xs",
+    description: "US-manufactured stack eligible for IRA Domestic Content Adder",
     items: [
       {
+        id: "sirius450",
         type: "Modules",
         model: "Sirius 450",
-        specSheetName: "Sirius PV 450W Domestic Datasheet",
-        specSheetUrl: "https://siriuspv.com",
+        fullTitle: "Sirius PV ELNSM54M-HC-N 450W",
+        manufacturer: "Sirius PV / ELIN",
+        specSheetName: "Sirius 182mm N-Type Series Module Datasheet",
+        specSheetUrl: "https://www.siriuspv.com",
+        badge: "Domestic PV",
         specsSummary: {
-          powerOutput: "450 Watt",
-          efficiency: "21.3%",
-          warranty: "30-Year Complete Protection",
-          type: "US-Assembled Premium PV",
+          powerOutput: "450 Watt (STC)",
+          efficiency: "23.05% Module Efficiency",
+          warranty: "25-Yr Product Guarantee / 25-Yr Linear Power",
+          technology: "182mm N-Type MBB Monocrystalline PV",
+          dimensions: "1722 × 1134 × 35 mm (21.5 kg)",
+          certifications: "UL 61730-1/2, IEC 61215, ISO 9001/14001",
         },
       },
       {
+        id: "iq8hc_dom",
         type: "Inverters",
         model: "IQ8HC",
-        specSheetName: "Enphase IQ8HC High-Cap Microinverter",
+        fullTitle: "Enphase IQ8HC-72-M-DOM-US",
+        manufacturer: "Enphase Energy",
+        specSheetName: "IQ8HC Domestic Content Bonus SKU Datasheet",
         specSheetUrl: "https://enphase.com",
+        badge: "Domestic ITC Adder",
         specsSummary: {
-          powerOutput: "384 VA Peak AC",
-          efficiency: "97.6% CEC",
-          warranty: "25-Year Limited",
-          type: "High Output Microinverter",
+          powerOutput: "384 VA Peak AC Output",
+          efficiency: "97.0% CEC Weighted Efficiency",
+          warranty: "25-Year Industry-Leading Warranty",
+          technology: "US-Assembled PCBA & Enclosure Microinverter",
+          voltage: "240 VAC Split-Phase / 208 VAC Single-Phase",
+          certifications: "IRA Domestic Content Eligible, UL 1741-SB",
         },
       },
     ],
@@ -304,7 +352,7 @@ export default function AddersPage() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
             <input
               type="text"
-              placeholder="Search adders or equipment (e.g. Main Panel, IQ8MC, Sirius)..."
+              placeholder="Search adders or equipment (e.g. JA 455, IQ8MC, Sirius 450)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-11 pr-4 py-3 bg-slate-900/90 border border-slate-700/80 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#FACC15] focus:ring-1 focus:ring-[#FACC15] transition-all shadow-xl"
@@ -363,15 +411,15 @@ export default function AddersPage() {
           <div className="mt-8 pt-2 pb-10 border-b border-slate-100">
             <div className="flex items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#0F232A] text-[#FACC15] flex items-center justify-center font-bold shadow-md">
-                  <Layers size={20} className="stroke-[2.5]" />
+                <div className="w-10 h-10 rounded-2xl bg-[#0F232A] text-[#FACC15] flex items-center justify-center font-bold shadow-md">
+                  <Layers size={22} className="stroke-[2.5]" />
                 </div>
                 <div>
-                  <h3 className="text-base font-black uppercase tracking-tight text-slate-900 flex items-center gap-2">
+                  <h3 className="text-lg font-black uppercase tracking-tight text-slate-900 flex items-center gap-2">
                     Equipment Stack
                   </h3>
                   <p className="text-xs text-slate-500">
-                    Approved module and inverter tier configurations with accessible spec sheets
+                    Official equipment tiers and linked manufacturer spec sheets
                   </p>
                 </div>
               </div>
@@ -382,59 +430,79 @@ export default function AddersPage() {
               {EQUIPMENT_STACKS.map((stack) => (
                 <div
                   key={stack.id}
-                  className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 hover:bg-slate-50 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
+                  className="rounded-2xl border border-slate-200 bg-slate-50/80 p-5 hover:bg-slate-50 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
                 >
                   <div>
                     {/* Header + Badge */}
-                    <div className="flex items-center justify-between gap-2 pb-4 border-b border-slate-200/80">
-                      <h4 className="font-extrabold text-sm text-slate-900 tracking-tight">
-                        {stack.name}
-                      </h4>
-                      <span className={`text-[9px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-full border ${stack.badgeColor}`}>
+                    <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80">
+                      <div>
+                        <h4 className="font-black text-sm text-slate-900 tracking-tight">
+                          {stack.name}
+                        </h4>
+                        <p className="text-[10px] text-slate-500 leading-tight mt-0.5">
+                          {stack.description}
+                        </p>
+                      </div>
+                      <span className={`text-[9px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-full border shrink-0 ${stack.badgeColor}`}>
                         {stack.badge}
                       </span>
                     </div>
 
                     {/* Spec Items */}
-                    <div className="mt-4 space-y-4">
-                      {stack.items.map((spec, i) => (
-                        <div key={i} className="flex items-center justify-between gap-3 bg-white p-3 rounded-xl border border-slate-200/60 shadow-2xs">
-                          <div className="flex items-center gap-2.5">
-                            {spec.type === "Modules" ? (
-                              <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
-                                <Sun size={15} />
-                              </div>
-                            ) : (
-                              <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-                                <Cpu size={15} />
-                              </div>
-                            )}
-                            <div>
-                              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block leading-none">
+                    <div className="mt-4 space-y-3.5">
+                      {stack.items.map((spec) => (
+                        <div key={spec.id} className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-2xs hover:border-slate-300 transition-colors">
+                          <div className="flex items-center justify-between gap-2 mb-2">
+                            <div className="flex items-center gap-2">
+                              {spec.type === "Modules" ? (
+                                <div className="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                                  <Sun size={14} />
+                                </div>
+                              ) : (
+                                <div className="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+                                  <Cpu size={14} />
+                                </div>
+                              )}
+                              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
                                 {spec.type}
                               </span>
-                              <span className="text-xs font-black text-slate-900 font-mono">
-                                {spec.model}
-                              </span>
                             </div>
+                            <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
+                              {spec.badge}
+                            </span>
                           </div>
 
-                          {/* Spec Sheet Button */}
-                          <button
-                            onClick={() => setActiveSpecSheet(spec)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0F232A] text-white hover:bg-[#FACC15] hover:text-black transition-all text-[11px] font-bold tracking-tight shrink-0 shadow-sm"
-                          >
-                            <FileText size={12} />
-                            <span>Spec Sheet</span>
-                          </button>
+                          <div className="flex items-end justify-between gap-2">
+                            <div>
+                              <div className="text-sm font-black text-slate-900 font-mono leading-none">
+                                {spec.model}
+                              </div>
+                              <div className="text-[10px] font-semibold text-slate-500 mt-1 line-clamp-1">
+                                {spec.fullTitle}
+                              </div>
+                            </div>
+
+                            {/* Linked Spec Sheet Button */}
+                            <button
+                              onClick={() => setActiveSpecSheet(spec)}
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0F232A] text-white hover:bg-[#FACC15] hover:text-black transition-all text-[11px] font-bold tracking-tight shrink-0 shadow-sm"
+                            >
+                              <FileText size={12} />
+                              <span>Spec Sheet</span>
+                            </button>
+                          </div>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-200/50 flex items-center justify-between text-[10px] text-slate-500 font-medium">
-                    <span>Warranty: 25-Year Standard</span>
-                    <span className="text-emerald-600 font-bold">Approved</span>
+                  <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-[10px] text-slate-500 font-medium">
+                    <span className="flex items-center gap-1">
+                      <Award size={12} className="text-amber-500" /> Standard Warranty Included
+                    </span>
+                    <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      Approved
+                    </span>
                   </div>
 
                 </div>
@@ -533,11 +601,13 @@ export default function AddersPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SPEC SHEET MODAL
+          SPEC SHEET MODAL (POPUP WITH EXACT DATASHEET DATA)
       ═══════════════════════════════════════════════════════ */}
       {activeSpecSheet && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-lg bg-[#0F232A] border border-slate-700 rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+          <div className="w-full max-w-xl bg-[#0F232A] border border-slate-700 rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative">
+            
+            {/* Close Button */}
             <button
               onClick={() => setActiveSpecSheet(null)}
               className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
@@ -545,51 +615,63 @@ export default function AddersPage() {
               <X size={16} />
             </button>
 
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-[#FACC15] text-black flex items-center justify-center font-black">
-                <FileText size={20} />
+            {/* Modal Header */}
+            <div className="flex items-center gap-3.5 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-[#FACC15] text-black flex items-center justify-center font-black shadow-lg shadow-[#FACC15]/20">
+                <FileText size={24} />
               </div>
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#FACC15]">
-                  Equipment Spec Sheet
-                </span>
-                <h3 className="text-lg font-black uppercase text-white leading-tight">
-                  {activeSpecSheet.model} ({activeSpecSheet.type})
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#FACC15] font-bold">
+                    Official Datasheet
+                  </span>
+                  <span className="text-[9px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                    {activeSpecSheet.manufacturer}
+                  </span>
+                </div>
+                <h3 className="text-xl font-black uppercase text-white leading-tight mt-0.5">
+                  {activeSpecSheet.fullTitle}
                 </h3>
               </div>
             </div>
 
-            <p className="text-xs text-slate-300 font-medium mb-6">
-              {activeSpecSheet.specSheetName}
-            </p>
+            <div className="p-3 bg-slate-800/60 rounded-xl border border-slate-700/60 mb-6 flex items-center justify-between text-xs">
+              <span className="text-slate-300 font-medium truncate">
+                📄 {activeSpecSheet.specSheetName}
+              </span>
+              <span className="text-[10px] font-mono uppercase text-[#FACC15] font-bold shrink-0">
+                Verified Manufacturer Specs
+              </span>
+            </div>
 
             {/* Spec Details Grid */}
             <div className="grid grid-cols-2 gap-3 mb-8">
               {Object.entries(activeSpecSheet.specsSummary).map(([key, val]) => (
-                <div key={key} className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
+                <div key={key} className="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800">
                   <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
                     {key.replace(/([A-Z])/g, " $1")}
                   </span>
-                  <span className="text-xs font-bold text-white">
+                  <span className="text-xs font-extrabold text-white">
                     {val}
                   </span>
                 </div>
               ))}
             </div>
 
+            {/* Action Buttons */}
             <div className="flex items-center gap-3">
               <a
                 href={activeSpecSheet.specSheetUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-3 px-4 bg-[#FACC15] text-black hover:bg-yellow-300 transition-colors rounded-xl font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
+                className="flex-1 py-3.5 px-4 bg-[#FACC15] text-black hover:bg-yellow-300 transition-colors rounded-xl font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#FACC15]/20 active:scale-98"
               >
-                <Download size={14} />
-                Download PDF Datasheet
+                <Download size={15} />
+                Open / Download Official PDF
               </a>
               <button
                 onClick={() => setActiveSpecSheet(null)}
-                className="py-3 px-5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold uppercase tracking-wider"
+                className="py-3.5 px-5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold uppercase tracking-wider"
               >
                 Close
               </button>
