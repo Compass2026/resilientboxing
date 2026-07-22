@@ -121,24 +121,6 @@ const EQUIPMENT_STACKS: EquipmentStackCategory[] = [
     description: "Foreign Entity of Concern compliant supply chain stack",
     items: [
       {
-        id: "hyundai435",
-        type: "Modules",
-        model: "Mission / Hyundai 435",
-        fullTitle: "HD Hyundai HiN-T435NF(BK)",
-        manufacturer: "HD Hyundai Energy Solutions",
-        specSheetName: "HD Hyundai NF(BK) Series TOPCon Datasheet",
-        specSheetUrl: "https://eng.hd-hyundaies.co.kr",
-        badge: "FEOC TOPCon",
-        specsSummary: {
-          powerOutput: "435 Watt (BNPI 482W Rear Gain)",
-          efficiency: "22.28% High Efficiency",
-          warranty: "25-Yr Product / 30-Yr Performance (87.4%)",
-          technology: "N-Type TOPCon 108 Half-Cut Bifacial (Full Black)",
-          dimensions: "1722 × 1134 × 30 mm (24.5 kg)",
-          certifications: "UL 61730, IEC 61701, IEC 62716, ISO 9001",
-        },
-      },
-      {
         id: "iq8mc_feoc",
         type: "Inverters",
         model: "IQ8MC",
