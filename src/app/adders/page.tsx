@@ -388,8 +388,10 @@ export default function AddersPage() {
             </div>
 
             {/* Quick Datasheet Button */}
-            <button
-              onClick={() => setActiveSpecSheet(EQUIPMENT_STACKS[0].items[1])}
+            <a
+              href="https://drive.google.com/drive/u/0/folders/11lN-Gn6-nSdqfK9RDShF9s6zajY4oDSm"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-900 transition-all text-xs font-bold tracking-tight shadow-sm group"
             >
               <div className="w-6 h-6 rounded-lg bg-yellow-100 flex items-center justify-center text-yellow-700 group-hover:scale-110 transition-transform">
