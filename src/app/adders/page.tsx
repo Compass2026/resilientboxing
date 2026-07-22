@@ -487,7 +487,7 @@ export default function AddersPage() {
                             {/* Linked Spec Sheet Button */}
                             <button
                               onClick={() => setActiveSpecSheet(spec)}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0F232A] text-white hover:bg-[#FACC15] hover:text-black transition-all text-[11px] font-bold tracking-tight shrink-0 shadow-sm"
+                              className="inline-flex items-center justify-center gap-1.5 h-8 px-4 rounded-full bg-[#0F232A] text-white hover:bg-[#FACC15] hover:text-black transition-all text-xs font-bold shrink-0 whitespace-nowrap shadow-sm cursor-pointer"
                             >
                               <FileText size={12} />
                               <span>Spec Sheet</span>
