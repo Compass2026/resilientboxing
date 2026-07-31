@@ -15,6 +15,10 @@ export interface GymClass {
   intensity: number;
   icon: LucideIcon;
   image: string;
+  /** How the image fills the home page class card. Photos look best cropped
+   *  to fill ("cover"); promotional flyers must stay whole ("contain") so
+   *  their text isn't sliced. Defaults to "contain". */
+  imageFit?: "cover" | "contain";
   slug: string;
   scripture: {
     reference: string;
@@ -34,7 +38,8 @@ export const CLASSES: GymClass[] = [
     desc: "The core of our system. 60 minutes of authentic boxing combinations, bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
     intensity: 90,
     icon: Shield,
-    image: "/6831DF2B-018E-403B-899E-943DD2558B32.webp",
+    image: "/elevate-60-group.webp",
+    imageFit: "cover",
     slug: "elevate",
     glowColor: "green",
     scripture: {
@@ -69,7 +74,7 @@ export const CLASSES: GymClass[] = [
     desc: "Perfect for beginners* or anyone looking to improve their technique.",
     intensity: 65,
     icon: BookOpen,
-    image: "/gym-photo.png",
+    image: "/form-foundation-class.webp",
     slug: "form",
     glowColor: "gold",
     scripture: {
@@ -143,7 +148,7 @@ export const CLASSES: GymClass[] = [
     desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. For those ready to move beyond the basics and think like a fighter.",
     intensity: 100,
     icon: Heart,
-    image: "/2FBE893A-8F4F-4CD5-B529-3CD041E7496F.webp",
+    image: "/fight-camp-class.webp",
     slug: "fightcamp",
     glowColor: "orange",
     scripture: {

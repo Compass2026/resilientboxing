@@ -545,12 +545,16 @@ export default function Page() {
 
                       {/* Right: Image */}
                       <div className="md:col-span-5 flex items-center justify-center">
-                        <div className="relative w-full aspect-[3/4] md:h-full md:aspect-auto min-h-[350px] md:min-h-[420px] rounded-2xl overflow-hidden border border-white/10 group/img shadow-2xl bg-black">
+                        <div className="relative w-full aspect-[3/4] md:aspect-[4/5] min-h-[320px] rounded-2xl overflow-hidden border border-white/10 group/img shadow-2xl bg-black">
                           <Image
                             src={CLASSES[activeClass].image}
                             alt={CLASSES[activeClass].name}
                             fill
-                            className="object-contain transition-transform duration-500 group-hover/img:scale-102"
+                            className={`${
+                              CLASSES[activeClass].imageFit === "cover"
+                                ? "object-cover object-center"
+                                : "object-contain"
+                            } transition-transform duration-500 group-hover/img:scale-102`}
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 30vw, 25vw"
                           />
                         </div>
