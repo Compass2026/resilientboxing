@@ -201,7 +201,7 @@ const CLASS_DETAILS = {
     desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. Designed to teach you to think like a seasoned fighter. Requires coach invite.",
     intensity: 100,
     duration: "60-90 mins",
-    image: "/2FBE893A-8F4F-4CD5-B529-3CD041E7496F.webp",
+    image: "/fight-camp-class.webp",
     glowColor: "orange" as const,
     icon: Heart,
     scripture: {

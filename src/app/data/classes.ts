@@ -148,7 +148,7 @@ export const CLASSES: GymClass[] = [
     desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. For those ready to move beyond the basics and think like a fighter.",
     intensity: 100,
     icon: Heart,
-    image: "/2FBE893A-8F4F-4CD5-B529-3CD041E7496F.webp",
+    image: "/fight-camp-class.webp",
     slug: "fightcamp",
     glowColor: "orange",
     scripture: {
