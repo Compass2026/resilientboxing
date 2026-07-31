@@ -15,6 +15,10 @@ export interface GymClass {
   intensity: number;
   icon: LucideIcon;
   image: string;
+  /** How the image fills the home page class card. Photos look best cropped
+   *  to fill ("cover"); promotional flyers must stay whole ("contain") so
+   *  their text isn't sliced. Defaults to "contain". */
+  imageFit?: "cover" | "contain";
   slug: string;
   scripture: {
     reference: string;
@@ -35,6 +39,7 @@ export const CLASSES: GymClass[] = [
     intensity: 90,
     icon: Shield,
     image: "/elevate-60-group.webp",
+    imageFit: "cover",
     slug: "elevate",
     glowColor: "green",
     scripture: {
@@ -69,7 +74,7 @@ export const CLASSES: GymClass[] = [
     desc: "Perfect for beginners* or anyone looking to improve their technique.",
     intensity: 65,
     icon: BookOpen,
-    image: "/gym-photo.png",
+    image: "/form-foundation-class.webp",
     slug: "form",
     glowColor: "gold",
     scripture: {
