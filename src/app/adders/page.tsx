@@ -386,7 +386,7 @@ export default function AddersPage() {
                 <span className="font-extrabold">Enphase IQ8MC</span>
               </span>
               <ExternalLink size={13} className="text-slate-400 group-hover:text-slate-700 ml-1" />
-            </button>
+            </a>
           </div>
 
           {/* ═══════════════════════════════════════════════════════
