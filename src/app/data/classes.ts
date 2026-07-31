@@ -34,7 +34,7 @@ export const CLASSES: GymClass[] = [
     desc: "The core of our system. 60 minutes of authentic boxing combinations, bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
     intensity: 90,
     icon: Shield,
-    image: "/6831DF2B-018E-403B-899E-943DD2558B32.webp",
+    image: "/elevate-60-group.webp",
     slug: "elevate",
     glowColor: "green",
     scripture: {
