@@ -6,7 +6,51 @@ import Image from "next/image";
 
 const TAGLINE = "FAITH  ·  OVER  ·  FEAR";
 const LOGO = "/resilient_boxing_gym_logo_transparent_high_def.png";
-const VIDEO_SRC = "/download (2).mp4?v=3";
+
+/** Photos of the gym community, one shown at random behind each load. */
+const PHOTOS = [
+  "/loading-heavy-bags.webp",
+  "/loading-fists-up.webp",
+  "/loading-outdoor-group.webp",
+  "/loading-kids-class.webp",
+  "/form-foundation-class.webp",
+];
+
+/** Paired at random with the photo, so the screen reads differently each visit. */
+const VERSES = [
+  {
+    reference: "2 Timothy 1:7",
+    text: "For God has not given us a spirit of fear — but of power, love, and a sound mind.",
+  },
+  {
+    reference: "2 Timothy 4:7",
+    text: "I have fought the good fight, I have finished the race, I have kept the faith.",
+  },
+  {
+    reference: "1 Corinthians 9:26",
+    text: "Therefore I do not run like someone running aimlessly; I do not fight like a boxer beating the air.",
+  },
+  {
+    reference: "Isaiah 40:31",
+    text: "Those who hope in the Lord will renew their strength; they will run and not grow weary.",
+  },
+  {
+    reference: "Joshua 1:9",
+    text: "Be strong and courageous. Do not be afraid, for the Lord your God will be with you wherever you go.",
+  },
+  {
+    reference: "Philippians 4:13",
+    text: "I can do all things through Christ who strengthens me.",
+  },
+  {
+    reference: "Proverbs 27:17",
+    text: "As iron sharpens iron, so one person sharpens another.",
+  },
+  {
+    reference: "1 Timothy 6:12",
+    text: "Fight the good fight of faith, lay hold on eternal life, whereunto thou art also called.",
+  },
+];
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -17,6 +61,18 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [lettersDone, setLettersDone] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
   const [isDone, setIsDone] = useState(false);
+
+  // Chosen after mount rather than during render: picking at render time would
+  // make the server and client markup disagree and break hydration. Null until
+  // then, so nothing flashes before the choice is made.
+  const [pick, setPick] = useState<{ photo: string; verse: typeof VERSES[number] } | null>(null);
+
+  useEffect(() => {
+    setPick({
+      photo: PHOTOS[Math.floor(Math.random() * PHOTOS.length)],
+      verse: VERSES[Math.floor(Math.random() * VERSES.length)],
+    });
+  }, []);
 
   // Master timeline (Original longer play duration: 4.4 seconds total)
   useEffect(() => {
@@ -46,16 +102,27 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       animate={isExiting ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 1.0, ease: "easeInOut" }}
     >
-      {/* ── VIDEO BACKGROUND (The Boxer) ── */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src={VIDEO_SRC} type="video/mp4" />
-      </video>
+      {/* ── PHOTO BACKGROUND (drifts slowly so it doesn't read as a still) ── */}
+      {pick && (
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1.14 }}
+          transition={{
+            opacity: { duration: 1.2, ease: "easeOut" },
+            scale: { duration: 6, ease: "linear" },
+          }}
+        >
+          <Image
+            src={pick.photo}
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
+        </motion.div>
+      )}
 
       {/* ── DARK OVERLAY ── */}
       <div className="absolute inset-0 z-[1] bg-black/80" />
@@ -157,6 +224,23 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         >
           O&apos;Fallon, Missouri
         </motion.p>
+
+        {/* ── SCRIPTURE ── */}
+        {pick && (
+          <motion.figure
+            className="relative z-10 mt-7 px-8 max-w-[min(34rem,88vw)] text-center"
+            initial={{ opacity: 0, y: 12 }}
+            animate={phase >= 3 ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.9, delay: 0.75, ease: "easeOut" }}
+          >
+            <blockquote className="text-[13px] md:text-[15px] leading-relaxed italic text-white/75 text-balance">
+              &ldquo;{pick.verse.text}&rdquo;
+            </blockquote>
+            <figcaption className="mt-3 font-mono text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-[#C5A059]/80">
+              {pick.verse.reference}
+            </figcaption>
+          </motion.figure>
+        )}
 
         {/* ── PROGRESS BAR ── */}
         <motion.div
