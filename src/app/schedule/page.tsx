@@ -156,7 +156,7 @@ const CLASS_DETAILS = {
     desc: "The core of our system. 60 minutes of authentic boxing combinations, heavy bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
     intensity: 90,
     duration: "60 mins",
-    image: "/elevate-60-group.webp",
+    image: "/elevate-60-class.webp",
     glowColor: "green" as const,
     icon: Shield,
     scripture: {
