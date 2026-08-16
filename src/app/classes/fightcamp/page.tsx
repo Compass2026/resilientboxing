@@ -107,7 +107,8 @@ export default function FightCampClassPage() {
 
                 <div className="space-y-4 mb-8">
                   {[
-                    { day: "Saturday", times: ["8:00 AM (90 mins)"] },
+                    { day: "Tuesday", times: ["6:30 PM"] },
+                    { day: "Saturday", times: ["10:00 AM (90 mins)"] },
                   ].map((sched, idx) => (
                     <div key={idx} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
                       <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">

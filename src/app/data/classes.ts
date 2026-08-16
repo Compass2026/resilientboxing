@@ -40,7 +40,7 @@ export const CLASSES: GymClass[] = [
     num: "01",
     name: "ELEVATE 60",
     tagline: "Foundation and Fire",
-    time: "MON · WED (5:30 AM & 5:30 PM) · FRI (4:00 PM)",
+    time: "MON–WED · THU (7:00 PM) · FRI (5:00 AM, 9:00 AM & 5:30 PM)",
     desc: "The core of our system. 60 minutes of authentic boxing combinations, bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
     scheduleDesc:
       "The core of our system. 60 minutes of authentic boxing combinations, heavy bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
