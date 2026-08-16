@@ -152,9 +152,9 @@ const CLASS_DETAILS = CLASSES_BY_ID;
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const WEEK_GRID_ROWS = [
-  "5:00 AM",
   "9:00 AM",
   "10:00 AM",
+  "4:00 PM",
   "4:15 PM",
   "5:30 PM",
   "6:30 PM",
@@ -191,9 +191,8 @@ const SCHEDULE_DATA: Record<string, Array<{
     { time: "7:00 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
   ],
   Friday: [
-    { time: "5:00 AM", classId: "elevate", duration: "60 mins", intensity: 90 },
     { time: "9:00 AM", classId: "elevate", duration: "60 mins", intensity: 90 },
-    { time: "5:30 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
+    { time: "4:00 PM", classId: "elevate", duration: "60 mins", intensity: 90 },
   ],
   Saturday: [
     { time: "9:00 AM", classId: "form", duration: "60 mins", intensity: 65 },

@@ -110,7 +110,7 @@ export default function ElevateClassPage() {
                     { day: "Tuesday", times: ["9:00 AM", "4:15 PM"] },
                     { day: "Wednesday", times: ["9:00 AM", "4:15 PM", "5:30 PM", "7:00 PM"] },
                     { day: "Thursday", times: ["7:00 PM"] },
-                    { day: "Friday", times: ["5:00 AM", "9:00 AM", "5:30 PM"] },
+                    { day: "Friday", times: ["9:00 AM", "4:00 PM"] },
                   ].map((sched, idx) => (
                     <div key={idx} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
                       <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">

@@ -26,7 +26,6 @@ export const metadata: Metadata = {
     "kickboxing Missouri",
     "faith-based fitness",
     "Fight Camp",
-    "weight training boxing",
     "WellnessLiving boxing",
   ],
   authors: [{ name: "Resilient Boxing" }],
