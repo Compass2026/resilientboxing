@@ -104,6 +104,9 @@ function GlowSpotlight() {
   );
 }
 
+/** Soft hyphen lets "Comeback" break on narrow screens, as it did before. */
+const HERO_WORDS = ["Come­back", "Purpose"];
+
 // ─── MAIN ─────────────────────────────────────────────────────────────────────
 export default function Page() {
   const [scrolled, setScrolled] = useState(false);
@@ -112,6 +115,15 @@ export default function Page() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Middle word of the hero headline, cycled so it reads "Your Comeback
+  // Starts Here." and then "Your Purpose Starts Here."
+  const [heroWord, setHeroWord] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setHeroWord((n) => (n + 1) % HERO_WORDS.length), 3600);
+    return () => clearInterval(id);
+  }, []);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -202,9 +214,9 @@ export default function Page() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-[10px] font-mono uppercase tracking-[0.45em] text-[#C5A059] mb-5"
+              className="text-[13px] md:text-[15px] font-mono font-semibold uppercase tracking-[0.3em] text-[#E0BC72] mb-5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
             >
-              O'Fallon, Missouri — Faith & Boxing
+              Faith &amp; Boxing — O&apos;Fallon, Missouri
             </motion.p>
 
             <motion.h1
@@ -214,10 +226,23 @@ export default function Page() {
               className="font-bebas text-[clamp(68px,11vw,160px)] uppercase italic leading-[0.82] tracking-tight text-white mb-6"
             >
               Your<br />
-              <span className="text-transparent" style={{ WebkitTextStroke: "2px #C5A059" }}>
-                Come&shy;back
+              {/* Fixed-height window so the swap doesn't shift the lines below,
+                  with the outgoing word sliding up and out of view. */}
+              <span className="relative block h-[1em] -my-[0.09em] overflow-hidden">
+                <AnimatePresence initial={false}>
+                  <motion.span
+                    key={heroWord}
+                    initial={{ y: "100%" }}
+                    animate={{ y: "0%" }}
+                    exit={{ y: "-100%" }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 text-[#E0BC72] drop-shadow-[0_3px_16px_rgba(0,0,0,0.85)]"
+                  >
+                    {HERO_WORDS[heroWord]}
+                  </motion.span>
+                </AnimatePresence>
               </span>
-              <br />Starts<br />Here.
+              Starts<br />Here.
             </motion.h1>
 
             <motion.div
