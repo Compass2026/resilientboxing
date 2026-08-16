@@ -274,8 +274,8 @@ export default function ContactPage() {
                 {[
                   { days: "Monday – Wednesday", time: "9:00 AM – 10:00 AM & 4:00 PM – 8:00 PM" },
                   { days: "Thursday", time: "4:00 PM – 8:00 PM" },
-                  { days: "Friday", time: "9:00 AM – 10:00 AM & 4:00 PM – 5:30 PM" },
-                  { days: "Saturday", time: "9:00 AM – 11:00 AM" },
+                  { days: "Friday", time: "5:00 AM – 6:00 AM, 9:00 AM – 10:00 AM & 4:00 PM – 6:30 PM" },
+                  { days: "Saturday", time: "9:00 AM – 11:30 AM" },
                   { days: "Sunday", time: "Closed (Rest Day)" }
                 ].map((item, idx) => (
                   <div key={idx} className="flex justify-between items-center py-1">

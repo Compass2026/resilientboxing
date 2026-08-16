@@ -35,7 +35,7 @@ const BoxingGloveIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
 
 const STATS = [
   { val: "300+", label: "Lives Transformed" },
-  { val: "5", label: "Elite Programs" },
+  { val: "4", label: "Elite Programs" },
   { val: "100%", label: "Faith Driven" },
   { val: "FREE", label: "First Class" },
 ];
