@@ -166,7 +166,7 @@ export default function PricingPage() {
             <button onClick={() => handleNavClick(null)} className="flex items-center focus:outline-none group shrink-0">
               <div className={`relative transition-all duration-500 group-hover:opacity-85 ${scrolled ? "w-[340px] h-[110px]" : "w-[650px] h-[240px]"}`}>
                 <Image
-                  src="/resilient_boxing_gym_logo_transparent_high_def.png"
+                  src="/resilient-boxing-logo.webp"
                   alt="Resilient Boxing Gym"
                   fill
                   className="object-contain object-left"
@@ -763,7 +763,7 @@ export default function PricingPage() {
             <div>
               <div className="relative w-36 h-20 mb-4">
                 <Image
-                  src="/resilient_boxing_gym_logo_transparent_high_def.png"
+                  src="/resilient-boxing-logo.webp"
                   alt="Resilient Boxing Gym"
                   fill
                   className="object-contain object-left"
@@ -871,7 +871,7 @@ export default function PricingPage() {
                   <>
                     <div className="flex items-center gap-4 mb-6">
                       <div className="relative w-24 h-14 shrink-0">
-                        <Image src="/resilient_boxing_gym_logo_transparent_high_def.png" alt="Resilient Boxing" fill className="object-contain" sizes="96px" />
+                        <Image src="/resilient-boxing-logo.webp" alt="Resilient Boxing" fill className="object-contain" sizes="96px" />
                       </div>
                       <div>
                         <p className="text-[9px] font-mono uppercase tracking-[0.3em] text-[#C5A059]">Resilient Boxing</p>

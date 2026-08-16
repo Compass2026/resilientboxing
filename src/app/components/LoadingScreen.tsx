@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const TAGLINE = "FAITH  ·  OVER  ·  FEAR";
-const LOGO = "/resilient_boxing_gym_logo_transparent_high_def.png";
+const LOGO = "/resilient-boxing-logo.webp";
 
 /** Photos of the gym community, one shown at random behind each load. */
 const PHOTOS = [

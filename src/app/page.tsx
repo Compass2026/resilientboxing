@@ -300,7 +300,7 @@ export default function Page() {
               {/* Logo badge */}
               <div className="lg:col-span-2 flex justify-center lg:justify-start">
                 <div className="relative w-40 h-24">
-                  <Image src="/resilient_boxing_gym_logo_transparent_high_def.png" alt="Resilient Boxing" fill className="object-contain object-center" sizes="144px" />
+                  <Image src="/resilient-boxing-logo.webp" alt="Resilient Boxing" fill className="object-contain object-center" sizes="144px" />
                 </div>
               </div>
 
@@ -606,7 +606,7 @@ export default function Page() {
                   {/* Logo in mission */}
                   <div className="flex items-center gap-4 mb-8">
                     <div className="relative w-28 h-16 shrink-0">
-                      <Image src="/resilient_boxing_gym_logo_transparent_high_def.png" alt="Resilient Boxing" fill className="object-contain" sizes="112px" />
+                      <Image src="/resilient-boxing-logo.webp" alt="Resilient Boxing" fill className="object-contain" sizes="112px" />
                     </div>
                     <div>
                       <p className="font-bebas text-2xl italic uppercase text-white leading-none">Resilient Boxing Gym</p>
@@ -840,7 +840,7 @@ export default function Page() {
                   {/* watermarked background visual */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
                     <Image
-                      src="/resilient_boxing_gym_logo_transparent_high_def.png"
+                      src="/resilient-boxing-logo.webp"
                       alt="Gym Crest watermark"
                       width={300}
                       height={200}
@@ -945,7 +945,7 @@ export default function Page() {
 
             {/* Big logo watermark */}
             <div className="relative w-56 h-32 mx-auto mb-8">
-              <Image src="/resilient_boxing_gym_logo_transparent_high_def.png" alt="Resilient Boxing" fill className="object-contain" sizes="96px" />
+              <Image src="/resilient-boxing-logo.webp" alt="Resilient Boxing" fill className="object-contain" sizes="96px" />
             </div>
 
             <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#C5A059] mb-6 relative z-10">06 — Your Move</p>
