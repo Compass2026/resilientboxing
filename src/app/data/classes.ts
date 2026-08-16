@@ -5,13 +5,19 @@ export interface ClassHighlight {
   desc: string;
 }
 
+export type ClassId = "elevate" | "form" | "faithoverfear" | "fightcamp";
+
 export interface GymClass {
-  id: string;
+  id: ClassId;
   num: string;
   name: string;
   tagline: string;
   time: string;
   desc: string;
+  /** Wording used by the schedule modal where it differs from `desc`. */
+  scheduleDesc?: string;
+  /** Session length, shown in the schedule modal. */
+  duration: string;
   intensity: number;
   icon: LucideIcon;
   image: string;
@@ -36,6 +42,9 @@ export const CLASSES: GymClass[] = [
     tagline: "Foundation and Fire",
     time: "MON · WED (5:30 AM & 5:30 PM) · FRI (4:00 PM)",
     desc: "The core of our system. 60 minutes of authentic boxing combinations, bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
+    scheduleDesc:
+      "The core of our system. 60 minutes of authentic boxing combinations, heavy bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
+    duration: "60 mins",
     intensity: 90,
     icon: Shield,
     image: "/elevate-60-group.webp",
@@ -72,6 +81,7 @@ export const CLASSES: GymClass[] = [
     tagline: "Learn the Basics",
     time: "TUE · SAT — 5:30 PM & 9:00 AM",
     desc: "Perfect for beginners* or anyone looking to improve their technique.",
+    duration: "60 mins",
     intensity: 65,
     icon: BookOpen,
     image: "/form-foundation-class.webp",
@@ -107,6 +117,7 @@ export const CLASSES: GymClass[] = [
     tagline: "Gloves on, God leads",
     time: "THURSDAY — 5:30 PM",
     desc: "Every Thursday at 5:30 PM – Grow in faith, build community, and strengthen your body and spirit.",
+    duration: "75 mins",
     intensity: 50,
     icon: Zap,
     image: "/faith-gloves-cross-massive.png",
@@ -146,6 +157,9 @@ export const CLASSES: GymClass[] = [
     tagline: "Beyond the Basics and Sparring",
     time: "TUE · SAT — 6:30 PM & 10:00 AM",
     desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. For those ready to move beyond the basics and think like a fighter.",
+    scheduleDesc:
+      "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. Designed to teach you to think like a seasoned fighter. Requires coach invite.",
+    duration: "60-90 mins",
     intensity: 100,
     icon: Heart,
     image: "/fight-camp-class.webp",
@@ -179,3 +193,8 @@ export const CLASSES: GymClass[] = [
     ],
   },
 ];
+
+/** CLASSES keyed by id, for pages that look a class up rather than list them. */
+export const CLASSES_BY_ID = Object.fromEntries(
+  CLASSES.map((cls) => [cls.id, cls])
+) as Record<ClassId, GymClass>;

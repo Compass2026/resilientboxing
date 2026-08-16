@@ -122,7 +122,7 @@ export default function Header({ onBookClick }: HeaderProps) {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.96 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="absolute top-full left-0 mt-1 w-[320px] glass-heavy rounded-2xl border border-white/10 p-4 shadow-2xl shadow-black/80 z-[100]"
+                    className="absolute top-full left-0 mt-1 w-[320px] bg-[#14120e] rounded-2xl border border-white/10 p-4 shadow-2xl shadow-black/80 z-[100]"
                   >
                     <div className="absolute inset-0 glow-gold opacity-15 rounded-2xl pointer-events-none" />
                     <div className="relative z-10 flex flex-col gap-1.5">
@@ -240,7 +240,7 @@ export default function Header({ onBookClick }: HeaderProps) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="glass-dark border-t border-white/5 overflow-hidden md:hidden"
+            className="bg-[#080808] border-t border-white/5 overflow-hidden md:hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               <Link

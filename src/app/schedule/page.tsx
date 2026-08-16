@@ -6,6 +6,7 @@ import LoadingScreen from "../components/LoadingScreen";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BookingModal from "../components/BookingModal";
+import { CLASSES_BY_ID } from "../data/classes";
 import {
   motion,
   AnimatePresence,
@@ -19,11 +20,6 @@ import {
   Info,
   Smartphone,
   Download,
-  Shield,
-  Zap,
-  Activity,
-  Heart,
-  BookOpen,
   Filter,
   CheckCircle2,
   ChevronRight,
@@ -148,68 +144,9 @@ const COLOR_MAP: Record<string, {
   }
 };
 
-const CLASS_DETAILS = {
-  elevate: {
-    id: "elevate",
-    name: "ELEVATE 60",
-    tagline: "Foundation and Fire",
-    desc: "The core of our system. 60 minutes of authentic boxing combinations, heavy bag work, and athletic conditioning that rewires how you move and how you think under pressure.",
-    intensity: 90,
-    duration: "60 mins",
-    image: "/elevate-60-group.webp",
-    glowColor: "green" as const,
-    icon: Shield,
-    scripture: {
-      reference: "2 Timothy 1:7",
-      text: "For God has not given us a spirit of fear — but of power, love, and a sound mind."
-    }
-  },
-  form: {
-    id: "form",
-    name: "FORM AND FOUNDATION",
-    tagline: "Learn the Basics",
-    desc: "Perfect for beginners* or anyone looking to improve their technique.",
-    intensity: 65,
-    duration: "60 mins",
-    image: "/form-foundation-class.webp",
-    glowColor: "gold" as const,
-    icon: BookOpen,
-    scripture: {
-      reference: "1 Corinthians 9:26",
-      text: "Therefore I do not run like someone running aimlessly; I do not fight like a boxer beating the air."
-    }
-  },
-  faithoverfear: {
-    id: "faithoverfear",
-    name: "FAITH OVER FEAR",
-    tagline: "Gloves on, God leads",
-    desc: "Every Thursday at 5:30 PM – Grow in faith, build community, and strengthen your body and spirit.",
-    intensity: 50,
-    duration: "75 mins",
-    image: "/faith-gloves-cross-massive.png",
-    glowColor: "purple" as const,
-    icon: Zap,
-    scripture: {
-      reference: "2 Timothy 1:7",
-      text: "For God has not given us a spirit of fear — but of power, love, and a sound mind."
-    }
-  },
-  fightcamp: {
-    id: "fightcamp",
-    name: "FIGHT CAMP",
-    tagline: "Beyond the Basics and Sparring",
-    desc: "Controlled sparring, counter-punching, advanced footwork, and tactical ring generalship. Designed to teach you to think like a seasoned fighter. Requires coach invite.",
-    intensity: 100,
-    duration: "60-90 mins",
-    image: "/fight-camp-class.webp",
-    glowColor: "orange" as const,
-    icon: Heart,
-    scripture: {
-      reference: "1 Timothy 6:12",
-      text: "Fight the good fight of faith, lay hold on eternal life, whereunto thou art also called."
-    }
-  }
-};
+/** The schedule looks classes up by id; CLASSES is the single source of truth
+    for their names, images, icons, colours, scripture and durations. */
+const CLASS_DETAILS = CLASSES_BY_ID;
 
 // ─── SCHEDULE DATA ──────────────────────────────────────────────────────────
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -978,7 +915,7 @@ export default function SchedulePage() {
 
                 {/* Description */}
                 <p className="text-zinc-300 text-xs font-light leading-relaxed mb-6">
-                  {CLASS_DETAILS[selectedClass].desc}
+                  {CLASS_DETAILS[selectedClass].scheduleDesc ?? CLASS_DETAILS[selectedClass].desc}
                 </p>
 
                 {/* Scripture Panel */}
