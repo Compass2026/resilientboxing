@@ -50,8 +50,8 @@ export default function Header({ onBookClick }: HeaderProps) {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#080808]/90 backdrop-blur-xl shadow-2xl shadow-black/70 border-b border-white/8"
-          : "bg-gradient-to-b from-black/80 via-black/50 to-transparent backdrop-blur-sm"
+          ? "bg-[#080808] shadow-2xl shadow-black/70 border-b border-white/8"
+          : "bg-gradient-to-b from-black/80 via-black/50 to-transparent"
       }`}
     >
       <div
