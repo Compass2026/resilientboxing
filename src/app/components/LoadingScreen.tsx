@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -52,6 +52,22 @@ const VERSES = [
   },
 ];
 
+/**
+ * Intro video, played once per visit on the first loading screen a visitor
+ * sees. Every load after that shows a photo and verse instead.
+ *
+ * Set this to the video's path in /public to switch it on; leave it null and
+ * every load shows the photo screen. The file must be muted-autoplay friendly
+ * (browsers block autoplay with sound) and ideally an MP4 under a few MB.
+ */
+const INTRO_VIDEO: string | null = "/loading-intro.mp4";
+
+/** Matches the video's 7.77s runtime, so it plays out before the fade ends. */
+const INTRO_DURATION_MS = 7800;
+
+/** Marks the intro as played for this browser tab. */
+const INTRO_FLAG = "rb_intro_played";
+
 interface LoadingScreenProps {
   onComplete: () => void;
 }
@@ -67,25 +83,58 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   // then, so nothing flashes before the choice is made.
   const [pick, setPick] = useState<{ photo: string; verse: typeof VERSES[number] } | null>(null);
 
+  /** null until decided after mount, for the same hydration reason. */
+  const [showIntro, setShowIntro] = useState<boolean | null>(null);
+
   useEffect(() => {
-    setPick({
-      photo: PHOTOS[Math.floor(Math.random() * PHOTOS.length)],
-      verse: VERSES[Math.floor(Math.random() * VERSES.length)],
-    });
+    // sessionStorage is per tab and clears when the tab closes, so the intro
+    // greets each visit once rather than once forever.
+    let alreadyPlayed = true;
+    try {
+      alreadyPlayed = sessionStorage.getItem(INTRO_FLAG) === "1";
+      if (!alreadyPlayed) sessionStorage.setItem(INTRO_FLAG, "1");
+    } catch {
+      // Private browsing can throw on storage access; fall back to the photo.
+      alreadyPlayed = true;
+    }
+
+    const intro = Boolean(INTRO_VIDEO) && !alreadyPlayed;
+    setShowIntro(intro);
+
+    if (!intro) {
+      setPick({
+        photo: PHOTOS[Math.floor(Math.random() * PHOTOS.length)],
+        verse: VERSES[Math.floor(Math.random() * VERSES.length)],
+      });
+    }
   }, []);
 
-  // Master timeline (Original longer play duration: 4.4 seconds total)
+  // Held in a ref so the timeline below doesn't depend on the callback's
+  // identity. Parents pass an inline arrow, so a parent re-render would
+  // otherwise tear down and restart the timers — and any parent that
+  // re-renders faster than the timeline would keep the screen up forever.
+  const onCompleteRef = useRef(onComplete);
   useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
+  // Master timeline. Waits for the intro decision so the screen isn't dismissed
+  // partway through the video. 4.4s for the photo screen, the video's length
+  // for the intro.
+  useEffect(() => {
+    if (showIntro === null) return;
+
+    const total = showIntro ? INTRO_DURATION_MS : 4400;
     const timers = [
       setTimeout(() => setPhase(1), 150),
       setTimeout(() => setPhase(2), 500),
       setTimeout(() => setPhase(3), 1200),
       setTimeout(() => setPhase(4), 2400),
-      setTimeout(() => setIsExiting(true), 3400),
-      setTimeout(() => { setIsDone(true); onComplete(); }, 4400),
+      setTimeout(() => setIsExiting(true), total - 1000),
+      setTimeout(() => { setIsDone(true); onCompleteRef.current(); }, total),
     ];
     return () => timers.forEach(clearTimeout);
-  }, [onComplete]);
+  }, [showIntro]);
 
   // Letter-by-letter typewriter
   useEffect(() => {
@@ -102,6 +151,22 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       animate={isExiting ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 1.0, ease: "easeInOut" }}
     >
+      {/* ── INTRO VIDEO (first load of a visit only) ── */}
+      {showIntro && INTRO_VIDEO && (
+        <motion.video
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <source src={INTRO_VIDEO} type="video/mp4" />
+        </motion.video>
+      )}
+
       {/* ── PHOTO BACKGROUND (drifts slowly so it doesn't read as a still) ── */}
       {pick && (
         <motion.div
@@ -124,8 +189,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         </motion.div>
       )}
 
-      {/* ── DARK OVERLAY ── */}
-      <div className="absolute inset-0 z-[1] bg-black/80" />
+      {/* ── DARK OVERLAY — lighter over the intro, so the video stays the feature ── */}
+      <div className={`absolute inset-0 z-[1] ${showIntro ? "bg-black/45" : "bg-black/80"}`} />
 
       {/* ── CONTENT LAYER ── */}
       <div className="absolute inset-0 flex flex-col items-center justify-center select-none z-[2]">
