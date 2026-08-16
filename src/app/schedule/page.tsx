@@ -501,7 +501,7 @@ export default function SchedulePage() {
                   {/* Decorative background watermark */}
                   <div className="absolute inset-0 pointer-events-none opacity-2 flex items-center justify-center">
                     <Image
-                      src="/resilient_boxing_gym_logo_transparent_high_def.png"
+                      src="/resilient-boxing-logo.webp"
                       alt="Watermark"
                       width={650}
                       height={400}
@@ -806,7 +806,7 @@ export default function SchedulePage() {
             <div className="absolute inset-0 bg-[#0c0c0c]/80" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none opacity-5">
               <Image
-                src="/resilient_boxing_gym_logo_transparent_high_def.png"
+                src="/resilient-boxing-logo.webp"
                 alt="Gym Crest"
                 fill
                 className="object-contain"

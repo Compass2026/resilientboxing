@@ -77,7 +77,7 @@ export default function Header({ onBookClick }: HeaderProps) {
               }`}
             >
               <Image
-                src="/resilient_boxing_gym_logo_transparent_high_def.png"
+                src="/resilient-boxing-logo.webp"
                 alt="Resilient Boxing Gym"
                 fill
                 className="object-contain object-left"
