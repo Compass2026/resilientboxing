@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -60,10 +60,10 @@ const VERSES = [
  * every load shows the photo screen. The file must be muted-autoplay friendly
  * (browsers block autoplay with sound) and ideally an MP4 under a few MB.
  */
-const INTRO_VIDEO: string | null = null;
+const INTRO_VIDEO: string | null = "/loading-intro.mp4";
 
-/** How long the intro runs before fading out. Match to the video's length. */
-const INTRO_DURATION_MS = 6000;
+/** Matches the video's 7.77s runtime, so it plays out before the fade ends. */
+const INTRO_DURATION_MS = 7800;
 
 /** Marks the intro as played for this browser tab. */
 const INTRO_FLAG = "rb_intro_played";
@@ -109,6 +109,15 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     }
   }, []);
 
+  // Held in a ref so the timeline below doesn't depend on the callback's
+  // identity. Parents pass an inline arrow, so a parent re-render would
+  // otherwise tear down and restart the timers — and any parent that
+  // re-renders faster than the timeline would keep the screen up forever.
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
   // Master timeline. Waits for the intro decision so the screen isn't dismissed
   // partway through the video. 4.4s for the photo screen, the video's length
   // for the intro.
@@ -122,10 +131,10 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       setTimeout(() => setPhase(3), 1200),
       setTimeout(() => setPhase(4), 2400),
       setTimeout(() => setIsExiting(true), total - 1000),
-      setTimeout(() => { setIsDone(true); onComplete(); }, total),
+      setTimeout(() => { setIsDone(true); onCompleteRef.current(); }, total),
     ];
     return () => timers.forEach(clearTimeout);
-  }, [onComplete, showIntro]);
+  }, [showIntro]);
 
   // Letter-by-letter typewriter
   useEffect(() => {
