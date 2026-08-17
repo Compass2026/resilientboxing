@@ -62,8 +62,11 @@ const VERSES = [
  */
 const INTRO_VIDEO: string | null = "/loading-intro.mp4";
 
-/** Matches the video's 8.64s runtime, so it plays out before the fade ends. */
-const INTRO_DURATION_MS = 8700;
+/**
+ * The video runs 4.50s. Held slightly longer so the one-second fade starts
+ * near the end rather than eating the last fifth of a short clip.
+ */
+const INTRO_DURATION_MS = 5200;
 
 /** Marks the intro as played for this browser tab. */
 const INTRO_FLAG = "rb_intro_played";
