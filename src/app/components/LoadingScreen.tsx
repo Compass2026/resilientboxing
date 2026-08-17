@@ -189,10 +189,13 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         </motion.div>
       )}
 
-      {/* ── DARK OVERLAY — lighter over the intro, so the video stays the feature ── */}
-      <div className={`absolute inset-0 z-[1] ${showIntro ? "bg-black/45" : "bg-black/80"}`} />
+      {/* ── DARK OVERLAY (photo screen only — the intro plays untouched) ── */}
+      {!showIntro && <div className="absolute inset-0 z-[1] bg-black/80" />}
 
-      {/* ── CONTENT LAYER ── */}
+      {/* ── CONTENT LAYER ──
+          Skipped entirely during the intro: the video carries its own branding,
+          so the logo, tagline and progress bar would only sit on top of it. */}
+      {showIntro === false && (
       <div className="absolute inset-0 flex flex-col items-center justify-center select-none z-[2]">
 
         {/* Ambient gold radiance bloom */}
@@ -334,6 +337,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         </motion.div>
 
       </div>
+      )}
     </motion.div>
   );
 }
