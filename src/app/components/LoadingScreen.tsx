@@ -154,14 +154,17 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       animate={isExiting ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 1.0, ease: "easeInOut" }}
     >
-      {/* ── INTRO VIDEO (first load of a visit only) ── */}
+      {/* ── INTRO VIDEO (first load of a visit only) ──
+          object-contain, not cover: the clip is square, so filling a wide
+          desktop or a tall phone would crop a third to a half of the frame.
+          Fitting it whole letterboxes against the near-black backdrop. */}
       {showIntro && INTRO_VIDEO && (
         <motion.video
           autoPlay
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          className="absolute inset-0 w-full h-full object-contain object-center z-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
