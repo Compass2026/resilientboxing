@@ -399,7 +399,7 @@ export default function Page() {
                 {/* Right: floating glass stat cards */}
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { val: "500+", label: "Members", sub: "and counting" },
+                    { val: "100+", label: "Members", sub: "and counting" },
                     { val: "#1", label: "Rated Gym", sub: "in O'Fallon MO" },
                     { val: "5★", label: "Google Reviews", sub: "across 100+ reviews" },
                     { val: "Free", label: "First Class", sub: "no commitment" },

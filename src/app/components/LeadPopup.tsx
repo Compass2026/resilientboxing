@@ -7,16 +7,13 @@ import BookingModal from "./BookingModal";
 /** Shown once per visit; dismissing or submitting keeps it away until a new tab. */
 const FLAG = "rb_lead_popup_shown";
 
-/** Seconds on the page before the popup appears. */
-const DELAY_MS = 3000;
-
 /**
- * Opens the booking modal on its own a few seconds into the visit, to gather
- * contact info from visitors who would otherwise browse and leave.
+ * Opens the booking modal once the visitor scrolls below the fold — a full
+ * viewport height down the page — to gather contact info from people who are
+ * engaged enough to be reading, without ambushing the ones who just arrived.
  *
- * Waits out the loading screen where one is running, so the countdown starts
- * from the moment the visitor can actually see the site. Skipped on the
- * contact page — a popup form over a contact form helps nobody.
+ * Ignores scrolling while the loading screen is still up, shows once per
+ * visit, and is skipped on the contact page, which already is a form.
  */
 export default function LeadPopup() {
   const [open, setOpen] = useState(false);
@@ -33,24 +30,18 @@ export default function LeadPopup() {
       return;
     }
 
-    let poll: ReturnType<typeof setInterval> | undefined;
-    const timer = setTimeout(() => {
-      poll = setInterval(() => {
-        const loadingScreenUp = document.querySelector('div[class*="z-[9999]"]');
-        if (!loadingScreenUp) {
-          clearInterval(poll);
-          try {
-            sessionStorage.setItem(FLAG, "1");
-          } catch {}
-          setOpen(true);
-        }
-      }, 400);
-    }, DELAY_MS);
-
-    return () => {
-      clearTimeout(timer);
-      if (poll) clearInterval(poll);
+    const onScroll = () => {
+      if (window.scrollY < window.innerHeight) return;
+      if (document.querySelector('div[class*="z-[9999]"]')) return;
+      window.removeEventListener("scroll", onScroll);
+      try {
+        sessionStorage.setItem(FLAG, "1");
+      } catch {}
+      setOpen(true);
     };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, [pathname]);
 
   return <BookingModal isOpen={open} onClose={() => setOpen(false)} />;
