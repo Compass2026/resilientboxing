@@ -87,6 +87,7 @@ export default function ContactPage() {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validateField = (name: string, value: string) => {
     let error = "";
@@ -111,8 +112,6 @@ export default function ContactPage() {
     } else if (name === "message") {
       if (!value.trim()) {
         error = "Please enter your message.";
-      } else if (value.trim().length < 10) {
-        error = "Message must be at least 10 characters.";
       }
     }
     return error;
@@ -139,10 +138,11 @@ export default function ContactPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError("");
 
-    // Honeypot spam check
+    // Honeypot spam check — pretend it worked so bots move on.
     if (form.website) {
       setIsSubmitting(true);
       setTimeout(() => {
@@ -177,9 +177,21 @@ export default function ContactPage() {
 
     setIsSubmitting(true);
 
-    // Simulate server action submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data.ok) {
+        setSubmitError(
+          data.error || "Something went wrong sending your message. Please try again or call (314) 315-5046."
+        );
+        return;
+      }
+
       setIsSuccess(true);
       setForm({
         name: "",
@@ -191,7 +203,13 @@ export default function ContactPage() {
       });
       setTouched({});
       setErrors({});
-    }, 2000);
+    } catch {
+      setSubmitError(
+        "We couldn't reach the server. Please check your connection and try again, or call (314) 315-5046."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const programList = [
@@ -527,6 +545,17 @@ export default function ContactPage() {
                           </div>
                         )}
                       </div>
+
+                      {/* Submission failure notice */}
+                      {submitError && (
+                        <div
+                          role="alert"
+                          className="flex items-start gap-3 p-4 rounded-xl border border-red-500/30 bg-red-500/10 text-red-300 text-xs leading-relaxed"
+                        >
+                          <AlertCircle size={14} className="shrink-0 mt-0.5" />
+                          {submitError}
+                        </div>
+                      )}
 
                       {/* Submit Button */}
                       <button
