@@ -54,6 +54,37 @@ export default function Header({ onBookClick }: HeaderProps) {
           : "bg-gradient-to-b from-black/80 via-black/50 to-transparent"
       }`}
     >
+      {/* ── PROMO BANNER — collapses once the visitor scrolls ── */}
+      <button
+        onClick={onBookClick}
+        aria-label="Try us out: one month for $139.99, gloves, wraps and a t-shirt included. Book now."
+        className={`relative block w-full overflow-hidden cursor-pointer bg-gradient-to-r from-[#7a5f33] via-[#C5A059] to-[#7a5f33] text-black transition-all duration-500 focus:outline-none group/promo ${
+          scrolled ? "max-h-0 opacity-0" : "max-h-14 opacity-100"
+        }`}
+      >
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-0 px-4 py-2 sm:py-2.5">
+          <span className="font-bebas italic uppercase tracking-wide text-[15px] sm:text-lg leading-tight">
+            Try us out — one month for{" "}
+            <span className="text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)]">$139.99</span>
+          </span>
+          <span className="hidden sm:inline w-1 h-1 rounded-full bg-black/50" />
+          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] leading-tight">
+            Gloves, wraps &amp; a t-shirt included
+          </span>
+          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.14em] underline underline-offset-2 decoration-black/40 group-hover/promo:decoration-black">
+            Claim it <ArrowUpRight size={11} />
+          </span>
+        </div>
+        {/* Shine sweep */}
+        <motion.span
+          aria-hidden
+          className="absolute inset-y-0 w-1/4 -skew-x-12 bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none"
+          initial={{ left: "-30%" }}
+          animate={{ left: "130%" }}
+          transition={{ duration: 2.6, repeat: Infinity, repeatDelay: 2.2, ease: "easeInOut" }}
+        />
+      </button>
+
       <div
         className={`max-w-[1400px] mx-auto px-5 md:px-12 flex items-center justify-between transition-all duration-500 ${
           scrolled ? "h-[100px] md:h-[110px]" : "h-[160px] md:h-[200px]"
