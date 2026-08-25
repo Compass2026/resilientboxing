@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
+import LeadPopup from "./components/LeadPopup";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -54,6 +55,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${bebasNeue.variable}`}>
       <body className="bg-[#0A0A0A] text-white antialiased min-h-screen">
         {children}
+        <LeadPopup />
       </body>
     </html>
   );

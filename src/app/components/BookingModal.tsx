@@ -19,16 +19,30 @@ export default function BookingModal({ isOpen, onClose, defaultProgramId = "elev
     email: "",
     phone: "",
     program: defaultProgramId,
+    website: "", // honeypot
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Email the lead to the gym before handing off to WellnessLiving. Fire and
+    // forget: the visitor's primary path is the signup, and holding them
+    // hostage to the email round-trip would only add friction.
+    fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...form,
+        message: "Booking request from the website popup — wants to get started.",
+      }),
+    }).catch((err) => console.error("Lead email failed:", err));
+
     setSubmitted(true);
     setTimeout(() => {
       window.open("https://www.wellnessliving.com/signup/resilient_boxing", "_blank");
       onClose();
       setSubmitted(false);
-      setForm({ name: "", email: "", phone: "", program: defaultProgramId });
+      setForm({ name: "", email: "", phone: "", program: defaultProgramId, website: "" });
     }, 2600);
   };
 
@@ -109,6 +123,17 @@ export default function BookingModal({ isOpen, onClose, defaultProgramId = "elev
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-3.5">
+                    {/* Honeypot (hidden from people, filled by bots) */}
+                    <input
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={form.website}
+                      onChange={(e) => setForm({ ...form, website: e.target.value })}
+                      aria-hidden="true"
+                      style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+                    />
                     {[
                       { id: "name", label: "Full Name", type: "text", placeholder: "John Doe", field: "name" as const },
                       { id: "email", label: "Email Address", type: "email", placeholder: "john@email.com", field: "email" as const },
