@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import LeadPopup from "./components/LeadPopup";
@@ -56,6 +57,17 @@ export default function RootLayout({
       <body className="bg-[#0A0A0A] text-white antialiased min-h-screen">
         {children}
         <LeadPopup />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CZYNKTW7DL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-CZYNKTW7DL');`}
+        </Script>
       </body>
     </html>
   );
