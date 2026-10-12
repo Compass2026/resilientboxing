@@ -1,3 +1,5 @@
+import { after } from 'next/server';
+import { queueInquiry, safePage, mockDelivery } from '@/lib/inquiry-submit';
 import { Resend } from "resend";
 
 const TO = ["thomas@compassmarketing.ai", "resilientboxing@gmail.com"];
@@ -59,6 +61,7 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, error: "Validation failed.", errors }, { status: 400 });
   }
 
+  if (mockDelivery()) return Response.json({ ok: true, preview: true });
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error("RESEND_API_KEY is not set; contact form cannot send.");
@@ -83,6 +86,11 @@ export async function POST(request: Request) {
   </div>`;
 
   try {
+    const text = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nProgram: ${programLabel}\nMessage: ${message}`;
+    if (await queueInquiry({ id: request.headers.get('x-inquiry-id') || '', fingerprintPayload: { name, email, phone, program, message },
+      email: { from: FROM, to: TO, reply_to: email, subject: `New contact form lead: ${name}`, text, html },
+      crmPayload: { name, email, phone, service_type: programLabel, message: text, page_url: safePage(request.headers.get('referer')) },
+    }, after)) return Response.json({ ok: true });
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from: FROM,
@@ -108,3 +116,4 @@ export async function POST(request: Request) {
 
   return Response.json({ ok: true });
 }
+
