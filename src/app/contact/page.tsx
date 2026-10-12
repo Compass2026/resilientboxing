@@ -1,4 +1,6 @@
 "use client";
+import { useInquiryRequest } from '@/lib/use-inquiry-request';
+
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -75,6 +77,7 @@ interface FormErrors {
 export default function ContactPage() {
   const [showLoading, setShowLoading] = useState(true);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const inquiryRequest = useInquiryRequest();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -178,7 +181,7 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await inquiryRequest("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -630,3 +633,4 @@ export default function ContactPage() {
     </div>
   );
 }
+
